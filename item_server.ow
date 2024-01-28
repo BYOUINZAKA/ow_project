@@ -1,0 +1,1263 @@
+设置
+{
+	模式
+	{
+		占领要点
+
+		综合
+		{
+			职责限制: 1重装，2输出，2支援
+			获胜得分: 3
+			计分速度: 10%
+		}
+	}
+
+	英雄
+	{
+		队伍1
+		{
+			重生时终极技能充能完毕: 开启
+		}
+	}
+
+	扩展
+	{
+		增益状态效果
+		减益状态效果
+		弹道
+	}
+}
+
+变量
+{
+	全局:
+		0: a_all_players
+		1: i_current_player_pos
+		2: p_current_player
+		3: a_current_install_items
+		4: a_current_uninstall_items
+		6: a_bullet_move_Etable
+		7: a_bullet_move_Stable
+		8: a_bullet_move_Qtable
+		9: cd_attack_base
+		10: cd_defense_base
+		11: cs_PoisonStrike
+		12: cd_injury_percent
+		13: h_hero_bullet_keys
+		14: h_hero_bullet_values
+		15: cs_MagicCoat
+		16: cs_Excalibur
+		17: cs_RadiantGuardian
+		18: cs_PunctureCocoon
+		19: a_unrebounded_Q
+		100: cs_PhoenixEyes
+		101: cs_BoostShock
+		102: cs_Starlight
+		103: cs_GoldenGlasses
+		104: cs_IceCoat
+		105: cs_AttackRing
+
+	玩家:
+		0: i_sys_attack
+		1: i_sys_defense
+		2: a_install_items
+		3: a_uninstall_items
+		4: a_items
+		5: bf_is_install_item
+		6: d_sys_drain
+		7: s_debug_move
+		9: i_sys_hp
+		10: i_sys_demage_increase
+		11: b_sys_can_injury
+		12: i_sys_piercing
+		13: d_debug_demage
+		14: i_sys_in_battle
+		16: d_sys_piercing_percent
+		26: bf_has_PoisonStrike
+		27: bf_has_MagicCoat
+		28: bf_has_RadiantGuardian
+		29: d_total_demage_RadiantGuardian
+		30: b_wait_RadiantGuardian
+		31: i_timer_RadiantGuardian
+		32: bf_has_PunctureCocoon
+		33: d_total_demage_PunctureCocoon
+		34: b_wait_PunctureCocoon
+		35: i_timer_PunctureCocoon
+		36: bf_has_PhoenixEyes
+		37: i_pre_heal_PhoenixEyes
+		38: i_heal_PhoenixEyes
+		39: i_per10_hp_PhoenixEyes
+		40: bf_has_BoostShock
+		41: i_boost_count_BoostShock
+		42: bf_has_IceCoat
+		43: b_wait_IceCoat
+		44: b_buff_IceCoat_slow
+		100: i_sys_speed
+		101: i_sys_pre_speed
+		102: i_sys_heal_increase
+		103: d_sys_cd
+		104: s_sys_aura
+		105: s_sys_pre_aura
+}
+
+子程序
+{
+	0: install_PoisonStrike
+	1: install_MagicCoat
+	2: install_Excalibur
+	3: install_RadiantGuardian
+	4: install_PunctureCocoon
+	5: install_PhoenixEyes
+	6: install_BoostShock
+	7: install_Starlight
+	8: install_GoldenGlasses
+	9: install_IceCoat
+	20: aura_AttckRing
+}
+
+禁用 规则("debug_piercing")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 0;
+	}
+
+	动作
+	{
+		事件玩家.d_sys_piercing_percent = 1;
+		事件玩家.d_sys_cd = 0.8;
+	}
+}
+
+规则("test__DVA")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	动作
+	{
+		事件玩家.a_install_items = 数组(全局.cs_PoisonStrike, 全局.cs_Starlight, 全局.cs_MagicCoat, 全局.cs_Excalibur, 全局.cs_BoostShock);
+		事件玩家.bf_is_install_item = 真;
+	}
+}
+
+规则("test__Reaper")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		死神;
+	}
+
+	动作
+	{
+		事件玩家.a_install_items = 数组(全局.cs_PhoenixEyes, 全局.cs_Starlight, 全局.cs_IceCoat, 全局.cs_RadiantGuardian, 全局.cs_BoostShock);
+		事件玩家.bf_is_install_item = 真;
+	}
+}
+
+规则("test__Doomfist")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		末日铁拳;
+	}
+
+	动作
+	{
+		事件玩家.a_install_items = 数组(全局.cs_BoostShock, 全局.cs_MagicCoat, 全局.cs_Excalibur, 全局.cs_RadiantGuardian, 全局.cs_PunctureCocoon);
+		事件玩家.bf_is_install_item = 真;
+	}
+}
+
+规则("test__Winston")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		奥丽莎;
+	}
+
+	动作
+	{
+		禁用 事件玩家.a_install_items = 数组();
+		事件玩家.a_install_items = 数组(全局.cs_PoisonStrike, 全局.cs_MagicCoat, 全局.cs_RadiantGuardian, 全局.cs_PunctureCocoon, 全局.cs_BoostShock);
+		事件玩家.bf_is_install_item = 真;
+	}
+}
+
+规则("test__Brigitte")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		布丽吉塔;
+	}
+
+	动作
+	{
+		禁用 事件玩家.a_install_items = 数组();
+		事件玩家.a_install_items = 数组(全局.cs_PhoenixEyes, 全局.cs_MagicCoat, 全局.cs_RadiantGuardian, 全局.cs_PunctureCocoon, 全局.cs_BoostShock);
+		事件玩家.bf_is_install_item = 真;
+	}
+}
+
+规则("init_consts")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		全局.cd_attack_base = 300;
+		全局.cd_defense_base = 320;
+		全局.cd_injury_percent = 1.3;
+	}
+}
+
+规则("init_items_name")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		全局.cs_PoisonStrike = 自定义字符串("Poison Strike");
+		全局.cs_MagicCoat = 自定义字符串("Magic Coat");
+		全局.cs_Excalibur = 自定义字符串("Excalibur");
+		全局.cs_RadiantGuardian = 自定义字符串("Radiant Guardian");
+		全局.cs_PunctureCocoon = 自定义字符串("Puncture Cocoon");
+		全局.cs_PhoenixEyes = 自定义字符串("Phoenix Eyes");
+		全局.cs_BoostShock = 自定义字符串("Boost Shock");
+		全局.cs_Starlight = 自定义字符串("Starlight");
+		全局.cs_GoldenGlasses = 自定义字符串("GoldenGlasses");
+		全局.cs_IceCoat = 自定义字符串("IceCoat");
+	}
+}
+
+规则("init_move_consts")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		全局.a_bullet_move_Etable = 空数组;
+		修改全局变量(a_bullet_move_Etable, 添加至数组, 英雄(D.Va));
+		修改全局变量(a_bullet_move_Etable, 添加至数组, 英雄(半藏));
+		修改全局变量(a_bullet_move_Etable, 添加至数组, 英雄(西格玛));
+		修改全局变量(a_bullet_move_Etable, 添加至数组, 英雄(奥丽莎));
+		修改全局变量(a_bullet_move_Etable, 添加至数组, 英雄(安娜));
+		全局.a_bullet_move_Stable = 空数组;
+		修改全局变量(a_bullet_move_Stable, 添加至数组, 英雄(半藏));
+		修改全局变量(a_bullet_move_Stable, 添加至数组, 英雄(堡垒));
+		全局.a_bullet_move_Qtable = 空数组;
+		修改全局变量(a_bullet_move_Qtable, 添加至数组, 英雄(卡西迪));
+		修改全局变量(a_bullet_move_Qtable, 添加至数组, 英雄(死神));
+		修改全局变量(a_bullet_move_Qtable, 添加至数组, 英雄(温斯顿));
+		全局.a_unrebounded_Q = 数组(英雄(D.Va), 英雄(伊拉锐), 英雄(半藏), 英雄(西格玛), 英雄(卡西迪), 英雄(托比昂), 英雄(渣客女王), 英雄(拉玛刹), 英雄(破坏球));
+	}
+}
+
+规则("main_item_handle_thread")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		While(真);
+			等待(3, 无视条件);
+			全局.a_all_players = 所有玩家(所有队伍);
+			For 全局变量(i_current_player_pos, 0, 数量(全局.a_all_players), 1);
+				等待直到 (真, 99999);
+				全局.p_current_player = 全局.a_all_players[全局.i_current_player_pos];
+				If(全局.p_current_player.bf_is_install_item);
+					全局.p_current_player.bf_is_install_item = 假;
+					全局.a_current_install_items = 全局.p_current_player.a_install_items;
+					禁用 全局.p_current_player.a_uninstall_items = 全局.p_current_player.a_items;
+					全局.a_current_uninstall_items = 全局.p_current_player.a_items;
+					调用子程序(install_PoisonStrike);
+					调用子程序(install_MagicCoat);
+					调用子程序(install_Excalibur);
+					调用子程序(install_RadiantGuardian);
+					调用子程序(install_PunctureCocoon);
+					调用子程序(install_PhoenixEyes);
+					调用子程序(install_BoostShock);
+					调用子程序(install_Starlight);
+					调用子程序(install_GoldenGlasses);
+					调用子程序(install_IceCoat);
+					全局.p_current_player.a_items = 全局.a_current_install_items;
+					全局.p_current_player.a_install_items = 空数组;
+				End;
+			End;
+		End;
+	}
+}
+
+规则("__install_PoisonStrike")
+{
+	事件
+	{
+		子程序;
+		install_PoisonStrike;
+	}
+
+	动作
+	{
+		If(全局.cs_PoisonStrike == 空);
+			中止;
+		End;
+		If(数组包含(全局.a_current_uninstall_items, 全局.cs_PoisonStrike));
+			全局.p_current_player.bf_has_PoisonStrike = 假;
+			全局.p_current_player.i_sys_attack -= 60;
+			全局.p_current_player.d_sys_drain -= 0.100;
+		End;
+		If(数组包含(全局.a_current_install_items, 全局.cs_PoisonStrike));
+			全局.p_current_player.i_sys_attack += 60;
+			全局.p_current_player.d_sys_drain += 0.100;
+			全局.p_current_player.bf_has_PoisonStrike = 真;
+		End;
+	}
+}
+
+规则("__install_MagicCoat")
+{
+	事件
+	{
+		子程序;
+		install_MagicCoat;
+	}
+
+	动作
+	{
+		If(全局.cs_MagicCoat == 空);
+			中止;
+		End;
+		If(数组包含(全局.a_current_uninstall_items, 全局.cs_MagicCoat));
+			全局.p_current_player.bf_has_MagicCoat = 0;
+			全局.p_current_player.i_sys_defense -= 180;
+			全局.p_current_player.i_sys_hp -= 55;
+		End;
+		If(数组包含(全局.a_current_install_items, 全局.cs_MagicCoat));
+			全局.p_current_player.i_sys_defense += 180;
+			全局.p_current_player.i_sys_hp += 55;
+			全局.p_current_player.bf_has_MagicCoat = 1;
+		End;
+	}
+}
+
+规则("__install_Excalibur")
+{
+	事件
+	{
+		子程序;
+		install_Excalibur;
+	}
+
+	动作
+	{
+		If(全局.cs_Excalibur == 空);
+			中止;
+		End;
+		If(数组包含(全局.a_current_uninstall_items, 全局.cs_Excalibur));
+			全局.p_current_player.b_sys_can_injury = 假;
+			全局.p_current_player.i_sys_attack -= 180;
+		End;
+		If(数组包含(全局.a_current_install_items, 全局.cs_Excalibur));
+			全局.p_current_player.i_sys_attack += 180;
+			全局.p_current_player.b_sys_can_injury = 真;
+		End;
+	}
+}
+
+规则("__install_RadiantGuardian")
+{
+	事件
+	{
+		子程序;
+		install_RadiantGuardian;
+	}
+
+	动作
+	{
+		If(全局.cs_RadiantGuardian == 空);
+			中止;
+		End;
+		If(数组包含(全局.a_current_uninstall_items, 全局.cs_RadiantGuardian));
+			全局.p_current_player.bf_has_RadiantGuardian = 假;
+			全局.p_current_player.i_sys_hp -= 60;
+			全局.p_current_player.d_total_demage_RadiantGuardian = 0;
+			全局.p_current_player.i_sys_defense -= 200;
+		End;
+		If(数组包含(全局.a_current_install_items, 全局.cs_RadiantGuardian));
+			全局.p_current_player.i_sys_defense += 200;
+			全局.p_current_player.i_sys_hp += 60;
+			全局.p_current_player.d_total_demage_RadiantGuardian = 0;
+			全局.p_current_player.bf_has_RadiantGuardian = 真;
+		End;
+	}
+}
+
+规则("__install_PunctureCocoon")
+{
+	事件
+	{
+		子程序;
+		install_PunctureCocoon;
+	}
+
+	动作
+	{
+		If(全局.cs_PunctureCocoon == 空);
+			中止;
+		End;
+		If(数组包含(全局.a_current_uninstall_items, 全局.cs_PunctureCocoon));
+			全局.p_current_player.bf_has_PunctureCocoon = 假;
+			全局.p_current_player.i_sys_defense -= 420;
+			全局.p_current_player.i_sys_attack -= 40;
+		End;
+		If(数组包含(全局.a_current_install_items, 全局.cs_PunctureCocoon));
+			全局.p_current_player.i_sys_defense += 420;
+			全局.p_current_player.i_sys_attack += 40;
+			全局.p_current_player.bf_has_PunctureCocoon = 真;
+		End;
+	}
+}
+
+规则("__install_IceCoat")
+{
+	事件
+	{
+		子程序;
+		install_IceCoat;
+	}
+
+	动作
+	{
+		If(全局.cs_IceCoat == 空);
+			中止;
+		End;
+		If(数组包含(全局.a_current_uninstall_items, 全局.cs_IceCoat));
+			全局.p_current_player.bf_has_IceCoat = 假;
+			全局.p_current_player.i_sys_defense -= 360;
+			全局.p_current_player.d_sys_cd -= 0.2;
+		End;
+		If(数组包含(全局.a_current_install_items, 全局.cs_IceCoat));
+			全局.p_current_player.bf_has_IceCoat = 真;
+			全局.p_current_player.i_sys_defense += 360;
+			全局.p_current_player.d_sys_cd += 0.2;
+		End;
+	}
+}
+
+规则("__install_PhoenixEyes")
+{
+	事件
+	{
+		子程序;
+		install_PhoenixEyes;
+	}
+
+	动作
+	{
+		If(全局.cs_PhoenixEyes == 空);
+			中止;
+		End;
+		If(数组包含(全局.a_current_uninstall_items, 全局.cs_PhoenixEyes));
+			全局.p_current_player.bf_has_PhoenixEyes = 假;
+			全局.p_current_player.i_sys_defense -= 160;
+			全局.p_current_player.i_sys_hp -= 80;
+		End;
+		If(数组包含(全局.a_current_install_items, 全局.cs_PhoenixEyes));
+			全局.p_current_player.i_sys_defense += 160;
+			全局.p_current_player.i_sys_hp += 80;
+			全局.p_current_player.bf_has_PhoenixEyes = 真;
+		End;
+	}
+}
+
+规则("__install_BoostShock")
+{
+	事件
+	{
+		子程序;
+		install_BoostShock;
+	}
+
+	动作
+	{
+		If(全局.cs_BoostShock == 空);
+			中止;
+		End;
+		If(数组包含(全局.a_current_uninstall_items, 全局.cs_BoostShock));
+			全局.p_current_player.bf_has_BoostShock = 假;
+			全局.p_current_player.i_sys_defense -= 220;
+			全局.p_current_player.i_sys_hp -= 50;
+			全局.p_current_player.i_sys_attack -= 30;
+			全局.p_current_player.i_sys_speed -= 5;
+		End;
+		If(数组包含(全局.a_current_install_items, 全局.cs_BoostShock));
+			全局.p_current_player.i_sys_defense += 220;
+			全局.p_current_player.i_sys_hp += 50;
+			全局.p_current_player.i_sys_attack += 30;
+			全局.p_current_player.i_sys_speed += 5;
+			全局.p_current_player.bf_has_BoostShock = 真;
+		End;
+	}
+}
+
+规则("__install_Starlight")
+{
+	事件
+	{
+		子程序;
+		install_Starlight;
+	}
+
+	动作
+	{
+		If(全局.cs_Starlight == 空);
+			中止;
+		End;
+		If(数组包含(全局.a_current_uninstall_items, 全局.cs_Starlight));
+			全局.p_current_player.i_sys_attack -= 80;
+			全局.p_current_player.d_sys_piercing_percent -= 0.45;
+			全局.p_current_player.d_sys_cd -= 0.1;
+		End;
+		If(数组包含(全局.a_current_install_items, 全局.cs_Starlight));
+			全局.p_current_player.i_sys_attack += 80;
+			全局.p_current_player.d_sys_piercing_percent += 0.45;
+			全局.p_current_player.d_sys_cd += 0.1;
+		End;
+	}
+}
+
+规则("__install_GoldenGlasses")
+{
+	事件
+	{
+		子程序;
+		install_GoldenGlasses;
+	}
+
+	动作
+	{
+		If(全局.cs_GoldenGlasses == 空);
+			中止;
+		End;
+		If(数组包含(全局.a_current_uninstall_items, 全局.cs_GoldenGlasses));
+			全局.p_current_player.i_sys_attack -= 85;
+			全局.p_current_player.i_sys_piercing -= 150;
+			全局.p_current_player.d_sys_cd -= 0.15;
+		End;
+		If(数组包含(全局.a_current_install_items, 全局.cs_GoldenGlasses));
+			全局.p_current_player.i_sys_attack += 85;
+			全局.p_current_player.i_sys_piercing += 150;
+			全局.p_current_player.d_sys_cd += 0.15;
+		End;
+	}
+}
+
+规则("__aura_AttckRing")
+{
+	事件
+	{
+		子程序;
+		aura_AttckRing;
+	}
+
+	动作
+	{
+		If(事件玩家.s_sys_aura == 全局.cs_AttackRing);
+			事件玩家.i_sys_speed += 3;
+			事件玩家.d_sys_cd += 0.15;
+		Else;
+			事件玩家.i_sys_speed -= 3;
+			事件玩家.d_sys_cd -= 0.15;
+		End;
+	}
+}
+
+禁用 规则("sys_demage")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		开始伤害调整(此栏位的玩家(0, 对方队伍(所在队伍(事件玩家))), 事件玩家, (100 * ((事件玩家.i_sys_attack + 全局.cd_attack_base) / (较大(0, 此栏位的玩家(0, 对方队伍(所在队伍(事件玩家)))
+			.i_sys_defense - 事件玩家.i_sys_piercing) + 全局.cd_defense_base)) + 事件玩家.i_sys_demage_increase) * (事件玩家.b_sys_can_injury && 标准化生命值(
+			此栏位的玩家(0, 对方队伍(所在队伍(事件玩家)))) <= 0.500 ? 全局.cd_injury_percent : 1), 受伤害者，伤害者及伤害百分比);
+	}
+}
+
+规则("sys_demage2")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		开始伤害调整(此栏位的玩家(0, 对方队伍(所在队伍(事件玩家))), 事件玩家, (100 * ((事件玩家.i_sys_attack + 全局.cd_attack_base) / (较大(0, (此栏位的玩家(0, 对方队伍(所在队伍(事件玩家)))
+			.i_sys_defense - 事件玩家.i_sys_piercing) * (1 - 较大(0, 事件玩家.d_sys_piercing_percent))) + 全局.cd_defense_base))
+			+ 事件玩家.i_sys_demage_increase) * (事件玩家.b_sys_can_injury && 标准化生命值(此栏位的玩家(0, 对方队伍(所在队伍(事件玩家))))
+			<= 0.500 ? 全局.cd_injury_percent : 1), 受伤害者，伤害者及伤害百分比);
+		开始伤害调整(此栏位的玩家(1, 对方队伍(所在队伍(事件玩家))), 事件玩家, (100 * ((事件玩家.i_sys_attack + 全局.cd_attack_base) / (较大(0, (此栏位的玩家(1, 对方队伍(所在队伍(事件玩家)))
+			.i_sys_defense - 事件玩家.i_sys_piercing) * (1 - 较大(0, 事件玩家.d_sys_piercing_percent))) + 全局.cd_defense_base))
+			+ 事件玩家.i_sys_demage_increase) * (事件玩家.b_sys_can_injury && 标准化生命值(此栏位的玩家(1, 对方队伍(所在队伍(事件玩家))))
+			<= 0.500 ? 全局.cd_injury_percent : 1), 受伤害者，伤害者及伤害百分比);
+		开始伤害调整(此栏位的玩家(2, 对方队伍(所在队伍(事件玩家))), 事件玩家, (100 * ((事件玩家.i_sys_attack + 全局.cd_attack_base) / (较大(0, (此栏位的玩家(2, 对方队伍(所在队伍(事件玩家)))
+			.i_sys_defense - 事件玩家.i_sys_piercing) * (1 - 较大(0, 事件玩家.d_sys_piercing_percent))) + 全局.cd_defense_base))
+			+ 事件玩家.i_sys_demage_increase) * (事件玩家.b_sys_can_injury && 标准化生命值(此栏位的玩家(2, 对方队伍(所在队伍(事件玩家))))
+			<= 0.500 ? 全局.cd_injury_percent : 1), 受伤害者，伤害者及伤害百分比);
+		开始伤害调整(此栏位的玩家(3, 对方队伍(所在队伍(事件玩家))), 事件玩家, (100 * ((事件玩家.i_sys_attack + 全局.cd_attack_base) / (较大(0, (此栏位的玩家(3, 对方队伍(所在队伍(事件玩家)))
+			.i_sys_defense - 事件玩家.i_sys_piercing) * (1 - 较大(0, 事件玩家.d_sys_piercing_percent))) + 全局.cd_defense_base))
+			+ 事件玩家.i_sys_demage_increase) * (事件玩家.b_sys_can_injury && 标准化生命值(此栏位的玩家(3, 对方队伍(所在队伍(事件玩家))))
+			<= 0.500 ? 全局.cd_injury_percent : 1), 受伤害者，伤害者及伤害百分比);
+		开始伤害调整(此栏位的玩家(4, 对方队伍(所在队伍(事件玩家))), 事件玩家, (100 * ((事件玩家.i_sys_attack + 全局.cd_attack_base) / (较大(0, (此栏位的玩家(4, 对方队伍(所在队伍(事件玩家)))
+			.i_sys_defense - 事件玩家.i_sys_piercing) * (1 - 较大(0, 事件玩家.d_sys_piercing_percent))) + 全局.cd_defense_base))
+			+ 事件玩家.i_sys_demage_increase) * (事件玩家.b_sys_can_injury && 标准化生命值(此栏位的玩家(4, 对方队伍(所在队伍(事件玩家))))
+			<= 0.500 ? 全局.cd_injury_percent : 1), 受伤害者，伤害者及伤害百分比);
+	}
+}
+
+规则("sys_hp")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		为玩家添加生命池(事件玩家, 生命值, 事件玩家.i_sys_hp, 真, 真);
+	}
+}
+
+规则("sys_drain")
+{
+	事件
+	{
+		玩家造成伤害;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.d_sys_drain > 0;
+		事件技能 != 0;
+		被攻击方 != 攻击方;
+		(事件技能 == 按钮(主要攻击模式) || 事件技能 == 按钮(辅助攻击模式) || 事件技能 == 按钮(近身攻击) || (事件技能 == 按钮(技能1) && 数组包含(全局.a_bullet_move_Stable, 所用英雄(事件玩家)))
+			|| (事件技能 == 按钮(技能2) && 数组包含(全局.a_bullet_move_Etable, 所用英雄(事件玩家))) || (事件技能 == 按钮(终极技能) && 数组包含(全局.a_bullet_move_Qtable, 所用英雄(
+			事件玩家)))) == 真;
+	}
+
+	动作
+	{
+		治疗(事件玩家, 事件玩家, 事件伤害 * 事件玩家.d_sys_drain);
+		等待(0.100, 无视条件);
+	}
+}
+
+规则("sys_in_battle_demage")
+{
+	事件
+	{
+		玩家受到伤害;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		事件玩家.i_sys_in_battle = 10;
+	}
+}
+
+规则("sys_in_battle")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.i_sys_in_battle > 0;
+	}
+
+	动作
+	{
+		While(事件玩家.i_sys_in_battle > 0);
+			等待(1, 无视条件);
+			事件玩家.i_sys_in_battle -= 1;
+		End;
+	}
+}
+
+规则("sys_speed")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		While(真);
+			等待直到(事件玩家.i_sys_pre_speed != 事件玩家.i_sys_speed, 9999);
+			设置移动速度(事件玩家, 较小(较大(100 + 事件玩家.i_sys_speed, 70), 140));
+			事件玩家.i_sys_pre_speed = 事件玩家.i_sys_speed;
+		End;
+	}
+}
+
+规则("sys_heal_increase")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		开始治疗调整(事件玩家, 所有玩家(所有队伍), 较小(事件玩家.i_sys_heal_increase + 100, 200), 受治疗者，治疗者及治疗百分比);
+	}
+}
+
+规则("sys_cd_1")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		技能冷却时间(事件玩家, 按钮(技能1)) > 0;
+		事件玩家.d_sys_cd > 0;
+	}
+
+	动作
+	{
+		设置技能冷却(事件玩家, 按钮(技能1), 技能冷却时间(事件玩家, 按钮(技能1)) * 较大(0.6, 1 - 事件玩家.d_sys_cd));
+	}
+}
+
+规则("sys_cd_2")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		技能冷却时间(事件玩家, 按钮(技能2)) > 0;
+		事件玩家.d_sys_cd > 0;
+	}
+
+	动作
+	{
+		设置技能冷却(事件玩家, 按钮(技能2), 技能冷却时间(事件玩家, 按钮(技能2)) * 较大(0.6, 1 - 事件玩家.d_sys_cd));
+	}
+}
+
+规则("sys_cd_left")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		技能冷却时间(事件玩家, 按钮(主要攻击模式)) > 0;
+		事件玩家.d_sys_cd > 0;
+	}
+
+	动作
+	{
+		设置技能冷却(事件玩家, 按钮(主要攻击模式), 技能冷却时间(事件玩家, 按钮(主要攻击模式)) * 较大(0.6, 1 - 事件玩家.d_sys_cd));
+	}
+}
+
+规则("sys_cd_right")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		技能冷却时间(事件玩家, 按钮(辅助攻击模式)) > 0;
+		事件玩家.d_sys_cd > 0;
+	}
+
+	动作
+	{
+		设置技能冷却(事件玩家, 按钮(辅助攻击模式), 技能冷却时间(事件玩家, 按钮(辅助攻击模式)) * 较大(0.6, 1 - 事件玩家.d_sys_cd));
+	}
+}
+
+规则("do_PoisonStrike_demage")
+{
+	事件
+	{
+		玩家造成伤害;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_PoisonStrike == 真;
+		事件技能 != 0;
+		被攻击方 != 攻击方;
+		(事件技能 == 按钮(主要攻击模式) || 事件技能 == 按钮(辅助攻击模式) || 事件技能 == 按钮(近身攻击) || (事件技能 == 按钮(技能1) && 数组包含(全局.a_bullet_move_Stable, 所用英雄(事件玩家)))
+			|| (事件技能 == 按钮(技能2) && 数组包含(全局.a_bullet_move_Etable, 所用英雄(事件玩家))) || (事件技能 == 按钮(终极技能) && 数组包含(全局.a_bullet_move_Qtable, 所用英雄(
+			事件玩家)))) == 真;
+		事件伤害 >= 1;
+	}
+
+	动作
+	{
+		伤害(被攻击方, 事件玩家, 生命值(被攻击方) * 0.080);
+		等待(0.200, 无视条件);
+	}
+}
+
+规则("debug_demage_move")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		While(真);
+			事件玩家.s_debug_move = 字符串("{0} - {1} - {2}", 技能冷却时间(事件玩家, 按钮(辅助攻击模式)), 技能冷却时间(事件玩家, 按钮(技能1)), 技能冷却时间(事件玩家, 按钮(技能2)));
+			等待(1, 无视条件);
+		End;
+	}
+}
+
+规则("debug_show_move")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		创建HUD文本(事件玩家, 空, 事件玩家.s_debug_move, 事件玩家.i_sys_in_battle, 左边, 0, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
+	}
+}
+
+禁用 规则("sys_bullet")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+}
+
+禁用 规则("init_bullet_consts")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		全局.h_hero_bullet_keys = 空数组;
+		全局.h_hero_bullet_values = 空数组;
+		修改全局变量(h_hero_bullet_keys, 添加至数组, 英雄(卡西迪));
+		修改全局变量(h_hero_bullet_values, 添加至数组, 6);
+	}
+}
+
+规则("do_MagicCoat_armor")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_MagicCoat != 0;
+		事件玩家.i_sys_in_battle == 0;
+	}
+
+	动作
+	{
+		移除玩家的生命池(事件玩家.bf_has_MagicCoat);
+		为玩家添加生命池(事件玩家, 护甲, 100, 假, 假);
+		事件玩家.bf_has_MagicCoat = 最后创建的生命池;
+	}
+}
+
+规则("do_RadiantGuardian_total_demage")
+{
+	事件
+	{
+		玩家受到伤害;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_RadiantGuardian == 真;
+		事件玩家.b_wait_RadiantGuardian == 假;
+		攻击方 != 被攻击方;
+	}
+
+	动作
+	{
+		事件玩家.d_total_demage_RadiantGuardian += 事件伤害;
+		事件玩家.i_timer_RadiantGuardian = 3;
+	}
+}
+
+规则("do_RadiantGuardian_timer")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_RadiantGuardian == 真;
+		事件玩家.b_wait_RadiantGuardian == 假;
+		事件玩家.d_total_demage_RadiantGuardian > 0;
+		事件玩家.i_timer_RadiantGuardian > 0;
+	}
+
+	动作
+	{
+		While(事件玩家.i_timer_RadiantGuardian > 0);
+			等待(1, 当为“假”时中止);
+			事件玩家.i_timer_RadiantGuardian -= 1;
+		End;
+		事件玩家.d_total_demage_RadiantGuardian = 0;
+		事件玩家.i_timer_RadiantGuardian = 0;
+	}
+}
+
+规则("do_RadiantGuardian_total_heal")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_RadiantGuardian == 真;
+		事件玩家.b_wait_RadiantGuardian == 假;
+		事件玩家.d_total_demage_RadiantGuardian >= 最大生命值(事件玩家) * 0.300;
+	}
+
+	动作
+	{
+		事件玩家.d_total_demage_RadiantGuardian = 0;
+		事件玩家.b_wait_RadiantGuardian = 真;
+		事件玩家.i_timer_RadiantGuardian = 0;
+		播放效果(所有玩家(所有队伍), 治疗目标激活效果, 颜色(白色), 事件玩家, 5);
+		开始持续治疗(事件玩家, 事件玩家, 3, 4 + 最大生命值(事件玩家) * 0.040);
+		等待(7, 无视条件);
+		事件玩家.b_wait_RadiantGuardian = 假;
+	}
+}
+
+规则("do_PunctureCocoon_rebound")
+{
+	事件
+	{
+		玩家受到伤害;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_PunctureCocoon == 真;
+		((事件技能 != 0) || (攻击方.bf_has_PunctureCocoon != 真)) == 真;
+		攻击方 != 被攻击方;
+		相距距离(攻击方, 被攻击方) < 50;
+		(事件技能 != 按钮(终极技能) || !数组包含(全局.a_unrebounded_Q, 所用英雄(攻击方))) == 真;
+	}
+
+	动作
+	{
+		伤害(攻击方, 被攻击方, (-0.030 * 相距距离(攻击方, 被攻击方) + 1) * 较小(1 + 被攻击方.i_sys_defense / 20, 2) * 0.250 * 事件伤害);
+		If(!事件玩家.b_wait_PunctureCocoon);
+			事件玩家.i_timer_PunctureCocoon = 3;
+			事件玩家.d_total_demage_PunctureCocoon += 事件伤害;
+		End;
+	}
+}
+
+规则("do_PunctureCocoon_demage")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_PunctureCocoon == 真;
+		事件玩家.b_wait_PunctureCocoon != 真;
+		事件玩家.d_total_demage_PunctureCocoon > 100;
+	}
+
+	动作
+	{
+		事件玩家.b_wait_PunctureCocoon = 真;
+		事件玩家.d_total_demage_PunctureCocoon = 0;
+		播放效果(全局.a_all_players, 有害爆炸, 颜色(红色), 事件玩家, 5);
+		伤害(范围内玩家(事件玩家, 5, 对方队伍(所在队伍(事件玩家)), 表面及敌方屏障), 事件玩家, 最大生命值(事件玩家) * 0.080);
+		等待(3, 无视条件);
+		事件玩家.b_wait_PunctureCocoon = 假;
+	}
+}
+
+规则("do_PunctureCocoon_timer")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_PunctureCocoon == 真;
+		事件玩家.b_wait_PunctureCocoon != 真;
+		事件玩家.d_total_demage_PunctureCocoon > 0;
+		事件玩家.i_timer_PunctureCocoon > 0;
+	}
+
+	动作
+	{
+		While(事件玩家.i_timer_PunctureCocoon > 0);
+			等待(1, 当为“假”时中止);
+			事件玩家.i_timer_PunctureCocoon -= 1;
+		End;
+		事件玩家.d_total_demage_PunctureCocoon = 0;
+		事件玩家.i_timer_PunctureCocoon = 0;
+	}
+}
+
+规则("do_PhoenixEyes_heal_increase")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_PhoenixEyes == 真;
+	}
+
+	动作
+	{
+		While(事件玩家.bf_has_PhoenixEyes);
+			事件玩家.i_pre_heal_PhoenixEyes = 事件玩家.i_heal_PhoenixEyes;
+			事件玩家.i_per10_hp_PhoenixEyes = 11 - 取整(标准化生命值(事件玩家) * 10, 上);
+			事件玩家.i_heal_PhoenixEyes = 事件玩家.i_per10_hp_PhoenixEyes * 3;
+			事件玩家.i_sys_heal_increase += 事件玩家.i_heal_PhoenixEyes - 事件玩家.i_pre_heal_PhoenixEyes;
+			等待直到 (事件玩家.i_per10_hp_PhoenixEyes != 11 - 取整(标准化生命值(事件玩家) * 10, 上), 9999);
+		End;
+		事件玩家.i_sys_heal_increase -= 事件玩家.i_pre_heal_PhoenixEyes;
+	}
+}
+
+规则("do_get_demage_BoostShock")
+{
+	事件
+	{
+		玩家受到伤害;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_BoostShock == 真;
+	}
+
+	动作
+	{
+		If(事件玩家.i_boost_count_BoostShock <= 4);
+			事件玩家.i_boost_count_BoostShock += 1;
+			事件玩家.i_sys_speed += 2;
+			事件玩家.i_sys_demage_increase += 2;
+		End;
+	}
+}
+
+规则("do_timeout_BoostShock")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_BoostShock == 真;
+		事件玩家.i_sys_in_battle < 4;
+		事件玩家.i_boost_count_BoostShock > 0;
+	}
+
+	动作
+	{
+		事件玩家.i_sys_speed -= 事件玩家.i_boost_count_BoostShock * 2;
+		事件玩家.i_sys_demage_increase -= 事件玩家.i_boost_count_BoostShock * 2;
+		事件玩家.i_boost_count_BoostShock = 0;
+	}
+}
+
+规则("do_IceCoat_demage")
+{
+	事件
+	{
+		玩家受到伤害;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.bf_has_IceCoat == 真;
+		事件伤害 >= 生命值(事件玩家) * 0.1;
+		事件玩家.b_wait_IceCoat != 真;
+	}
+
+	动作
+	{
+		播放效果(所有玩家(所有队伍), 有害爆炸, 颜色(天蓝色), 事件玩家, 5);
+		范围内玩家(事件玩家, 5, 对方队伍(所在队伍(事件玩家)), 表面及敌方屏障).b_buff_IceCoat_slow = 真;
+		事件玩家.b_wait_IceCoat = 真;
+		等待(2, 无视条件);
+		事件玩家.b_wait_IceCoat = 假;
+	}
+}
+
+规则("do_IceCoat_slow")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.b_buff_IceCoat_slow == 真;
+		(具有状态(事件玩家, 无敌) || 具有状态(事件玩家, 相移)) != 真;
+	}
+
+	动作
+	{
+		事件玩家.i_sys_speed -= 30;
+		等待直到(事件玩家.b_buff_IceCoat_slow == 假, 2);
+		事件玩家.i_sys_speed += 30;
+		事件玩家.b_buff_IceCoat_slow = 假;
+	}
+}
+
+禁用 规则("debug_speed")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 0;
+	}
+
+	条件
+	{
+		按钮被按下(事件玩家, 按钮(互动)) == 真;
+	}
+
+	动作
+	{
+		事件玩家.i_sys_speed = 50;
+	}
+}
