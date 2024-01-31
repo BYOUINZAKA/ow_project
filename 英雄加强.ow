@@ -82,6 +82,7 @@
 {
 	全局:
 		0: random
+		20: ci_tracer_max_energy
 
 	玩家:
 		0: mei_Q_timer
@@ -151,6 +152,19 @@
 		107: debug_7
 		108: debug_8
 		109: debug_9
+}
+
+规则("常量")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		全局.ci_tracer_max_energy = 50;
+	}
 }
 
 规则("随机数")
@@ -425,13 +439,13 @@
 	条件
 	{
 		正在使用主要武器(事件玩家) == 真;
-		事件玩家.tracer_energy < 60;
+		事件玩家.tracer_energy < 全局.ci_tracer_max_energy;
 		事件玩家.tracer_energy_reset == 0;
 	}
 
 	动作
 	{
-		While(正在使用主要武器(事件玩家) == 真 && 事件玩家.tracer_energy < 60);
+		While(正在使用主要武器(事件玩家) == 真 && 事件玩家.tracer_energy < 全局.ci_tracer_max_energy);
 			事件玩家.tracer_energy += 1;
 			等待(0.100, 无视条件);
 		End;
@@ -450,7 +464,7 @@
 	条件
 	{
 		正在使用主要武器(事件玩家) != 真;
-		事件玩家.tracer_energy < 60;
+		事件玩家.tracer_energy < 全局.ci_tracer_max_energy;
 		事件玩家.tracer_energy_reset == 0;
 		事件玩家.tracer_energy > 0;
 	}
@@ -458,7 +472,7 @@
 	动作
 	{
 		等待直到 (正在使用主要武器(事件玩家), 3);
-		While(正在使用主要武器(事件玩家) != 真 && 事件玩家.tracer_energy < 60 && 事件玩家.tracer_energy > 0);
+		While(正在使用主要武器(事件玩家) != 真 && 事件玩家.tracer_energy < 全局.ci_tracer_max_energy && 事件玩家.tracer_energy > 0);
 			事件玩家.tracer_energy -= 1;
 			等待(0.200, 无视条件);
 		End;
@@ -476,14 +490,14 @@
 
 	条件
 	{
-		事件玩家.tracer_energy >= 60;
+		事件玩家.tracer_energy >= 全局.ci_tracer_max_energy;
 	}
 
 	动作
 	{
 		设置弹药(事件玩家, 0, 0);
 		事件玩家.tracer_energy_reset = 总计消耗时间;
-		While(事件玩家.tracer_energy >= 60 && 事件玩家.tracer_energy_reset != 0 && 总计消耗时间 - 事件玩家.tracer_energy_reset <= 1.800);
+		While(事件玩家.tracer_energy >= 全局.ci_tracer_max_energy && 事件玩家.tracer_energy_reset != 0 && 总计消耗时间 - 事件玩家.tracer_energy_reset <= 1.800);
 			等待(0.300, 无视条件);
 			设置弹药(事件玩家, 0, 0);
 		End;
@@ -1358,7 +1372,7 @@
 	{
 		为玩家添加生命池(事件玩家, 生命值, 较大(事件伤害 * 0.400, 8), 假, 真);
 		事件玩家.dva_pools_list = 添加至数组(事件玩家.dva_pools_list, 最后创建的生命池);
-		If(数量(事件玩家.dva_pools_list) > 60);
+		If(数量(事件玩家.dva_pools_list) > 80);
 			事件玩家.dva_hp_pool = 事件玩家.dva_pools_list[0];
 			移除玩家的生命池(事件玩家.dva_hp_pool);
 			事件玩家.dva_pools_list = 从数组中移除(事件玩家.dva_pools_list, 事件玩家.dva_hp_pool);
