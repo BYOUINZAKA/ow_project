@@ -9,6 +9,13 @@
 			}
 		}
 
+		占领要点
+		{
+			竞技比赛规则: 开启
+			获胜得分: 3
+			计分速度: 31%
+		}
+
 		攻击护送
 		{
 			启用地图
@@ -16,7 +23,10 @@
 			}
 		}
 
-		攻防阵线
+		禁用 攻防阵线
+		{
+			占领速度: 45%
+		}
 
 		机动推进
 		{
@@ -37,6 +47,11 @@
 			启用地图
 			{
 			}
+		}
+
+		综合
+		{
+			职责限制: 1重装，2输出，2支援
 		}
 	}
 
@@ -129,7 +144,6 @@
 		71: zenyata_target
 		72: ramattra_absorb
 		75: illari_poison
-		76: illari_i
 		80: winston_power
 		85: zarya_hp_record
 		86: zarya_hp_record_tmp
@@ -3140,8 +3154,8 @@
 
 	动作
 	{
-		为玩家添加生命池(受治疗者, 生命值, 事件治疗 * 10.0, 假, 真);
-		治疗者.sys_default_status_pool[数量(治疗者.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 2.00, 英雄(伊拉锐));
+		为玩家添加生命池(受治疗者, 生命值, 事件治疗 * 10, 假, 真);
+		治疗者.sys_default_status_pool[数量(治疗者.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 2, 英雄(伊拉锐));
 	}
 }
 
@@ -3162,7 +3176,7 @@
 
 	动作
 	{
-		伤害(被攻击方, 攻击方.illari_poison, 事件伤害 * 0.20);
+		伤害(被攻击方, 攻击方.illari_poison, 事件伤害 * 0.200);
 		攻击方.illari_poison = 空;
 	}
 }
