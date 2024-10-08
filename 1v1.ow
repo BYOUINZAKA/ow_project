@@ -1,0 +1,7650 @@
+设置
+{
+	主程序
+	{
+		描述: "1v1 Arena v3.1 by Seita, 14 Hero rotation, Bot will spawn if you are alone. Winner stays(or moves up), First to 50 points, Points per Elimination varies depending on the arena, To win you need to get the final elimination on Arena 1."
+		模式名称: "1v1 Arena"
+	}
+
+	大厅
+	{
+		自由混战人数上限: 8
+		观战者人数上限: 12
+		返回大厅: 从不
+		队列中的玩家可以加入: 是
+	}
+
+	模式
+	{
+		死斗
+		{
+			启用地图
+			{
+				漓江塔控制中心 0
+			}
+		}
+
+		综合
+		{
+			主动复生: 关闭
+			急救包刷新: 禁用
+			游戏模式开始: 即时
+			获胜得分: 50
+			阵亡镜头: 关闭
+		}
+	}
+
+	英雄
+	{
+		综合
+		{
+			战斗时终极技能充能速度: 200%
+			终极技能自动充能速度: 0%
+
+			D.Va
+			{
+				生命值: 64%
+			}
+
+			伊拉锐
+			{
+				治疗光塔: 关闭
+			}
+
+			卢西奥
+			{
+				伤害量: 130%
+				切歌: 关闭
+				生命值: 120%
+			}
+
+			士兵：76
+			{
+				终极技能持续时间: 75%
+			}
+
+			天使
+			{
+				伤害量: 120%
+				垂直跳跃速度: 250%
+				移动速度: 150%
+			}
+
+			奥丽莎
+			{
+				强固防御冷却时间: 200%
+				生命值: 64%
+			}
+
+			巴蒂斯特
+			{
+				维生力场: 关闭
+			}
+
+			布丽吉塔
+			{
+				垂直跳跃速度: 175%
+				治疗量: 50%
+				移动速度: 130%
+			}
+
+			托比昂
+			{
+				部署炮台: 关闭
+			}
+
+			拉玛刹
+			{
+				天罚形态冷却时间: 200%
+				生命值: 92%
+				虚空屏障（智械形态）: 关闭
+			}
+
+			末日铁拳
+			{
+				生命值: 80%
+			}
+
+			查莉娅
+			{
+				投射屏障冷却时间: 200%
+				生命值: 88%
+				粒子屏障冷却时间: 200%
+			}
+
+			死神
+			{
+				治疗量: 25%
+				生命值: 85%
+				移动速度: 125%
+			}
+
+			毛加
+			{
+				受到治疗量: 10%
+				生命值: 64%
+			}
+
+			法老之鹰
+			{
+				震荡冲击冷却时间: 200%
+			}
+
+			渣客女王
+			{
+				受到治疗量: 50%
+				命令怒吼冷却时间: 200%
+				生命值: 80%
+			}
+
+			温斯顿
+			{
+				屏障发射器冷却时间: 200%
+				生命值: 74%
+				终极技能持续时间: 50%
+			}
+
+			源氏
+			{
+				终极技能持续时间: 75%
+			}
+
+			生命之梭
+			{
+				生命之树生命值: 50%
+			}
+
+			破坏球
+			{
+				感应护盾冷却时间: 200%
+				生命值: 64%
+			}
+
+			秩序之光
+			{
+				哨戒炮: 关闭
+			}
+
+			美
+			{
+				治疗量: 40%
+				生命值: 85%
+			}
+
+			艾什
+			{
+				终极技能持续时间: 50%
+			}
+
+			莫伊拉
+			{
+				受到治疗量: 50%
+				生化之球治疗最大值: 50%
+			}
+
+			莱因哈特
+			{
+				伤害量: 80%
+				垂直跳跃速度: 175%
+				生命值: 74%
+				移动速度: 140%
+			}
+
+			西格玛
+			{
+				生命值: 75%
+			}
+
+			路霸
+			{
+				呼吸器充能速度: 50%
+				呼吸器最长时间: 50%
+				治疗量: 50%
+				生命值: 59%
+			}
+
+			黑百合
+			{
+				抓钩冷却时间: 30%
+				生命值: 125%
+			}
+
+			启用英雄
+			{
+				伊拉锐
+				半藏
+				卡西迪
+				回声
+				士兵：76
+				安娜
+				巴蒂斯特
+				源氏
+				猎空
+				禅雅塔
+				索杰恩
+				艾什
+				雾子
+				黑百合
+			}
+		}
+	}
+}
+
+变量
+{
+	全局:
+		0: MainCenter
+		1: MainHigh
+		2: MainTopDeck
+		3: SideArenaCenter
+		4: SideArenaSpawnsFacing
+		5: MainFacing
+		6: HeroList
+		7: FirstMatch
+		8: MainSpawnDetLoc
+		9: MainTopSpawn
+		10: BurnDamage
+		11: MainOppositeSpawn
+		12: IntroHud
+		13: BotDifSelect
+		14: MainDeckSpawn
+		15: GameLoaded
+		16: MainDefaultSpawn
+		17: AllHeroesMode
+		18: ScorePerWin
+		20: SpecSpot2
+		21: SpecSpot
+		22: Arena1Q
+		23: Arena2Q
+		24: Arena3Q
+		26: Arena1Match
+		27: Arena2Match
+		28: Arena3Match
+		29: Roadhog
+		30: Sigma
+		31: Winston
+		32: WreckingBall
+		33: Zarya
+		34: Ashe
+		35: Bastion
+		36: Doomfist
+		37: Echo
+		38: Genji
+		39: Hanzo
+		40: Junkrat
+		41: Cassidy
+		42: Mei
+		43: Pharah
+		44: Reaper
+		45: Soldier
+		46: Sombra
+		48: Torb
+		49: Tracer
+		50: Widow
+		51: Ana
+		52: Baptiste
+		53: Brigitte
+		54: Lucio
+		55: Mercy
+		56: Moira
+		57: Zenyatta
+		59: Dva
+		60: Orisa
+		61: Reinhardt
+		65: HostHasDifferentheroes
+		66: BotDifHud
+		70: Roadhog2
+		71: Sigma2
+		72: Winston2
+		73: WreckingBall2
+		74: Zarya2
+		75: Ashe2
+		76: Bastion2
+		77: Doomfist2
+		78: Echo2
+		79: Genji2
+		80: Hanzo2
+		81: Junkrat2
+		82: Cassidy2
+		83: Mei2
+		84: Pharah2
+		85: Reaper2
+		86: Soldier2
+		87: Sombra2
+		88: Torb2
+		89: Tracer2
+		90: Widow2
+		91: Ana2
+		92: Baptiste2
+		93: Brigitte2
+		94: Lucio2
+		95: Mercy2
+		96: Moira2
+		97: Zenyatta2
+		98: Dva2
+		99: Orisa2
+		100: Reinhardt2
+		102: HeroList2
+		103: AlwaysRefreshHero
+		104: JunkerQueen
+		105: Kiriko
+		106: Ramattra
+		107: Sojourn
+		108: JunkerQueen2
+		109: Kiriko2
+		110: Ramattra2
+		111: Sojourn2
+		112: Lifeweaver
+		113: Lifeweaver2
+		114: Control
+		115: Illari
+		116: Illari2
+		117: Mauga
+		118: Mauga2
+		119: HeroSelect
+		120: Venture
+		121: Venture2
+		122: HeroModifier
+		123: NoFlyHeroes
+
+	玩家:
+		0: OneHeroPlayerVariable
+		2: Randomizer
+		3: Spectating
+		4: DeadHelper
+		7: Hud
+		9: JoinSpecHelper
+		11: HeroList
+		13: HeroNumber
+		18: Score
+		20: UltCharge
+		25: BotControl
+		26: AntiHealDebuffed
+		27: LockedHero
+		28: TargetNumber
+		29: PlayerHiding
+		30: BotPathing
+		31: BotHelpPositions
+		32: BotMovePositions
+		33: BotShoot
+		34: BotLeft
+		35: BotRight
+		36: ShootRando
+		37: ShootPos
+		38: ZenAim
+		39: ShootPosHelp
+		40: BotStayTimer
+		41: BotSoldRun
+		42: BotSleepDartHit
+		43: BotSojRail
+		44: BotTracerRecall
+		45: Control
+		46: BotTracerFirstBlink
+		47: BotZoom
+		48: BotStrafe
+		49: BotCassDif
+		50: BotDifficulty
+		51: BotKiriHeal
+}
+
+子程序
+{
+	0: SpawnLocationCheck
+	5: ZenAim
+	6: BotHeroList
+}
+
+规则("Workshop Settings")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		禁用查看器录制;
+		全局.Dva = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("Dva"), 假, 3);
+		全局.Mauga = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("Mauga"), 假, 3);
+		全局.Orisa = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("Orisa"), 假, 3);
+		全局.Reinhardt = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("Reinhardt"), 假, 3);
+		全局.Roadhog = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("Roadhog"), 假, 3);
+		全局.Sigma = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("Sigma"), 假, 3);
+		全局.Winston = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("Winston"), 假, 3);
+		全局.WreckingBall = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("Wrecking Ball"), 假, 3);
+		全局.Zarya = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("Zarya"), 假, 3);
+		全局.Doomfist = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("Doomfist"), 假, 3);
+		全局.Ramattra = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("Ramattra"), 假, 3);
+		全局.JunkerQueen = 地图工坊设置开关(自定义字符串("6. Tank heroes"), 自定义字符串("JunkerQueen"), 假, 3);
+		全局.Ashe = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Ashe"), 真, 1);
+		全局.Bastion = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Bastion"), 假, 1);
+		全局.Sojourn = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Sojourn"), 真, 1);
+		全局.Echo = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Echo"), 真, 1);
+		全局.Genji = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Genji"), 真, 1);
+		全局.Hanzo = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Hanzo"), 真, 1);
+		全局.Junkrat = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Junkrat"), 假, 1);
+		全局.Cassidy = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Cassidy"), 真, 1);
+		全局.Mei = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Mei"), 假, 1);
+		全局.Pharah = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Pharah"), 假, 1);
+		全局.Reaper = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Reaper"), 假, 1);
+		全局.Soldier = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Soldier 76"), 真, 1);
+		全局.Sombra = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Sombra"), 假, 1);
+		全局.Torb = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Torbjörn"), 假, 1);
+		全局.Tracer = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Tracer"), 真, 1);
+		全局.Widow = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Widowmaker"), 真, 1);
+		全局.Venture = 地图工坊设置开关(自定义字符串("6. Damage heroes"), 自定义字符串("Venture"), 假, 1);
+		全局.Ana = 地图工坊设置开关(自定义字符串("6. Support heroes"), 自定义字符串("Ana"), 真, 2);
+		全局.Kiriko = 地图工坊设置开关(自定义字符串("6. Support heroes"), 自定义字符串("Kiriko"), 真, 2);
+		全局.Baptiste = 地图工坊设置开关(自定义字符串("6. Support heroes"), 自定义字符串("Baptiste"), 真, 2);
+		全局.Brigitte = 地图工坊设置开关(自定义字符串("6. Support heroes"), 自定义字符串("Brigitte"), 假, 2);
+		全局.Lucio = 地图工坊设置开关(自定义字符串("6. Support heroes"), 自定义字符串("Lúcio"), 假, 2);
+		全局.Mercy = 地图工坊设置开关(自定义字符串("6. Support heroes"), 自定义字符串("Mercy"), 假, 2);
+		全局.Moira = 地图工坊设置开关(自定义字符串("6. Support heroes"), 自定义字符串("Moira"), 假, 2);
+		全局.Lifeweaver = 地图工坊设置开关(自定义字符串("6. Support heroes"), 自定义字符串("Lifeweaver"), 假, 2);
+		全局.Zenyatta = 地图工坊设置开关(自定义字符串("6. Support heroes"), 自定义字符串("Zenyatta"), 真, 2);
+		全局.Illari = 地图工坊设置开关(自定义字符串("6. Support heroes"), 自定义字符串("Illari"), 真, 2);
+		全局.BurnDamage = 地图工坊设置整数(自定义字符串("5. Burn Damage"), 自定义字符串("Damage per tick"), 25, 25, 200, 0);
+		全局.AlwaysRefreshHero = 地图工坊设置开关(自定义字符串("3. Always refresh hero (cooldowns, shield, etc) after winning on arena 1"), 自定义字符串(
+			"Refresh hero after winning on arena 1"), 假, 0);
+		全局.HostHasDifferentheroes = 地图工坊设置开关(自定义字符串("4. Special settings for mode where players have different list of heroes"), 自定义字符串(
+			"Host player has different list of heroes"), 假, 0);
+		全局.Mauga2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("Mauga."), 假, 7);
+		全局.Dva2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("Dva."), 假, 7);
+		全局.Orisa2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("Orisa."), 假, 7);
+		全局.Reinhardt2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("Reinhardt."), 假, 7);
+		全局.Roadhog2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("Roadhog."), 假, 7);
+		全局.Sigma2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("Sigma."), 假, 7);
+		全局.Winston2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("Winston."), 假, 7);
+		全局.WreckingBall2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("Wrecking Ball."), 假, 7);
+		全局.Zarya2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("Zarya."), 假, 7);
+		全局.Doomfist2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("Doomfist."), 假, 7);
+		全局.Ramattra2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("Ramattra."), 假, 7);
+		全局.JunkerQueen2 = 地图工坊设置开关(自定义字符串("7. Host only Tank heroes"), 自定义字符串("JunkerQueen."), 假, 7);
+		全局.Ashe2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Ashe."), 真, 5);
+		全局.Bastion2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Bastion."), 假, 5);
+		全局.Sojourn2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Sojourn."), 真, 5);
+		全局.Echo2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Echo."), 真, 5);
+		全局.Genji2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Genji."), 真, 5);
+		全局.Hanzo2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Hanzo."), 真, 5);
+		全局.Junkrat2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Junkrat."), 假, 5);
+		全局.Cassidy2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Cassidy."), 真, 5);
+		全局.Mei2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Mei."), 假, 5);
+		全局.Pharah2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Pharah."), 假, 5);
+		全局.Reaper2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Reaper."), 假, 5);
+		全局.Soldier2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Soldier 76."), 真, 5);
+		全局.Sombra2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Sombra."), 假, 5);
+		全局.Torb2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Torbjörn."), 假, 5);
+		全局.Tracer2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Tracer."), 真, 5);
+		全局.Widow2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Widowmaker."), 真, 5);
+		全局.Venture2 = 地图工坊设置开关(自定义字符串("7. Host only Damage heroes"), 自定义字符串("Venture."), 假, 5);
+		全局.Ana2 = 地图工坊设置开关(自定义字符串("7. Host only support heroes"), 自定义字符串("Ana."), 真, 6);
+		全局.Kiriko2 = 地图工坊设置开关(自定义字符串("7. Host only support heroes"), 自定义字符串("Kiriko."), 真, 6);
+		全局.Baptiste2 = 地图工坊设置开关(自定义字符串("7. Host only support heroes"), 自定义字符串("Baptiste."), 真, 6);
+		全局.Brigitte2 = 地图工坊设置开关(自定义字符串("7. Host only support heroes"), 自定义字符串("Brigitte."), 假, 6);
+		全局.Lucio2 = 地图工坊设置开关(自定义字符串("7. Host only support heroes"), 自定义字符串("Lúcio."), 假, 6);
+		全局.Mercy2 = 地图工坊设置开关(自定义字符串("7. Host only support heroes"), 自定义字符串("Mercy."), 假, 6);
+		全局.Moira2 = 地图工坊设置开关(自定义字符串("7. Host only support heroes"), 自定义字符串("Moira."), 假, 6);
+		全局.Lifeweaver2 = 地图工坊设置开关(自定义字符串("7. Host only support heroes"), 自定义字符串("Lifeweaver."), 假, 6);
+		全局.Zenyatta2 = 地图工坊设置开关(自定义字符串("7. Host only support heroes"), 自定义字符串("Zenyatta."), 真, 6);
+		全局.Illari2 = 地图工坊设置开关(自定义字符串("7. Host only support heroes"), 自定义字符串("Illari."), 真, 6);
+		全局.HeroSelect = 地图工坊设置开关(自定义字符串("2. Players can select and only play one hero"), 自定义字符串(
+			"Enable option to select and lock hero for individual players by holding reload"), 假, 0);
+		全局.BotDifSelect = 地图工坊设置组合(自定义字符串("1. Bot difficulty"), 自定义字符串(
+			"Dynamic difficulty = Bot starts at diamond and changes depending on how you do"), 0, 数组(自定义字符串("Dynamic difficulty"), 自定义字符串(
+			"Gold"), 自定义字符串("Platinum"), 自定义字符串("Diamond"), 自定义字符串("Master"), 自定义字符串("Champion")), 0);
+		全局.AllHeroesMode = 地图工坊设置开关(自定义字符串(" All heroes enabled"), 自定义字符串(
+			"Enables all heroes with some modifiers and changes the scoring system"), 假, 0);
+	}
+}
+
+规则("Remove Assembling")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		正在集结英雄 == 真;
+	}
+
+	动作
+	{
+		设置比赛时间(0);
+		创建HUD文本(所有玩家(所有队伍), 空, 自定义字符串(" \n \n \n "), 空, 左边, 0, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
+	}
+}
+
+规则("All heroes mode setup, hero text, no fly list, hero list, score per win")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		全局.AllHeroesMode == 真;
+	}
+
+	动作
+	{
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(卡西迪))] = 自定义字符串("default");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(安娜))] = 自定义字符串("default");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(禅雅塔))] = 自定义字符串("default");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(猎空))] = 自定义字符串("default");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(雾子))] = 自定义字符串("default");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(索杰恩))] = 自定义字符串("default");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(狂鼠))] = 自定义字符串("default");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(半藏))] = 自定义字符串("default");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(堡垒))] = 自定义字符串("default");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(生命之梭))] = 自定义字符串("default");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(法老之鹰))] = 自定义字符串("longer conc cd, can't fly high vs some heroes");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(回声))] = 自定义字符串("ult dura 50%, can't fly high vs some heroes");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(艾什))] = 自定义字符串("ult dura 50%");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(士兵：76))] = 自定义字符串("ult dura 75%");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(源氏))] = 自定义字符串("ult dura 75%");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(巴蒂斯特))] = 自定义字符串("no drone");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(伊拉锐))] = 自定义字符串("no pylon");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(托比昂))] = 自定义字符串("no turret");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(秩序之光))] = 自定义字符串("no sentries");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(黑影))] = 自定义字符串("invis breaks after 5s");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(探奇))] = 自定义字符串("no shields over 250hp");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(莫伊拉))] = 自定义字符串("healing 50%, heal orb 50%");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(布丽吉塔))] = 自定义字符串("healing 50%, speed 130%, big jump");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(天使))] = 自定义字符串("big jump, 150% speed, 120% dmg");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(死神))] = 自定义字符串("255hp, 125% speed, 25% healing");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(黑百合))] = 自定义字符串("250hp, low cd grapple");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(美))] = 自定义字符串("255hp, 40% healing");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(卢西奥))] = 自定义字符串("300hp, 130% dmg, no heal aura");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(末日铁拳))] = 自定义字符串("300hp, no health over 300");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(渣客女王))] = 自定义字符串("300hp, 50% healing, longer shout cd");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(莱因哈特))] = 自定义字符串("407hp, 80% dmg, 140% speed, big jump, can only shield for 1s");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(拉玛刹))] = 自定义字符串("345hp, no shield, longer form cd");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(D.Va))] = 自定义字符串("368hp");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(毛加))] = 自定义字符串("368hp, 10% healing");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(奥丽莎))] = 自定义字符串("304hp, longer fortify cd");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(路霸))] = 自定义字符串("354hp, 50% healing");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(西格玛))] = 自定义字符串("356hp, 1.2s shield dura, no hp over 356");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(温斯顿))] = 自定义字符串("352hp, longer barrier cd, ult dura 50%");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(破坏球))] = 自定义字符串("400hp, longer shield cd");
+		全局.HeroModifier[数组值的索引(全部英雄, 英雄(查莉娅))] = 自定义字符串("352hp, longer bubble cd");
+		全局.NoFlyHeroes = 英雄(布丽吉塔);
+		修改全局变量(NoFlyHeroes, 添加至数组, 所有重装英雄);
+		修改全局变量(NoFlyHeroes, 根据值从数组中移除, 英雄(D.Va));
+		修改全局变量(NoFlyHeroes, 添加至数组, 英雄(死神));
+		修改全局变量(NoFlyHeroes, 添加至数组, 英雄(秩序之光));
+		修改全局变量(NoFlyHeroes, 添加至数组, 英雄(探奇));
+		修改全局变量(NoFlyHeroes, 添加至数组, 英雄(卢西奥));
+		修改全局变量(NoFlyHeroes, 添加至数组, 英雄(生命之梭));
+		修改全局变量(NoFlyHeroes, 添加至数组, 英雄(莫伊拉));
+		修改全局变量(NoFlyHeroes, 添加至数组, 英雄(托比昂));
+		修改全局变量(NoFlyHeroes, 添加至数组, 英雄(狂鼠));
+		全局.HeroList = 全部英雄;
+		全局.ScorePerWin[1] = 50 / 数量(全部英雄);
+		全局.ScorePerWin[2] = 50 / 数量(全部英雄) / 1.500;
+		全局.ScorePerWin[3] = 50 / 数量(全部英雄) / 3;
+	}
+}
+
+规则("Creating Herolist and Herolist2 if different heroes enabled, score per win")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		全局.AllHeroesMode == 假;
+	}
+
+	动作
+	{
+		If(全局.Dva == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(D.Va));
+		End;
+		If(全局.Mauga == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(毛加));
+		End;
+		If(全局.Orisa == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(奥丽莎));
+		End;
+		If(全局.Reinhardt == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(莱因哈特));
+		End;
+		If(全局.Roadhog == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(路霸));
+		End;
+		If(全局.Sigma == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(西格玛));
+		End;
+		If(全局.Winston == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(温斯顿));
+		End;
+		If(全局.WreckingBall == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(破坏球));
+		End;
+		If(全局.Zarya == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(查莉娅));
+		End;
+		If(全局.Ashe == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(艾什));
+		End;
+		If(全局.Bastion == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(堡垒));
+		End;
+		If(全局.Doomfist == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(末日铁拳));
+		End;
+		If(全局.Echo == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(回声));
+		End;
+		If(全局.Genji == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(源氏));
+		End;
+		If(全局.Hanzo == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(半藏));
+		End;
+		If(全局.Junkrat == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(狂鼠));
+		End;
+		If(全局.Cassidy == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(卡西迪));
+		End;
+		If(全局.Mei == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(美));
+		End;
+		If(全局.Pharah == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(法老之鹰));
+		End;
+		If(全局.Reaper == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(死神));
+		End;
+		If(全局.Soldier == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(士兵：76));
+		End;
+		If(全局.Sombra == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(黑影));
+		End;
+		If(全局.Torb == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(托比昂));
+		End;
+		If(全局.Tracer == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(猎空));
+		End;
+		If(全局.Widow == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(黑百合));
+		End;
+		If(全局.Ana == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(安娜));
+		End;
+		If(全局.Baptiste == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(巴蒂斯特));
+		End;
+		If(全局.Brigitte == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(布丽吉塔));
+		End;
+		If(全局.Lucio == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(卢西奥));
+		End;
+		If(全局.Mercy == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(天使));
+		End;
+		If(全局.Moira == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(莫伊拉));
+		End;
+		If(全局.JunkerQueen == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(渣客女王));
+		End;
+		If(全局.Ramattra == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(拉玛刹));
+		End;
+		If(全局.Kiriko == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(雾子));
+		End;
+		If(全局.Sojourn == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(索杰恩));
+		End;
+		If(全局.Zenyatta == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(禅雅塔));
+		End;
+		If(全局.Lifeweaver == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(生命之梭));
+		End;
+		If(全局.Illari == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(伊拉锐));
+		End;
+		If(全局.Venture == 真);
+			修改全局变量(HeroList, 添加至数组, 英雄(探奇));
+		End;
+		修改全局变量(HeroList, 根据索引从数组中移除, 0);
+		If(全局.HostHasDifferentheroes == 真);
+			If(全局.Dva2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(D.Va));
+			End;
+			If(全局.Mauga2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(毛加));
+			End;
+			If(全局.Orisa2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(奥丽莎));
+			End;
+			If(全局.Reinhardt2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(莱因哈特));
+			End;
+			If(全局.Roadhog2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(路霸));
+			End;
+			If(全局.Sigma2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(西格玛));
+			End;
+			If(全局.Winston2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(温斯顿));
+			End;
+			If(全局.WreckingBall2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(破坏球));
+			End;
+			If(全局.Zarya2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(查莉娅));
+			End;
+			If(全局.Ashe2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(艾什));
+			End;
+			If(全局.Bastion2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(堡垒));
+			End;
+			If(全局.Doomfist2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(末日铁拳));
+			End;
+			If(全局.Echo2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(回声));
+			End;
+			If(全局.Genji2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(源氏));
+			End;
+			If(全局.Hanzo2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(半藏));
+			End;
+			If(全局.Junkrat2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(狂鼠));
+			End;
+			If(全局.Cassidy2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(卡西迪));
+			End;
+			If(全局.Mei2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(美));
+			End;
+			If(全局.Pharah2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(法老之鹰));
+			End;
+			If(全局.Reaper2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(死神));
+			End;
+			If(全局.Soldier2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(士兵：76));
+			End;
+			If(全局.Sombra2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(黑影));
+			End;
+			If(全局.Torb2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(托比昂));
+			End;
+			If(全局.Tracer2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(猎空));
+			End;
+			If(全局.Widow2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(黑百合));
+			End;
+			If(全局.Ana2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(安娜));
+			End;
+			If(全局.Baptiste2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(巴蒂斯特));
+			End;
+			If(全局.Brigitte2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(布丽吉塔));
+			End;
+			If(全局.Lucio2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(卢西奥));
+			End;
+			If(全局.Mercy2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(天使));
+			End;
+			If(全局.Moira2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(莫伊拉));
+			End;
+			If(全局.JunkerQueen2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(渣客女王));
+			End;
+			If(全局.Kiriko2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(雾子));
+			End;
+			If(全局.Ramattra2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(拉玛刹));
+			End;
+			If(全局.Sojourn2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(索杰恩));
+			End;
+			If(全局.Zenyatta2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(禅雅塔));
+			End;
+			If(全局.Illari2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(伊拉锐));
+			End;
+			If(全局.Venture2 == 真);
+				修改全局变量(HeroList2, 添加至数组, 英雄(探奇));
+			End;
+			修改全局变量(HeroList2, 根据索引从数组中移除, 0);
+		End;
+		全局.ScorePerWin[1] = 3;
+		全局.ScorePerWin[2] = 2;
+		全局.ScorePerWin[3] = 1;
+	}
+}
+
+规则("Disable Scoring, Intro hud, Arena Locations, Spawn Loc, Spawn detect")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		关闭游戏预设计分模式;
+		创建HUD文本(所有玩家(所有队伍), 自定义字符串("Code: TXCXX"), 自定义字符串("twitter.com/Seita_ow"), 自定义字符串("Full details: workshop.codes/1v1arena"), 顶部, 22,
+			颜色(橙色), 颜色(蓝色), 颜色(白色), 可见和字符串, 默认可见度);
+		全局.IntroHud = 上一个文本ID;
+		"Arena locations"
+		全局.MainCenter = 矢量(0, 267, 280);
+		全局.MainHigh = 矢量(0, 280, 280);
+		全局.MainTopDeck = 矢量(0, 279.500, 295.500);
+		全局.MainFacing = 矢量(0, 268.500, 280);
+		创建效果(所有玩家(所有队伍), 光柱, 颜色(红色), 全局.MainCenter, 16.700, 可见，位置和半径);
+		创建效果(所有玩家(所有队伍), 球体, 颜色(红色), 全局.MainTopDeck, 2.610, 可见，位置和半径);
+		全局.SpecSpot = 矢量(13.366, 285, 279.711);
+		全局.SpecSpot2 = 矢量(-13.672, 285, 279.735);
+		"Spawn Locations"
+		全局.MainDefaultSpawn = 矢量(-0.087, 268, 267.986);
+		全局.MainOppositeSpawn = 矢量(11, 268, 276.200);
+		修改全局变量(MainOppositeSpawn, 添加至数组, 矢量(-11, 268, 276.200));
+		全局.MainTopSpawn = 矢量(7.923, 268, 273.866);
+		修改全局变量(MainTopSpawn, 添加至数组, 矢量(0.004, 268, 276.965));
+		修改全局变量(MainTopSpawn, 添加至数组, 矢量(-7.771, 268, 273.383));
+		全局.MainDeckSpawn = 矢量(9.486, 268, 280.020);
+		修改全局变量(MainDeckSpawn, 添加至数组, 矢量(-0.005, 268, 283.035));
+		修改全局变量(MainDeckSpawn, 添加至数组, 矢量(-9.486, 268, 280.020));
+		"Spawn detection locations"
+		全局.MainSpawnDetLoc[0] = 矢量(0.198, 271.351, 302.477);
+		全局.MainSpawnDetLoc[1] = 矢量(0.147, 271.348, 266.101);
+		全局.MainSpawnDetLoc[2] = 矢量(20.349, 268.349, 281.046);
+		全局.MainSpawnDetLoc[3] = 矢量(-20.350, 268.349, 281.009);
+		"Arena 2"
+		全局.SideArenaCenter = 矢量(-41.832, 260, 344.857);
+		修改全局变量(SideArenaCenter, 添加至数组, 矢量(-41.832, 270, 344.857));
+		全局.SideArenaSpawnsFacing = 矢量(-50.464, 268.667, 351.671);
+		修改全局变量(SideArenaSpawnsFacing, 添加至数组, 矢量(-31.820, 268.549, 332.737));
+		修改全局变量(SideArenaSpawnsFacing, 添加至数组, 矢量(-38.715, 271.502, 343.170));
+		创建效果(所有玩家(所有队伍), 光柱, 颜色(红色), 全局.SideArenaCenter[0], 18, 可见，位置和半径);
+		"Arena 3"
+		修改全局变量(SideArenaCenter, 添加至数组, 矢量(41.832, 260, 344.857));
+		修改全局变量(SideArenaCenter, 添加至数组, 矢量(41.832, 270, 344.857));
+		修改全局变量(SideArenaSpawnsFacing, 添加至数组, 矢量(50.464, 268.667, 351.671));
+		修改全局变量(SideArenaSpawnsFacing, 添加至数组, 矢量(31.820, 268.549, 332.737));
+		修改全局变量(SideArenaSpawnsFacing, 添加至数组, 矢量(38.715, 271.502, 343.170));
+		创建效果(所有玩家(所有队伍), 光柱, 颜色(蓝色), 全局.SideArenaCenter[2], 18, 可见，位置和半径);
+	}
+}
+
+规则("Game is in Progress:   Pause Match Time, Sort Queue, Destroy IntroHud")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		游戏正在进行中 == 真;
+	}
+
+	动作
+	{
+		"respawn as random heroes [off]"
+		等待(8, 无视条件);
+		比赛时间暂停;
+		设置比赛时间(1220);
+		If(玩家数量(所有队伍) >= 4 && 玩家数量(所有队伍) <= 5);
+			For 全局变量(Control, 玩家数量(所有队伍), 2, -1);
+				修改全局变量(Arena2Q, 添加至数组, 全局.Arena1Q[全局.Control]);
+				修改全局变量(Arena1Q, 根据索引从数组中移除, 全局.Control);
+			End;
+		Else If(玩家数量(所有队伍) >= 6);
+			For 全局变量(Control, 玩家数量(所有队伍), 4, -1);
+				修改全局变量(Arena3Q, 添加至数组, 全局.Arena1Q[全局.Control]);
+				修改全局变量(Arena1Q, 根据索引从数组中移除, 全局.Control);
+			End;
+			For 全局变量(Control, 4, 2, -1);
+				修改全局变量(Arena2Q, 添加至数组, 全局.Arena1Q[全局.Control]);
+				修改全局变量(Arena1Q, 根据索引从数组中移除, 全局.Control);
+			End;
+		End;
+		If(全局.HeroSelect == 真);
+			创建HUD文本(所有玩家(所有队伍), 空, 自定义字符串("Host enabled hero locking\nHold '{0}' to change hero", 输入绑定字符串(按钮(装填))), 空, 左边, 0, 颜色(白色), 颜色(灰色),
+				颜色(白色), 可见和字符串, 默认可见度);
+		End;
+		消除HUD文本(全局.IntroHud);
+		等待(0.500, 无视条件);
+		全局.GameLoaded = 真;
+	}
+}
+
+规则("Playing last hero:    Restart Hero List")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.HeroNumber == 数量(事件玩家.HeroList);
+	}
+
+	动作
+	{
+		事件玩家.HeroNumber = 0;
+	}
+}
+
+规则("Player Joins:   Create hero list (Host/List check), Sort Queue, Spectating")
+{
+	事件
+	{
+		玩家加入比赛;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		事件玩家.Hud = -1;
+		If(是否是机器人(事件玩家) == 真);
+			调用子程序(BotHeroList);
+		Else;
+			"Create hero list"
+			If(主机玩家 == 事件玩家 && 全局.HostHasDifferentheroes == 真);
+				事件玩家.HeroList = 随机数组(全局.HeroList2);
+				开始强制玩家选择英雄(事件玩家, 事件玩家.HeroList[事件玩家.HeroNumber]);
+				If(数量(事件玩家.HeroList) == 1);
+					事件玩家.OneHeroPlayerVariable = 真;
+					修改玩家变量(事件玩家, HeroList, 添加至数组, 事件玩家.HeroList[0]);
+				End;
+			Else;
+				事件玩家.HeroList = 随机数组(全局.HeroList);
+				开始强制玩家选择英雄(事件玩家, 事件玩家.HeroList[事件玩家.HeroNumber]);
+				If(数量(事件玩家.HeroList) == 1);
+					事件玩家.OneHeroPlayerVariable = 真;
+					修改玩家变量(事件玩家, HeroList, 添加至数组, 事件玩家.HeroList[0]);
+				End;
+			End;
+		End;
+		"Put player to correct Queue"
+		If(全局.GameLoaded == 真);
+			If(玩家数量(所有队伍) >= 0 && 玩家数量(所有队伍) <= 3);
+				修改全局变量(Arena1Q, 添加至数组, 事件玩家);
+			Else If(玩家数量(所有队伍) >= 4 && 玩家数量(所有队伍) <= 5);
+				修改全局变量(Arena2Q, 添加至数组, 事件玩家);
+			Else;
+				修改全局变量(Arena3Q, 添加至数组, 事件玩家);
+			End;
+		Else;
+			修改全局变量(Arena1Q, 添加至数组, 事件玩家);
+		End;
+		"Set spectating"
+		事件玩家.Spectating = 真;
+		等待(0.300, 无视条件);
+		根据条件跳过(事件玩家.Spectating == 假, 1);
+		事件玩家.JoinSpecHelper = 真;
+		If(是否是机器人(事件玩家) == 真);
+			开始强制玩家选择英雄(事件玩家, 事件玩家.HeroList[事件玩家.HeroNumber]);
+		End;
+		If(全局.AllHeroesMode == 真);
+			If(数组包含(所有重装英雄, 所用英雄(事件玩家)) == 真);
+				开始调整玩家大小(事件玩家, 0.800, 假);
+			Else;
+				开始调整玩家大小(事件玩家, 1, 假);
+			End;
+			创建HUD文本(事件玩家, 空, 自定义字符串("{0}: {1}", 英雄图标字符串(所用英雄(事件玩家)), 全局.HeroModifier[数组值的索引(全部英雄, 所用英雄(事件玩家))]), 空, 左边, 10, 颜色(白色), 颜色(白色), 颜色(
+				白色), 可见和字符串, 默认可见度);
+			创建HUD文本(事件玩家, 空, 自定义字符串("help balance: dsc.gg/seita-ow"), 空, 左边, 11, 颜色(白色), 颜色(蓝色), 颜色(白色), 可见和字符串, 默认可见度);
+			禁用 创建HUD文本(事件玩家, 自定义字符串("Beta"), 空, 空, 左边, 9, 颜色(玫红), 颜色(蓝色), 颜色(白色), 可见和字符串, 默认可见度);
+		End;
+	}
+}
+
+规则("Match ends:    Auto restart")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		分数(事件玩家) >= 50;
+	}
+
+	动作
+	{
+		等待(21, 无视条件);
+		重新开始比赛;
+	}
+}
+
+禁用 规则("###   Spectating   ###")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Spectating before game is in progress")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.JoinSpecHelper == 真;
+	}
+
+	动作
+	{
+		传送(事件玩家, 全局.SpecSpot);
+		开始限制阈值(事件玩家, 0, 0, 0, 0, 0, 0);
+		设置引力(事件玩家, 绝对值(0));
+		设置移动速度(事件玩家, 绝对值(0));
+		禁用按钮(事件玩家, 按钮(主要攻击模式));
+		禁用按钮(事件玩家, 按钮(辅助攻击模式));
+		禁用按钮(事件玩家, 按钮(技能1));
+		禁用按钮(事件玩家, 按钮(技能2));
+		禁用按钮(事件玩家, 按钮(终极技能));
+		设置不可见(事件玩家, 全部);
+		设置状态(事件玩家, 空, 相移, 9999);
+		设置状态(事件玩家, 空, 定身, 9999);
+		设置造成伤害(事件玩家, 0);
+		等待(0.500, 无视条件);
+		根据条件跳过(事件玩家.Spectating == 假, 1);
+		设置朝向(事件玩家, 本地矢量(全局.MainFacing, 事件玩家, 旋转并转换), 至玩家);
+	}
+}
+
+规则("Spectating:   Queue Hud, Teleport, Disallow etc")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.Spectating == 真;
+		游戏正在进行中 == 真;
+	}
+
+	动作
+	{
+		消除HUD文本(事件玩家.Hud);
+		If(数组包含(全局.Arena1Q, 事件玩家) == 真);
+			创建HUD文本(事件玩家, 字符串("{0}：{1}", 自定义字符串("Position in Queue"), 绝对值(数组值的索引(全局.Arena1Q, 事件玩家) - 2)), 自定义字符串("Score per kill: {0}",
+				全局.ScorePerWin[1]), 自定义字符串("Arena: 1"), 顶部, 2, 颜色(绿色), 颜色(白色), 颜色(绿色), 可见和字符串, 默认可见度);
+		Else If(数组包含(全局.Arena2Q, 事件玩家) == 真);
+			If(事件玩家.Score + 全局.ScorePerWin[2] >= 50);
+				创建HUD文本(事件玩家, 字符串("{0}：{1}", 自定义字符串("Position in Queue"), 绝对值(数组值的索引(全局.Arena2Q, 事件玩家) - 2)), 自定义字符串(
+					"To win you need to get a kill in Arena 1"), 自定义字符串("Arena: 2"), 顶部, 2, 颜色(红色), 颜色(白色), 颜色(红色), 可见和字符串, 默认可见度);
+			Else;
+				创建HUD文本(事件玩家, 字符串("{0}：{1}", 自定义字符串("Position in Queue"), 绝对值(数组值的索引(全局.Arena2Q, 事件玩家) - 2)), 自定义字符串("Score per kill: {0}",
+					全局.ScorePerWin[2]), 自定义字符串("Arena: 2"), 顶部, 2, 颜色(红色), 颜色(白色), 颜色(红色), 可见和字符串, 默认可见度);
+			End;
+		Else If(数组包含(全局.Arena3Q, 事件玩家) == 真);
+			If(事件玩家.Score + 全局.ScorePerWin[3] >= 50);
+				创建HUD文本(事件玩家, 字符串("{0}：{1}", 自定义字符串("Position in Queue"), 绝对值(数组值的索引(全局.Arena3Q, 事件玩家) - 2)), 自定义字符串(
+					"To win you need to get a kill in Arena 1"), 自定义字符串("Arena: 3"), 顶部, 2, 颜色(蓝色), 颜色(白色), 颜色(蓝色), 可见和字符串, 默认可见度);
+			Else;
+				创建HUD文本(事件玩家, 字符串("{0}：{1}", 自定义字符串("Position in Queue"), 绝对值(数组值的索引(全局.Arena3Q, 事件玩家) - 2)), 自定义字符串("Score per kill: {0}",
+					全局.ScorePerWin[3]), 自定义字符串("Arena: 3"), 顶部, 2, 颜色(蓝色), 颜色(白色), 颜色(蓝色), 可见和字符串, 默认可见度);
+			End;
+		End;
+		事件玩家.Hud = 上一个文本ID;
+		"Teleport, disallow etc"
+		传送(事件玩家, 全局.SpecSpot);
+		开始限制阈值(事件玩家, 0, 0, 0, 0, 0, 0);
+		设置引力(事件玩家, 绝对值(0));
+		设置移动速度(事件玩家, 绝对值(0));
+		禁用按钮(事件玩家, 按钮(主要攻击模式));
+		禁用按钮(事件玩家, 按钮(辅助攻击模式));
+		禁用按钮(事件玩家, 按钮(技能1));
+		禁用按钮(事件玩家, 按钮(技能2));
+		禁用按钮(事件玩家, 按钮(终极技能));
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+		停止按下按钮(事件玩家, 按钮(技能1));
+		停止按下按钮(事件玩家, 按钮(技能2));
+		设置不可见(事件玩家, 全部);
+		设置状态(事件玩家, 空, 相移, 9999);
+		设置状态(事件玩家, 空, 定身, 9999);
+		设置造成伤害(事件玩家, 0);
+		If(事件玩家.LockedHero == 真);
+			等待直到 (所用英雄(事件玩家) == 真, 99999);
+			传送(事件玩家, 全局.SpecSpot);
+		End;
+		等待(0.500, 当为“假”时中止);
+		设置朝向(事件玩家, 本地矢量(全局.MainFacing, 事件玩家, 旋转并转换), 至玩家);
+	}
+}
+
+规则("Spectating:   You are next message & Sound")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.Spectating == 真;
+		(全局.Arena1Q[3] == 事件玩家 || 全局.Arena2Q[3] == 事件玩家 || 全局.Arena3Q[3] == 事件玩家) == 真;
+	}
+
+	动作
+	{
+		大字体信息(事件玩家, 自定义字符串("you are next"));
+		播放效果(事件玩家, 环状爆炸声音, 颜色(白色), 事件玩家, 200);
+	}
+}
+
+规则("Not Spectating:   Allow buttons, Destroy hud when game is in progress")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.Spectating == 假;
+	}
+
+	动作
+	{
+		设置引力(事件玩家, 100);
+		设置移动速度(事件玩家, 100);
+		设置状态(事件玩家, 空, 无法杀死, 0);
+		设置不可见(事件玩家, 无);
+		设置状态(事件玩家, 空, 相移, 0);
+		设置状态(事件玩家, 空, 定身, 0);
+		设置造成伤害(事件玩家, 100);
+		停止限制阈值(事件玩家);
+		可用按钮(事件玩家, 按钮(主要攻击模式));
+		可用按钮(事件玩家, 按钮(辅助攻击模式));
+		可用按钮(事件玩家, 按钮(技能1));
+		可用按钮(事件玩家, 按钮(技能2));
+		可用按钮(事件玩家, 按钮(终极技能));
+		If(所用英雄(事件玩家) == 英雄(猎空));
+			设置技能冷却(事件玩家, 按钮(技能2), 3.500);
+		Else If(所用英雄(事件玩家) == 英雄(破坏球));
+			设置技能冷却(事件玩家, 按钮(辅助攻击模式), 0);
+		End;
+		等待直到 (游戏正在进行中, 10);
+		消除HUD文本(事件玩家.Hud);
+	}
+}
+
+规则("Player Dies:   Set Spectating and Change Hero")
+{
+	事件
+	{
+		玩家阵亡;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		游戏正在进行中 == 真;
+	}
+
+	动作
+	{
+		If(是否是机器人(事件玩家) == 真);
+			事件玩家.BotKiriHeal = 假;
+			事件玩家.ShootRando = 事件玩家.BotCassDif[0];
+			事件玩家.BotSojRail = 0;
+			停止按下按钮(事件玩家, 按钮(蹲下));
+			停止按下按钮(事件玩家, 按钮(跳跃));
+			停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+			停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		End;
+		事件玩家.Spectating = 真;
+		If(事件玩家.LockedHero == 假);
+			事件玩家.UltCharge = 终极技能充能百分比(事件玩家);
+			事件玩家.HeroNumber += 1;
+			等待(0.250, 无视条件);
+			If(事件玩家.OneHeroPlayerVariable == 真);
+				开始强制玩家选择英雄(事件玩家, 英雄(秩序之光));
+			End;
+			开始强制玩家选择英雄(事件玩家, 事件玩家.HeroList[事件玩家.HeroNumber]);
+			等待(0.150, 无视条件);
+			设置终极技能充能(事件玩家, 事件玩家.UltCharge);
+		Else;
+			If(所用英雄(事件玩家) == 英雄(探奇));
+				设置弹药(事件玩家, 0, 8);
+			Else;
+				设置弹药(事件玩家, 0, 最大弹药(事件玩家, 0));
+			End;
+			复活(事件玩家);
+			设置技能冷却(事件玩家, 按钮(技能1), 0);
+			设置技能冷却(事件玩家, 按钮(技能2), 0);
+			If(所用英雄(事件玩家) == 英雄(猎空));
+				设置技能充能(事件玩家, 按钮(技能1), 3);
+			End;
+		End;
+		If(全局.AllHeroesMode == 真);
+			If(数组包含(所有重装英雄, 所用英雄(事件玩家)) == 真);
+				开始调整玩家大小(事件玩家, 0.800, 假);
+			Else;
+				开始调整玩家大小(事件玩家, 1, 假);
+			End;
+		End;
+	}
+}
+
+禁用 规则("###   Match and Round Start   ###")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Arena 1: Spawn Location subroutine")
+{
+	事件
+	{
+		子程序;
+		SpawnLocationCheck;
+	}
+
+	动作
+	{
+		If(相距距离(眼睛位置(全局.Arena1Q[1]), 全局.MainSpawnDetLoc[2]) <= 19);
+			全局.MainDefaultSpawn = 全局.MainOppositeSpawn[1];
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Attacker is Right"));
+		Else If(相距距离(眼睛位置(全局.Arena1Q[1]), 全局.MainSpawnDetLoc[3]) <= 19);
+			全局.MainDefaultSpawn = 全局.MainOppositeSpawn[0];
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Attacker is Left"));
+		Else If(相距距离(眼睛位置(全局.Arena1Q[1]), 全局.MainSpawnDetLoc[0]) <= 15);
+			全局.MainDefaultSpawn = 数组随机取值(全局.MainTopSpawn);
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Attacker is stairs / top"));
+		Else If(相距距离(眼睛位置(全局.Arena1Q[1]), 全局.MainSpawnDetLoc[1]) <= 10);
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Attacker is deck side"));
+			全局.MainDefaultSpawn = 数组随机取值(全局.MainDeckSpawn);
+		Else;
+			全局.MainDefaultSpawn = 数组随机取值(全局.MainOppositeSpawn);
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("None / Mid / default spawn"));
+		End;
+	}
+}
+
+规则("Arena 1: First Match Start")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		游戏正在进行中 == 真;
+		全局.GameLoaded == 真;
+		全局.Arena1Q[1] == 真;
+		全局.Arena1Q[2] == 真;
+		已重生(全局.Arena1Q[1]) == 真;
+		已重生(全局.Arena1Q[2]) == 真;
+		全局.Arena1Match == 假;
+		全局.FirstMatch == 假;
+	}
+
+	动作
+	{
+		全局.Arena1Match = 真;
+		等待(0.250, 无视条件);
+		传送(全局.Arena1Q[1], 全局.MainOppositeSpawn[0]);
+		传送(全局.Arena1Q[2], 全局.MainOppositeSpawn[1]);
+		等待(0.050, 无视条件);
+		设置朝向(全局.Arena1Q[1], 本地矢量(全局.MainFacing, 全局.Arena1Q[1], 旋转并转换), 至玩家);
+		设置朝向(全局.Arena1Q[2], 本地矢量(全局.MainFacing, 全局.Arena1Q[2], 旋转并转换), 至玩家);
+		等待(0.050, 无视条件);
+		全局.Arena1Q[1].Spectating = 0;
+		全局.Arena1Q[2].Spectating = 0;
+		等待(0.300, 无视条件);
+		治疗(全局.Arena1Q[1], 空, 1000);
+		治疗(全局.Arena1Q[2], 空, 1000);
+		全局.Arena1Q[1].DeadHelper = 假;
+		全局.Arena1Q[2].DeadHelper = 假;
+		全局.FirstMatch = 真;
+		If(是否是机器人(此栏位的玩家(11, 所有队伍)) == 真);
+			此栏位的玩家(11, 所有队伍).BotTracerFirstBlink = 真;
+		End;
+	}
+}
+
+规则("Arena 1: Match Start")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		全局.GameLoaded == 真;
+		全局.Arena1Q[1] == 真;
+		全局.Arena1Q[2] == 真;
+		全局.Arena1Match == 假;
+		全局.FirstMatch == 真;
+	}
+
+	动作
+	{
+		调用子程序(SpawnLocationCheck);
+		等待(0.100, 无视条件);
+		传送(全局.Arena1Q[2], 全局.MainDefaultSpawn);
+		等待(0.050, 无视条件);
+		设置朝向(全局.Arena1Q[2], 本地矢量(全局.MainFacing, 全局.Arena1Q[2], 旋转并转换), 至玩家);
+		等待(0.050, 无视条件);
+		全局.Arena1Q[1].Spectating = 假;
+		全局.Arena1Q[2].Spectating = 假;
+		等待(0.100, 无视条件);
+		治疗(全局.Arena1Q[1], 空, 1000);
+		治疗(全局.Arena1Q[2], 空, 1000);
+		全局.Arena1Q[1].DeadHelper = 假;
+		全局.Arena1Q[2].DeadHelper = 假;
+		全局.Arena1Match = 真;
+		If(是否是机器人(此栏位的玩家(11, 所有队伍)) == 真);
+			此栏位的玩家(11, 所有队伍).BotTracerFirstBlink = 真;
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Arena 2: Match Start")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		全局.GameLoaded == 真;
+		全局.Arena2Q[1] == 真;
+		全局.Arena2Q[2] == 真;
+		全局.Arena2Match == 假;
+	}
+
+	动作
+	{
+		等待(0.016, 无视条件);
+		全局.Arena2Match = 真;
+		等待(0.500, 无视条件);
+		传送(全局.Arena2Q[1], 全局.SideArenaSpawnsFacing[0]);
+		传送(全局.Arena2Q[2], 全局.SideArenaSpawnsFacing[1]);
+		等待(0.050, 无视条件);
+		设置朝向(全局.Arena2Q[1], 本地矢量(全局.SideArenaSpawnsFacing[2], 全局.Arena2Q[1], 旋转并转换), 至玩家);
+		设置朝向(全局.Arena2Q[2], 本地矢量(全局.SideArenaSpawnsFacing[2], 全局.Arena2Q[2], 旋转并转换), 至玩家);
+		等待(0.050, 无视条件);
+		全局.Arena2Q[1].Spectating = 假;
+		全局.Arena2Q[2].Spectating = 假;
+		全局.Arena2Q[1].DeadHelper = 假;
+		全局.Arena2Q[2].DeadHelper = 假;
+		等待(0.300, 无视条件);
+		治疗(全局.Arena2Q[1], 空, 1000);
+		治疗(全局.Arena2Q[2], 空, 1000);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Arena 3: Match Start")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		全局.GameLoaded == 真;
+		全局.Arena3Q[1] == 真;
+		全局.Arena3Q[2] == 真;
+		全局.Arena3Match == 假;
+	}
+
+	动作
+	{
+		等待(0.016, 无视条件);
+		全局.Arena3Match = 真;
+		等待(0.500, 无视条件);
+		传送(全局.Arena3Q[1], 全局.SideArenaSpawnsFacing[3]);
+		传送(全局.Arena3Q[2], 全局.SideArenaSpawnsFacing[4]);
+		等待(0.050, 无视条件);
+		设置朝向(全局.Arena3Q[1], 本地矢量(全局.SideArenaSpawnsFacing[5], 全局.Arena3Q[1], 旋转并转换), 至玩家);
+		设置朝向(全局.Arena3Q[2], 本地矢量(全局.SideArenaSpawnsFacing[5], 全局.Arena3Q[2], 旋转并转换), 至玩家);
+		等待(0.050, 无视条件);
+		全局.Arena3Q[1].Spectating = 假;
+		全局.Arena3Q[2].Spectating = 假;
+		全局.Arena3Q[1].DeadHelper = 假;
+		全局.Arena3Q[2].DeadHelper = 假;
+		等待(0.300, 无视条件);
+		治疗(全局.Arena3Q[1], 空, 1000);
+		治疗(全局.Arena3Q[2], 空, 1000);
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("###   Player dies   ###")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Arena 1: Winner got ana naded")
+{
+	事件
+	{
+		玩家受到伤害;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		数组包含(全局.Arena1Q, 事件玩家) == 真;
+		事件玩家.Spectating == 假;
+		(所用英雄(攻击方) == 英雄(安娜) && (事件伤害 == 90 || 事件伤害 == 135)) == 真;
+	}
+
+	动作
+	{
+		事件玩家.AntiHealDebuffed = 真;
+		等待(3, 无视条件);
+		事件玩家.AntiHealDebuffed = 假;
+	}
+}
+
+规则("Arena 1: Player Dies")
+{
+	事件
+	{
+		玩家阵亡;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		(事件玩家 == 全局.Arena1Q[1] || 事件玩家 == 全局.Arena1Q[2]) == 真;
+		事件玩家.DeadHelper == 假;
+	}
+
+	动作
+	{
+		事件玩家.DeadHelper = 真;
+		修改全局变量(Arena1Q, 根据值从数组中移除, 事件玩家);
+		If(玩家数量(所有队伍) <= 3);
+			修改全局变量(Arena1Q, 添加至数组, 事件玩家);
+		Else;
+			修改全局变量(Arena2Q, 添加至数组, 事件玩家);
+		End;
+		清除状态(事件玩家, 燃烧);
+		"Arena1Q[1] = Winner"
+		If(所用英雄(全局.Arena1Q[1]) == 英雄(探奇));
+			设置弹药(全局.Arena1Q[1], 0, 8);
+		Else If(所用英雄(全局.Arena1Q[1]) == 英雄(雾子));
+			设置弹药(全局.Arena1Q[1], 1, 15);
+		Else If(所用英雄(全局.Arena1Q[1]) == 英雄(拉玛刹));
+			按下按键(全局.Arena1Q[1], 按钮(装填));
+		Else If(所用英雄(全局.Arena1Q[1]) == 英雄(奥丽莎));
+			禁用 设置弹药(全局.Arena1Q[1], 0, 8);
+		Else If(所用英雄(全局.Arena1Q[1]) == 英雄(生命之梭));
+			设置弹药(全局.Arena1Q[1], 1, 80);
+		Else If(所用英雄(全局.Arena1Q[1]) == 英雄(毛加));
+			按下按键(全局.Arena1Q[1], 按钮(装填));
+		Else;
+			设置弹药(全局.Arena1Q[1], 0, 最大弹药(全局.Arena1Q[1], 0));
+			设置弹药(全局.Arena1Q[1], 1, 最大弹药(全局.Arena1Q[1], 1));
+		End;
+		治疗(全局.Arena1Q[1], 空, 10000);
+		全局.Arena1Q[1].Score += 全局.ScorePerWin[1];
+		设置玩家分数(全局.Arena1Q[1], 全局.Arena1Q[1].Score);
+		清除状态(全局.Arena1Q[1], 燃烧);
+		全局.Arena1Match = 假;
+		"Hero refresh if needed and doomfist shield removal"
+		If(全局.AlwaysRefreshHero == 真 || 全局.Arena1Q[1].AntiHealDebuffed == 真);
+			全局.Arena1Q[1].UltCharge = 终极技能充能百分比(全局.Arena1Q[1]);
+			等待(0.200, 无视条件);
+			开始强制玩家选择英雄(全局.Arena1Q[1], 英雄(秩序之光));
+			等待(0.200, 无视条件);
+			开始强制玩家选择英雄(全局.Arena1Q[1], 全局.Arena1Q[1].HeroList[全局.Arena1Q[1].HeroNumber]);
+			等待(0.050, 无视条件);
+			设置终极技能充能(全局.Arena1Q[1], 全局.Arena1Q[1].UltCharge);
+			禁用 Else If(所用英雄(全局.Arena1Q[1]) == 英雄(末日铁拳));
+			禁用 等待(0.500, 无视条件);
+			禁用 伤害(全局.Arena1Q[1], 空, 生命值(全局.Arena1Q[1]) - 225);
+		End;
+	}
+}
+
+规则("Arena 2: Player Dies")
+{
+	事件
+	{
+		玩家阵亡;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		(事件玩家 == 全局.Arena2Q[1] || 事件玩家 == 全局.Arena2Q[2]) == 真;
+		事件玩家.DeadHelper == 假;
+	}
+
+	动作
+	{
+		事件玩家.DeadHelper = 真;
+		修改全局变量(Arena2Q, 根据值从数组中移除, 事件玩家);
+		If(玩家数量(所有队伍) <= 3);
+			修改全局变量(Arena1Q, 添加至数组, 事件玩家);
+		Else If(玩家数量(所有队伍) <= 5);
+			修改全局变量(Arena2Q, 添加至数组, 事件玩家);
+		Else;
+			修改全局变量(Arena3Q, 添加至数组, 事件玩家);
+		End;
+		"Arena2Q[1] = Winner"
+		治疗(全局.Arena2Q[1], 空, 1000);
+		全局.Arena2Q[1].UltCharge = 终极技能充能百分比(全局.Arena2Q[1]);
+		等待(0.100, 无视条件);
+		If(所用英雄(全局.Arena2Q[1]) == 英雄(秩序之光));
+			开始强制玩家选择英雄(全局.Arena2Q[1], 英雄(托比昂));
+		Else;
+			开始强制玩家选择英雄(全局.Arena2Q[1], 英雄(秩序之光));
+		End;
+		等待(0.200, 无视条件);
+		开始强制玩家选择英雄(全局.Arena2Q[1], 全局.Arena2Q[1].HeroList[全局.Arena2Q[1].HeroNumber]);
+		等待(0.050, 无视条件);
+		设置终极技能充能(全局.Arena2Q[1], 全局.Arena2Q[1].UltCharge);
+		根据条件跳过(全局.Arena2Q[1] == 假, 1);
+		修改全局变量(Arena1Q, 添加至数组, 全局.Arena2Q[1]);
+		全局.Arena2Q[1].Spectating = 真;
+		治疗(全局.Arena2Q[1], 空, 1000);
+		根据条件跳过(全局.Arena2Q[1].Score + 全局.ScorePerWin[2] >= 49.500, 1);
+		全局.Arena2Q[1].Score += 全局.ScorePerWin[2];
+		设置玩家分数(全局.Arena2Q[1], 全局.Arena2Q[1].Score);
+		清除状态(全局.Arena2Q[1], 燃烧);
+		根据条件跳过(全局.Arena2Q[1] == 假, 1);
+		修改全局变量(Arena2Q, 根据索引从数组中移除, 1);
+		清除状态(事件玩家, 燃烧);
+		等待(0.016, 无视条件);
+		全局.Arena2Match = 假;
+	}
+}
+
+规则("Arena 3: Player Dies")
+{
+	事件
+	{
+		玩家阵亡;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		(事件玩家 == 全局.Arena3Q[1] || 事件玩家 == 全局.Arena3Q[2]) == 真;
+		事件玩家.DeadHelper == 假;
+	}
+
+	动作
+	{
+		事件玩家.DeadHelper = 真;
+		修改全局变量(Arena3Q, 根据值从数组中移除, 事件玩家);
+		If(玩家数量(所有队伍) <= 3);
+			修改全局变量(Arena1Q, 添加至数组, 事件玩家);
+		Else If(玩家数量(所有队伍) <= 5);
+			修改全局变量(Arena2Q, 添加至数组, 事件玩家);
+		Else;
+			修改全局变量(Arena3Q, 添加至数组, 事件玩家);
+		End;
+		"Arena3Q[1] = Winner"
+		治疗(全局.Arena3Q[1], 空, 300);
+		全局.Arena3Q[1].UltCharge = 终极技能充能百分比(全局.Arena3Q[1]);
+		等待(0.100, 无视条件);
+		If(所用英雄(全局.Arena3Q[1]) == 英雄(秩序之光));
+			开始强制玩家选择英雄(全局.Arena3Q[1], 英雄(托比昂));
+		Else;
+			开始强制玩家选择英雄(全局.Arena3Q[1], 英雄(秩序之光));
+		End;
+		等待(0.200, 无视条件);
+		开始强制玩家选择英雄(全局.Arena3Q[1], 全局.Arena3Q[1].HeroList[全局.Arena3Q[1].HeroNumber]);
+		等待(0.050, 无视条件);
+		设置终极技能充能(全局.Arena3Q[1], 全局.Arena3Q[1].UltCharge);
+		根据条件跳过(全局.Arena3Q[1] == 假, 5);
+		If(玩家数量(所有队伍) <= 3);
+			修改全局变量(Arena1Q, 添加至数组, 全局.Arena3Q[1]);
+		Else;
+			修改全局变量(Arena2Q, 添加至数组, 全局.Arena3Q[1]);
+		End;
+		全局.Arena3Q[1].Spectating = 真;
+		根据条件跳过(全局.Arena3Q[1].Score + 全局.ScorePerWin[3] >= 49.500, 1);
+		全局.Arena3Q[1].Score += 全局.ScorePerWin[3];
+		设置玩家分数(全局.Arena3Q[1], 全局.Arena3Q[1].Score);
+		治疗(全局.Arena3Q[1], 空, 300);
+		清除状态(全局.Arena3Q[1], 燃烧);
+		根据条件跳过(全局.Arena3Q[1] == 假, 1);
+		修改全局变量(Arena3Q, 根据索引从数组中移除, 1);
+		清除状态(事件玩家, 燃烧);
+		等待(0.016, 无视条件);
+		全局.Arena3Match = 假;
+	}
+}
+
+禁用 规则("###   Player leaves   ###")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Player Leaves: Remove from All Queues")
+{
+	事件
+	{
+		玩家离开比赛;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		If(全局.Arena1Match == 真 && (事件玩家 == 全局.Arena1Q[1] || 事件玩家 == 全局.Arena1Q[2]));
+			修改全局变量(Arena1Q, 根据值从数组中移除, 事件玩家);
+			治疗(全局.Arena1Q[1], 空, 1000);
+			全局.Arena1Match = 假;
+		Else If(全局.Arena2Match == 真 && (事件玩家 == 全局.Arena2Q[1] || 事件玩家 == 全局.Arena2Q[2]));
+			修改全局变量(Arena2Q, 根据值从数组中移除, 事件玩家);
+			治疗(全局.Arena2Q[1], 空, 1000);
+			全局.Arena2Q[1].Spectating = 真;
+			全局.Arena2Match = 假;
+		Else If(全局.Arena3Match == 真 && (事件玩家 == 全局.Arena3Q[1] || 事件玩家 == 全局.Arena3Q[2]));
+			修改全局变量(Arena3Q, 根据值从数组中移除, 事件玩家);
+			治疗(全局.Arena3Q[1], 空, 1000);
+			全局.Arena3Q[1].Spectating = 真;
+			全局.Arena3Match = 假;
+		Else;
+			修改全局变量(Arena1Q, 根据值从数组中移除, 事件玩家);
+			修改全局变量(Arena2Q, 根据值从数组中移除, 事件玩家);
+			修改全局变量(Arena3Q, 根据值从数组中移除, 事件玩家);
+		End;
+		If(数量(所有玩家(所有队伍)) <= 3);
+			修改全局变量(Arena2Q, 根据索引从数组中移除, 0);
+			根据条件跳过(全局.Arena2Q == 假, 1);
+			修改全局变量(Arena1Q, 添加至数组, 全局.Arena2Q);
+			全局.Arena2Q = 0;
+			全局.Arena2Match = 假;
+			修改全局变量(Arena3Q, 根据索引从数组中移除, 0);
+			根据条件跳过(全局.Arena3Q == 假, 1);
+			修改全局变量(Arena1Q, 添加至数组, 全局.Arena3Q);
+			全局.Arena3Q = 0;
+			全局.Arena3Match = 假;
+			全局.Arena1Q[3].Spectating = 真;
+		Else If(数量(所有玩家(所有队伍)) <= 5);
+			修改全局变量(Arena3Q, 根据索引从数组中移除, 0);
+			根据条件跳过(全局.Arena3Q == 假, 1);
+			修改全局变量(Arena2Q, 添加至数组, 全局.Arena3Q);
+			全局.Arena3Q = 0;
+			全局.Arena3Match = 假;
+			全局.Arena2Q[3].Spectating = 真;
+			全局.Arena2Q[4].Spectating = 真;
+			全局.Arena2Q[5].Spectating = 真;
+		End;
+	}
+}
+
+禁用 规则("###   Bug fix   ###")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Arena 1: Bug fix")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		游戏正在进行中 == 真;
+		已重生(事件玩家) == 真;
+		全局.FirstMatch == 真;
+		(事件玩家 == 全局.Arena1Q[1] || 事件玩家 == 全局.Arena1Q[2]) == 真;
+		事件玩家.Spectating == 真;
+	}
+
+	动作
+	{
+		等待(1.500, 当为“假”时中止);
+		事件玩家.Spectating = 假;
+	}
+}
+
+规则("Arena 2: Afk player")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		全局.Arena2Q[1] == 真;
+		全局.Arena2Q[2] == 真;
+		全局.Arena2Match == 真;
+	}
+
+	动作
+	{
+		等待(30, 当为“假”时中止);
+		小字体信息(所有玩家(所有队伍), 自定义字符串("   Duel taking over 30s in Arena2 or bugged, killing 1 player to keep the queue rolling"));
+		击杀(全局.Arena2Q[2], 全局.Arena2Q[1]);
+		等待(3, 当为“假”时中止);
+		击杀(全局.Arena2Q[1], 全局.Arena2Q[2]);
+	}
+}
+
+规则("Arena 2: Stuck")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		全局.Arena2Q[1] == 假;
+		全局.Arena2Q[2] == 假;
+		全局.Arena2Match == 真;
+	}
+
+	动作
+	{
+		等待(5, 当为“假”时中止);
+		全局.Arena2Match = 假;
+		小字体信息(所有玩家(所有队伍), 自定义字符串("   Arena 2 left active when no players, trying to fix"));
+	}
+}
+
+规则("Arena 3: Afk player")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		全局.Arena3Q[1] == 真;
+		全局.Arena3Q[2] == 真;
+		全局.Arena3Match == 真;
+	}
+
+	动作
+	{
+		等待(30, 当为“假”时中止);
+		小字体信息(所有玩家(所有队伍), 自定义字符串("   Duel taking over 30s in Arena3 or bugged, killing 1 player to keep the queue rolling"));
+		击杀(全局.Arena3Q[2], 全局.Arena3Q[1]);
+		等待(3, 当为“假”时中止);
+		击杀(全局.Arena3Q[1], 全局.Arena3Q[2]);
+	}
+}
+
+规则("Arena 3: Stuck")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		全局.Arena3Q[1] == 假;
+		全局.Arena3Q[2] == 假;
+		全局.Arena3Match == 真;
+	}
+
+	动作
+	{
+		等待(5, 当为“假”时中止);
+		全局.Arena3Match = 假;
+		小字体信息(所有玩家(所有队伍), 自定义字符串("   Arena 3 left active when no players, trying to fix"));
+	}
+}
+
+禁用 规则("###   Zone check   ###")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Zone Check Arena 1 Center")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		禁用 是否是机器人(事件玩家) == 假;
+		(全局.Arena1Q[1] == 事件玩家 || 全局.Arena1Q[2] == 事件玩家) == 真;
+		事件玩家.Spectating == 假;
+		(高度(事件玩家) >= 30 || 高度(事件玩家) <= 6) == 真;
+		相距距离(事件玩家, 全局.MainHigh) >= 16.400;
+		相距距离(事件玩家, 全局.MainCenter) >= 15.100;
+	}
+
+	动作
+	{
+		设置状态(事件玩家, 空, 燃烧, 0.500);
+		If(是否是机器人(事件玩家) == 真);
+			If(所用英雄(事件玩家) == 英雄(索杰恩));
+				取消主要动作(事件玩家);
+			End;
+			开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotHelpPositions[0]), 1, 至地图, 替换现有阈值, 方向和幅度);
+			事件玩家.BotPathing = 假;
+			等待(随机实数(0.750, 1), 无视条件);
+			事件玩家.BotPathing = 真;
+		End;
+		等待(0.500, 当为“假”时中止);
+		伤害(事件玩家, 空, 全局.BurnDamage);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Zone Check Arena 1 Top")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		禁用 是否是机器人(事件玩家) == 假;
+		(全局.Arena1Q[1] == 事件玩家 || 全局.Arena1Q[2] == 事件玩家) == 真;
+		事件玩家.Spectating == 假;
+		(高度(事件玩家) >= 30 || 高度(事件玩家) <= 6) == 真;
+		相距距离(事件玩家, 全局.MainTopDeck) <= 3.750;
+	}
+
+	动作
+	{
+		设置状态(事件玩家, 空, 燃烧, 0.500);
+		等待(0.500, 当为“假”时中止);
+		伤害(事件玩家, 空, 全局.BurnDamage);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Zone Check Arena 2")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.Arena2Match == 真;
+		(全局.Arena2Q[1] == 事件玩家 || 全局.Arena2Q[2] == 事件玩家) == 真;
+		事件玩家.Spectating == 假;
+		(高度(事件玩家) >= 30 || 高度(事件玩家) <= 6) == 真;
+		相距距离(事件玩家, 全局.SideArenaCenter[1]) >= 17.400;
+	}
+
+	动作
+	{
+		设置状态(事件玩家, 空, 燃烧, 0.500);
+		伤害(事件玩家, 空, 全局.BurnDamage);
+		等待(0.500, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Zone Check Arena 3")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.Arena3Match == 真;
+		(全局.Arena3Q[1] == 事件玩家 || 全局.Arena3Q[2] == 事件玩家) == 真;
+		事件玩家.Spectating == 假;
+		(高度(事件玩家) >= 30 || 高度(事件玩家) <= 6) == 真;
+		相距距离(事件玩家, 全局.SideArenaCenter[3]) >= 17.400;
+	}
+
+	动作
+	{
+		设置状态(事件玩家, 空, 燃烧, 0.500);
+		伤害(事件玩家, 空, 全局.BurnDamage);
+		等待(0.500, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("###   Hero changes   ###")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	动作
+	{
+		等待(3, 无视条件);
+		生成机器人(英雄(莫伊拉), 所有队伍, 11, 矢量(0, 0, 0), 矢量(0, 0, 0));
+		禁用 等待(2, 无视条件);
+		禁用 生成机器人(英雄(艾什), 所有队伍, -1, 矢量(0, 0, 0), 矢量(0, 0, 0));
+		禁用 等待(0.250, 无视条件);
+		禁用 生成机器人(英雄(堡垒), 所有队伍, -1, 矢量(0, 0, 0), 矢量(0, 0, 0));
+		禁用 等待(0.250, 无视条件);
+		"4 pelaajaa enne tätä"
+		禁用 生成机器人(英雄(D.Va), 所有队伍, -1, 矢量(0, 0, 0), 矢量(0, 0, 0));
+		禁用 等待(0.250, 无视条件);
+		禁用 生成机器人(英雄(回声), 所有队伍, -1, 矢量(0, 0, 0), 矢量(0, 0, 0));
+		禁用 等待(0.250, 无视条件);
+		禁用 生成机器人(英雄(源氏), 所有队伍, -1, 矢量(0, 0, 0), 矢量(0, 0, 0));
+		禁用 等待(0.250, 无视条件);
+		禁用 生成机器人(英雄(半藏), 所有队伍, -1, 矢量(0, 0, 0), 矢量(0, 0, 0));
+		禁用 等待(0.250, 无视条件);
+		禁用 生成机器人(英雄(渣客女王), 所有队伍, -1, 矢量(0, 0, 0), 矢量(0, 0, 0));
+	}
+}
+
+规则("Hero locking")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		全局.HeroSelect == 真;
+		全局.GameLoaded == 真;
+		全局.FirstMatch == 真;
+		是否是机器人(事件玩家) == 假;
+		数量(事件玩家.HeroList) >= 2;
+		按钮被按下(事件玩家, 按钮(装填)) == 真;
+	}
+
+	动作
+	{
+		等待(0.300, 当为“假”时中止);
+		小字体信息(事件玩家, 自定义字符串("   Keep holding reload to change hero"));
+		等待(0.400, 当为“假”时中止);
+		小字体信息(所有玩家(所有队伍), 自定义字符串("   {0} is changing hero", 事件玩家));
+		设置状态(事件玩家, 空, 相移, 9999);
+		事件玩家.LockedHero = 真;
+		事件玩家.UltCharge = 终极技能充能百分比(事件玩家);
+		停止强制玩家选择英雄(事件玩家);
+		修改玩家变量(事件玩家, HeroList, 根据值从数组中移除, 所用英雄(事件玩家));
+		设置玩家可选的英雄(事件玩家, 事件玩家.HeroList);
+		等待(0.100, 无视条件);
+		"Create hero list"
+		If(主机玩家 == 事件玩家 && 全局.HostHasDifferentheroes == 真);
+			事件玩家.HeroList = 随机数组(全局.HeroList2);
+		Else;
+			事件玩家.HeroList = 随机数组(全局.HeroList);
+		End;
+		设置玩家可选的英雄(事件玩家, 事件玩家.HeroList);
+		"In Arena Q 1"
+		If(数组包含(全局.Arena1Q, 事件玩家) == 真);
+			"If playing"
+			If(事件玩家 == 全局.Arena1Q[1] || 事件玩家 == 全局.Arena1Q[2]);
+				"If in an active Match"
+				If(全局.Arena1Match == 真);
+					修改全局变量(Arena1Q, 根据值从数组中移除, 事件玩家);
+					"Arena1Q[1] = Winner"
+					设置弹药(全局.Arena1Q[1], 0, 最大弹药(全局.Arena1Q[1], 0));
+					治疗(全局.Arena1Q[1], 空, 1000);
+					全局.Arena1Q[1].Score += 全局.ScorePerWin[1];
+					设置玩家分数(全局.Arena1Q[1], 全局.Arena1Q[1].Score);
+					清除状态(全局.Arena1Q[1], 燃烧);
+					全局.Arena1Match = 假;
+					"Hero refresh if needed and doomfist shield removal"
+					If(全局.AlwaysRefreshHero == 真 || 全局.Arena1Q[1].AntiHealDebuffed == 真);
+						全局.Arena1Q[1].UltCharge = 终极技能充能百分比(全局.Arena1Q[1]);
+						等待(0.200, 无视条件);
+						开始强制玩家选择英雄(全局.Arena1Q[1], 英雄(秩序之光));
+						等待(0.200, 无视条件);
+						开始强制玩家选择英雄(全局.Arena1Q[1], 全局.Arena1Q[1].HeroList[全局.Arena1Q[1].HeroNumber]);
+						等待(0.050, 无视条件);
+						设置终极技能充能(全局.Arena1Q[1], 全局.Arena1Q[1].UltCharge);
+						禁用 Else If(所用英雄(全局.Arena1Q[1]) == 英雄(末日铁拳));
+						禁用 等待(0.500, 无视条件);
+						禁用 伤害(全局.Arena1Q[1], 空, 生命值(全局.Arena1Q[1]) - 225);
+					End;
+				Else;
+					修改全局变量(Arena1Q, 根据值从数组中移除, 事件玩家);
+				End;
+			Else;
+				修改全局变量(Arena1Q, 根据值从数组中移除, 事件玩家);
+			End;
+		"In Arena Q 2"
+		Else If(数组包含(全局.Arena2Q, 事件玩家) == 真);
+			"If playing"
+			If(事件玩家 == 全局.Arena2Q[1] || 事件玩家 == 全局.Arena2Q[2]);
+				"If in an active Match"
+				If(全局.Arena2Match == 真);
+					修改全局变量(Arena2Q, 根据值从数组中移除, 事件玩家);
+					"Arena2Q[1] = Winner"
+					治疗(全局.Arena2Q[1], 空, 1000);
+					全局.Arena2Q[1].UltCharge = 终极技能充能百分比(全局.Arena2Q[1]);
+					等待(0.100, 无视条件);
+					开始强制玩家选择英雄(全局.Arena2Q[1], 英雄(秩序之光));
+					等待(0.200, 无视条件);
+					开始强制玩家选择英雄(全局.Arena2Q[1], 全局.Arena2Q[1].HeroList[全局.Arena2Q[1].HeroNumber]);
+					等待(0.050, 无视条件);
+					设置终极技能充能(全局.Arena2Q[1], 全局.Arena2Q[1].UltCharge);
+					根据条件跳过(全局.Arena2Q[1] == 假, 1);
+					修改全局变量(Arena1Q, 添加至数组, 全局.Arena2Q[1]);
+					全局.Arena2Q[1].Spectating = 真;
+					治疗(全局.Arena2Q[1], 空, 1000);
+					根据条件跳过(全局.Arena2Q[1].Score + 全局.ScorePerWin[2] >= 49.500, 1);
+					全局.Arena2Q[1].Score += 全局.ScorePerWin[2];
+					设置玩家分数(全局.Arena2Q[1], 全局.Arena2Q[1].Score);
+					清除状态(全局.Arena2Q[1], 燃烧);
+					根据条件跳过(全局.Arena2Q[1] == 假, 1);
+					修改全局变量(Arena2Q, 根据索引从数组中移除, 1);
+					全局.Arena2Match = 假;
+				Else;
+					修改全局变量(Arena2Q, 根据值从数组中移除, 事件玩家);
+				End;
+			Else;
+				修改全局变量(Arena2Q, 根据值从数组中移除, 事件玩家);
+			End;
+		"In Arena Q 3"
+		Else If(数组包含(全局.Arena3Q, 事件玩家) == 真);
+			"If playing"
+			If(事件玩家 == 全局.Arena3Q[1] || 事件玩家 == 全局.Arena3Q[2]);
+				"If in an active Match"
+				If(全局.Arena3Match == 真);
+					修改全局变量(Arena3Q, 根据值从数组中移除, 事件玩家);
+					"Arena3Q[1] = Winner"
+					治疗(全局.Arena3Q[1], 空, 300);
+					全局.Arena3Q[1].UltCharge = 终极技能充能百分比(全局.Arena3Q[1]);
+					等待(0.100, 无视条件);
+					开始强制玩家选择英雄(全局.Arena3Q[1], 英雄(秩序之光));
+					等待(0.200, 无视条件);
+					开始强制玩家选择英雄(全局.Arena3Q[1], 全局.Arena3Q[1].HeroList[全局.Arena3Q[1].HeroNumber]);
+					等待(0.050, 无视条件);
+					设置终极技能充能(全局.Arena3Q[1], 全局.Arena3Q[1].UltCharge);
+					根据条件跳过(全局.Arena3Q[1] == 假, 5);
+					If(玩家数量(所有队伍) <= 3);
+						修改全局变量(Arena1Q, 添加至数组, 全局.Arena3Q[1]);
+					Else;
+						修改全局变量(Arena2Q, 添加至数组, 全局.Arena3Q[1]);
+					End;
+					全局.Arena3Q[1].Spectating = 真;
+					根据条件跳过(全局.Arena3Q[1].Score + 全局.ScorePerWin[3] >= 49.500, 1);
+					全局.Arena3Q[1].Score += 全局.ScorePerWin[3];
+					设置玩家分数(全局.Arena3Q[1], 全局.Arena3Q[1].Score);
+					治疗(全局.Arena3Q[1], 空, 300);
+					清除状态(全局.Arena3Q[1], 燃烧);
+					根据条件跳过(全局.Arena3Q[1] == 假, 1);
+					修改全局变量(Arena3Q, 根据索引从数组中移除, 1);
+					全局.Arena3Match = 假;
+				Else;
+					修改全局变量(Arena3Q, 根据值从数组中移除, 事件玩家);
+				End;
+			Else;
+				修改全局变量(Arena3Q, 根据值从数组中移除, 事件玩家);
+			End;
+		End;
+		事件玩家.Spectating = 真;
+		等待直到 (所用英雄(事件玩家) == 真, 99999);
+		传送(事件玩家, 全局.SpecSpot);
+		设置终极技能充能(事件玩家, 事件玩家.UltCharge);
+		"Add player back to Queue"
+		If(玩家数量(所有队伍) >= 0 && 玩家数量(所有队伍) <= 3);
+			修改全局变量(Arena1Q, 添加至数组, 事件玩家);
+		Else If(玩家数量(所有队伍) >= 4 && 玩家数量(所有队伍) <= 5);
+			修改全局变量(Arena2Q, 添加至数组, 事件玩家);
+		Else;
+			修改全局变量(Arena3Q, 添加至数组, 事件玩家);
+		End;
+		消除HUD文本(事件玩家.Hud);
+		If(数组包含(全局.Arena1Q, 事件玩家) == 真);
+			创建HUD文本(事件玩家, 字符串("{0}：{1}", 自定义字符串("Position in Queue"), 绝对值(数组值的索引(全局.Arena1Q, 事件玩家) - 2)), 自定义字符串("Score per kill: 3"), 自定义字符串(
+				"Arena: 1"), 顶部, 2, 颜色(绿色), 颜色(白色), 颜色(绿色), 可见和字符串, 默认可见度);
+		Else If(数组包含(全局.Arena2Q, 事件玩家) == 真);
+			If(事件玩家.Score >= 48);
+				创建HUD文本(事件玩家, 字符串("{0}：{1}", 自定义字符串("Position in Queue"), 绝对值(数组值的索引(全局.Arena2Q, 事件玩家) - 2)), 自定义字符串(
+					"To win you need to get a kill in Arena 1"), 自定义字符串("Arena: 2"), 顶部, 2, 颜色(红色), 颜色(白色), 颜色(红色), 可见和字符串, 默认可见度);
+			Else;
+				创建HUD文本(事件玩家, 字符串("{0}：{1}", 自定义字符串("Position in Queue"), 绝对值(数组值的索引(全局.Arena2Q, 事件玩家) - 2)), 自定义字符串("Score per kill: 2"), 自定义字符串(
+					"Arena: 2"), 顶部, 2, 颜色(红色), 颜色(白色), 颜色(红色), 可见和字符串, 默认可见度);
+			End;
+		Else If(数组包含(全局.Arena3Q, 事件玩家) == 真);
+			If(事件玩家.Score >= 49);
+				创建HUD文本(事件玩家, 字符串("{0}：{1}", 自定义字符串("Position in Queue"), 绝对值(数组值的索引(全局.Arena3Q, 事件玩家) - 2)), 自定义字符串(
+					"To win you need to get a kill in Arena 1"), 自定义字符串("Arena: 3"), 顶部, 2, 颜色(蓝色), 颜色(白色), 颜色(蓝色), 可见和字符串, 默认可见度);
+			Else;
+				创建HUD文本(事件玩家, 字符串("{0}：{1}", 自定义字符串("Position in Queue"), 绝对值(数组值的索引(全局.Arena3Q, 事件玩家) - 2)), 自定义字符串("Score per kill: 1"), 自定义字符串(
+					"Arena: 3"), 顶部, 2, 颜色(蓝色), 颜色(白色), 颜色(蓝色), 可见和字符串, 默认可见度);
+			End;
+		End;
+		事件玩家.Hud = 上一个文本ID;
+		事件玩家.HeroNumber = 数组值的索引(事件玩家.HeroList, 所用英雄(事件玩家));
+		If(全局.AllHeroesMode == 真);
+			If(数组包含(所有重装英雄, 所用英雄(事件玩家)) == 真);
+				开始调整玩家大小(事件玩家, 0.800, 假);
+			Else;
+				开始调整玩家大小(事件玩家, 1, 假);
+			End;
+		End;
+	}
+}
+
+规则("Echo duplicate nerf")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		回声;
+	}
+
+	条件
+	{
+		正在人格复制(事件玩家) == 真;
+		存活(事件玩家) == 真;
+	}
+
+	动作
+	{
+		等待(7, 当为“假”时中止);
+		伤害(事件玩家, 空, 1000);
+	}
+}
+
+规则("Support passive healing disabled")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		数组包含(所有支援英雄, 所用英雄(事件玩家)) == 真;
+		标准化生命值(事件玩家) != 1;
+		具有状态(事件玩家, 沉睡) == 假;
+	}
+
+	动作
+	{
+		等待(2.450, 当为“假”时中止);
+		伤害(事件玩家, 空, 0.001);
+		治疗(事件玩家, 空, 0.001);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Dps & Tank passive healing disabled")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		数组包含(所有支援英雄, 所用英雄(事件玩家)) == 假;
+		标准化生命值(事件玩家) != 1;
+		具有状态(事件玩家, 沉睡) == 假;
+	}
+
+	动作
+	{
+		等待(4.950, 当为“假”时中止);
+		根据条件跳过(所用英雄(事件玩家) == 英雄(黑影), 2);
+		伤害(事件玩家, 空, 0.001);
+		治疗(事件玩家, 空, 0.001);
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("###   Bot Game   ###")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Create bot")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		游戏正在进行中 == 真;
+		玩家数量(所有队伍) == 1;
+	}
+
+	动作
+	{
+		等待(2, 当为“假”时中止);
+		小字体信息(所有玩家(所有队伍), 自定义字符串("   Player alone: Spawning a bot in 5 seconds"));
+		等待(5, 当为“假”时中止);
+		生成机器人(英雄(秩序之光), 所有队伍, 11, 矢量(-9.438, 268.417, 278.042), 方向(矢量(-0.133, 279.500, 291.308), 矢量(0.027, 274, 279.863)));
+		所有玩家(所有队伍).Score = 0;
+		设置玩家分数(所有玩家(所有队伍), 0);
+		创建HUD文本(所有玩家(所有队伍), 全局.BotDifHud[0], 空, 空, 左边, 2, 全局.BotDifHud[1], 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
+		全局.BotDifHud[2] = 上一个文本ID;
+		创建HUD文本(所有玩家(所有队伍), 空, 自定义字符串("Bot difficulty {0}/5", 此栏位的玩家(11, 所有队伍).BotDifficulty + 1), 空, 左边, 3, 颜色(红色), 颜色(白色), 颜色(白色),
+			可见和字符串, 默认可见度);
+		全局.BotDifHud[3] = 上一个文本ID;
+	}
+}
+
+规则("Bot herolist and difficulty selector")
+{
+	事件
+	{
+		子程序;
+		BotHeroList;
+	}
+
+	动作
+	{
+		If(数组包含(全局.HeroList, 英雄(士兵：76)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(士兵：76));
+		End;
+		If(数组包含(全局.HeroList, 英雄(艾什)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(艾什));
+		End;
+		If(数组包含(全局.HeroList, 英雄(巴蒂斯特)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(巴蒂斯特));
+		End;
+		If(数组包含(全局.HeroList, 英雄(禅雅塔)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(禅雅塔));
+		End;
+		If(数组包含(全局.HeroList, 英雄(卡西迪)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(卡西迪));
+		End;
+		If(数组包含(全局.HeroList, 英雄(伊拉锐)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(伊拉锐));
+		End;
+		If(数组包含(全局.HeroList, 英雄(安娜)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(安娜));
+		End;
+		If(数组包含(全局.HeroList, 英雄(索杰恩)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(索杰恩));
+		End;
+		If(数组包含(全局.HeroList, 英雄(猎空)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(猎空));
+		End;
+		If(数组包含(全局.HeroList, 英雄(回声)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(回声));
+		End;
+		If(数组包含(全局.HeroList, 英雄(源氏)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(源氏));
+		End;
+		If(数组包含(全局.HeroList, 英雄(雾子)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(雾子));
+		End;
+		If(数组包含(全局.HeroList, 英雄(半藏)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(半藏));
+		End;
+		If(数组包含(全局.HeroList, 英雄(黑百合)) == 真);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(黑百合));
+		End;
+		修改玩家变量(事件玩家, HeroList, 根据索引从数组中移除, 0);
+		If(数量(事件玩家.HeroList) == 0);
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(艾什));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(士兵：76));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(巴蒂斯特));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(禅雅塔));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(卡西迪));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(伊拉锐));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(安娜));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(索杰恩));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(猎空));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(回声));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(源氏));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(雾子));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(半藏));
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 英雄(黑百合));
+		Else If(数量(事件玩家.HeroList) == 1);
+			事件玩家.OneHeroPlayerVariable = 真;
+			修改玩家变量(事件玩家, HeroList, 添加至数组, 事件玩家.HeroList[0]);
+		End;
+		事件玩家.HeroList = 随机数组(事件玩家.HeroList);
+		开始强制玩家选择英雄(事件玩家, 事件玩家.HeroList[事件玩家.HeroNumber]);
+		If(全局.BotDifSelect == 1);
+			全局.BotDifHud[0] = 自定义字符串("Gold");
+			全局.BotDifHud[1] = 颜色(黄色);
+			事件玩家.BotCassDif[0] = 7;
+			事件玩家.BotCassDif[1] = 1;
+			事件玩家.BotStrafe[0] = 0.500;
+			事件玩家.BotStrafe[1] = 1;
+			事件玩家.BotDifficulty = 0;
+		Else If(全局.BotDifSelect == 2);
+			全局.BotDifHud[0] = 自定义字符串("Platinum");
+			全局.BotDifHud[1] = 颜色(灰色);
+			事件玩家.BotCassDif[0] = 6;
+			事件玩家.BotCassDif[1] = 0.850;
+			事件玩家.BotStrafe[0] = 0.350;
+			事件玩家.BotStrafe[1] = 0.900;
+			事件玩家.BotDifficulty = 1;
+		Else If(全局.BotDifSelect == 5);
+			全局.BotDifHud[0] = 自定义字符串("Champion");
+			全局.BotDifHud[1] = 颜色(玫红);
+			事件玩家.BotCassDif[0] = 2;
+			事件玩家.BotCassDif[1] = 0.500;
+			事件玩家.BotStrafe[0] = 0.200;
+			事件玩家.BotStrafe[1] = 0.500;
+			事件玩家.BotDifficulty = 4;
+		Else If(全局.BotDifSelect == 4);
+			全局.BotDifHud[0] = 自定义字符串("Master");
+			全局.BotDifHud[1] = 颜色(灰绿色);
+			事件玩家.BotCassDif[0] = 3;
+			事件玩家.BotCassDif[1] = 0.600;
+			事件玩家.BotStrafe[0] = 0.200;
+			事件玩家.BotStrafe[1] = 0.600;
+			事件玩家.BotDifficulty = 3;
+		Else;
+			全局.BotDifHud[0] = 自定义字符串("Diamond");
+			全局.BotDifHud[1] = 颜色(天蓝色);
+			事件玩家.BotCassDif[0] = 4;
+			事件玩家.BotCassDif[1] = 0.700;
+			事件玩家.BotStrafe[0] = 0.200;
+			事件玩家.BotStrafe[1] = 0.800;
+			事件玩家.BotDifficulty = 2;
+		End;
+	}
+}
+
+规则("Remove bot")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+
+	条件
+	{
+		游戏正在进行中 == 真;
+		玩家数量(所有队伍) >= 3;
+		是否是机器人(此栏位的玩家(11, 所有队伍)) == 真;
+	}
+
+	动作
+	{
+		小字体信息(所有玩家(所有队伍), 自定义字符串("   Player joined: reseting score and removing the bot"));
+		等待(1, 当为“假”时中止);
+		移除所有机器人;
+		所有玩家(所有队伍).Score = 0;
+		设置玩家分数(所有玩家(所有队伍), 0);
+		消除HUD文本(全局.BotDifHud[2]);
+		消除HUD文本(全局.BotDifHud[3]);
+	}
+}
+
+规则("Bot Dynamic Difficulty")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		全局.Arena1Match == 真;
+		全局.BotDifSelect == 0;
+	}
+
+	动作
+	{
+		If(分数(事件玩家) - 12 >= 分数(全局.Arena1Q[事件玩家.TargetNumber]));
+			全局.BotDifHud[0] = 自定义字符串("Gold");
+			全局.BotDifHud[1] = 颜色(黄色);
+			事件玩家.BotCassDif[0] = 7;
+			事件玩家.BotCassDif[1] = 1;
+			事件玩家.BotStrafe[0] = 0.500;
+			事件玩家.BotStrafe[1] = 1;
+			事件玩家.BotDifficulty = 0;
+		Else If(分数(事件玩家) - 6 >= 分数(全局.Arena1Q[事件玩家.TargetNumber]));
+			全局.BotDifHud[0] = 自定义字符串("Platinum");
+			全局.BotDifHud[1] = 颜色(灰色);
+			事件玩家.BotCassDif[0] = 6;
+			事件玩家.BotCassDif[1] = 0.850;
+			事件玩家.BotStrafe[0] = 0.350;
+			事件玩家.BotStrafe[1] = 0.900;
+			事件玩家.BotDifficulty = 1;
+		Else If(分数(事件玩家) == 分数(全局.Arena1Q[事件玩家.TargetNumber]));
+			全局.BotDifHud[0] = 自定义字符串("Diamond");
+			全局.BotDifHud[1] = 颜色(天蓝色);
+			事件玩家.BotCassDif[0] = 4;
+			事件玩家.BotCassDif[1] = 0.700;
+			事件玩家.BotStrafe[0] = 0.200;
+			事件玩家.BotStrafe[1] = 0.800;
+			事件玩家.BotDifficulty = 2;
+		Else If(分数(全局.Arena1Q[事件玩家.TargetNumber]) - 12 >= 分数(事件玩家));
+			全局.BotDifHud[0] = 自定义字符串("Champion");
+			全局.BotDifHud[1] = 颜色(玫红);
+			事件玩家.BotCassDif[0] = 2;
+			事件玩家.BotCassDif[1] = 0.500;
+			事件玩家.BotStrafe[0] = 0.200;
+			事件玩家.BotStrafe[1] = 0.500;
+			事件玩家.BotDifficulty = 4;
+		Else If(分数(全局.Arena1Q[事件玩家.TargetNumber]) - 6 >= 分数(事件玩家));
+			全局.BotDifHud[0] = 自定义字符串("Master");
+			全局.BotDifHud[1] = 颜色(灰绿色);
+			事件玩家.BotCassDif[0] = 3;
+			事件玩家.BotCassDif[1] = 0.600;
+			事件玩家.BotStrafe[0] = 0.200;
+			事件玩家.BotStrafe[1] = 0.600;
+			事件玩家.BotDifficulty = 3;
+		End;
+	}
+}
+
+规则("Bot Help Positions")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+	}
+
+	动作
+	{
+		事件玩家.BotStrafe[0] = 0.200;
+		事件玩家.BotStrafe[1] = 0.800;
+		事件玩家.BotHelpPositions[0] = 矢量(-0.068, 267.788, 286.871);
+		事件玩家.BotHelpPositions[1] = 矢量(0.112, 267.788, 273.207);
+		事件玩家.BotHelpPositions[2] = 矢量(-14.184, 267.455, 274.127);
+		事件玩家.BotHelpPositions[3] = 矢量(14.313, 267.455, 274.327);
+		事件玩家.BotHelpPositions[4] = 矢量(-5.021, 267.606, 292.391);
+		事件玩家.BotHelpPositions[5] = 矢量(4.822, 267.622, 291.850);
+		事件玩家.BotHelpPositions[6] = 矢量(6.967, 267.880, 280.567);
+		事件玩家.BotHelpPositions[7] = 矢量(-7.250, 267.788, 279.939);
+		事件玩家.BotHelpPositions[8] = 矢量(0.165, 279.697, 291.860);
+		事件玩家.BotHelpPositions[9] = 矢量(17.400, 267.455, 284.455);
+		事件玩家.BotHelpPositions[10] = 矢量(-17.684, 267.455, 284.561);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(白色), 事件玩家.BotHelpPositions[0], 5, 可见，位置和半径);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(白色), 事件玩家.BotHelpPositions[1], 5, 可见，位置和半径);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(绿色), 事件玩家.BotHelpPositions[2], 9, 可见，位置和半径);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(红色), 事件玩家.BotHelpPositions[3], 9, 可见，位置和半径);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(绿色), 事件玩家.BotHelpPositions[4], 3, 可见，位置和半径);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(红色), 事件玩家.BotHelpPositions[5], 3, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 0 (5)"), 事件玩家.BotHelpPositions[0], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 1 (5)"), 事件玩家.BotHelpPositions[1], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 2 (9)"), 事件玩家.BotHelpPositions[2], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 3 (9)"), 事件玩家.BotHelpPositions[3], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 4 (3)"), 事件玩家.BotHelpPositions[4], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 5 (3)"), 事件玩家.BotHelpPositions[5], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(白色), 事件玩家.BotHelpPositions[6], 7, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 6 (7)"), 事件玩家.BotHelpPositions[6], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(白色), 事件玩家.BotHelpPositions[7], 7, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 7 (7)"), 事件玩家.BotHelpPositions[7], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(白色), 事件玩家.BotHelpPositions[8], 2, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 8 (2)"), 事件玩家.BotHelpPositions[8], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(白色), 事件玩家.BotHelpPositions[9], 5, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 9 (5)"), 事件玩家.BotHelpPositions[9], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(白色), 事件玩家.BotHelpPositions[10], 5, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 10 (5)"), 事件玩家.BotHelpPositions[10], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		事件玩家.BotHelpPositions[11] = 矢量(0.094, 273.650, 263.418);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(白色), 事件玩家.BotHelpPositions[11], 7, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("H 11 (7)"), 事件玩家.BotHelpPositions[11], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+	}
+}
+
+规则("Bot Move Positions")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+	}
+
+	动作
+	{
+		事件玩家.BotMovePositions[0] = 矢量(-8.165, 268.367, 284.724);
+		事件玩家.BotMovePositions[1] = 矢量(-4.747, 268.367, 271.626);
+		事件玩家.BotMovePositions[2] = 矢量(3.481, 268.367, 272.082);
+		事件玩家.BotMovePositions[3] = 矢量(7.678, 268.367, 284.767);
+		"stairs"
+		事件玩家.BotMovePositions[4] = 矢量(-0.365, 270.432, 291.779);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(绿色), 事件玩家.BotMovePositions[0], 0.500, 可见，位置和半径);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(绿色), 事件玩家.BotMovePositions[1], 0.500, 可见，位置和半径);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(红色), 事件玩家.BotMovePositions[2], 0.500, 可见，位置和半径);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(红色), 事件玩家.BotMovePositions[3], 0.500, 可见，位置和半径);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(白色), 事件玩家.BotMovePositions[4], 0.500, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("M 0"), 事件玩家.BotMovePositions[0], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("M 1"), 事件玩家.BotMovePositions[1], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("M 2"), 事件玩家.BotMovePositions[2], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("M 3"), 事件玩家.BotMovePositions[3], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("M 4"), 事件玩家.BotMovePositions[4], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		事件玩家.BotMovePositions[5] = 矢量(-11.137, 268.367, 284.457);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(绿色), 事件玩家.BotMovePositions[5], 0.500, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("M 5"), 事件玩家.BotMovePositions[5], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		事件玩家.BotMovePositions[6] = 矢量(-7.651, 268.367, 270.763);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(绿色), 事件玩家.BotMovePositions[6], 0.500, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("M 6"), 事件玩家.BotMovePositions[6], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		事件玩家.BotMovePositions[7] = 矢量(8.637, 268.367, 271.038);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(红色), 事件玩家.BotMovePositions[7], 0.500, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("M 7"), 事件玩家.BotMovePositions[7], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+		事件玩家.BotMovePositions[8] = 矢量(11.449, 268.367, 283.233);
+		禁用 创建效果(所有玩家(所有队伍), 球体, 颜色(红色), 事件玩家.BotMovePositions[8], 0.500, 可见，位置和半径);
+		禁用 创建地图文本(所有玩家(所有队伍), 自定义字符串("M 8"), 事件玩家.BotMovePositions[8], 1, 根据表面截取, 可见，位置和字符串, 颜色(白色), 默认可见度);
+	}
+}
+
+规则("Bot Target Number")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		全局.Arena1Q[1] == 事件玩家;
+	}
+
+	动作
+	{
+		事件玩家.TargetNumber = 2;
+	}
+}
+
+规则("Bot Target Number")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		全局.Arena1Q[2] == 事件玩家;
+	}
+
+	动作
+	{
+		事件玩家.TargetNumber = 1;
+	}
+}
+
+规则("Bot Facing")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(事件玩家) == 真;
+	}
+
+	动作
+	{
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 360, 至地图, 方向及角速率);
+	}
+}
+
+规则("Bot Melee")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 3;
+		事件玩家.BotShoot == 真;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) <= 40;
+	}
+
+	动作
+	{
+		等待(绝对值(事件玩家.BotDifficulty - 6) - 10, 当为“假”时中止);
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 720, 至地图, 方向及角速率);
+		设置造成伤害(事件玩家, 100);
+		按下按键(事件玩家, 按钮(近身攻击));
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("Bot Movement")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot player Hiding")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		全局.Arena1Match == 真;
+		在视线内(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 屏障不会阻挡视线) == 假;
+	}
+
+	动作
+	{
+		If(事件玩家.BotSoldRun == 1);
+			等待直到 (标准化生命值(事件玩家) == 1, 2);
+			事件玩家.BotSoldRun = 0;
+		Else;
+			事件玩家.BotShoot = 假;
+			等待(1, 当为“假”时中止);
+			禁用 等待(3, 当为“假”时中止);
+			禁用 事件玩家.BotPathing = 假;
+			禁用 根据条件中止(所用英雄(事件玩家) == 英雄(半藏));
+			禁用 根据条件中止(所用英雄(事件玩家) == 英雄(艾什));
+			禁用 根据条件中止(所用英雄(事件玩家) == 英雄(黑百合));
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("   Player hiding"));
+			禁用 事件玩家.PlayerHiding = 真;
+			禁用 开始限制阈值(事件玩家, 0.500, 1, 0, 1, 0, 1);
+			禁用 开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 360, 至地图, 方向及角速率);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot player not Hiding")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		在视线内(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 屏障不会阻挡视线) == 真;
+	}
+
+	动作
+	{
+		事件玩家.PlayerHiding = 假;
+		事件玩家.BotPathing = 真;
+		事件玩家.BotShoot = 真;
+		等待(1, 当为“假”时中止);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Strafing")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		所用英雄(事件玩家) != 英雄(伊拉锐);
+		所用英雄(事件玩家) != 英雄(回声);
+		所用英雄(事件玩家) != 英雄(源氏);
+		事件玩家.BotPathing == 真;
+		在地面上(事件玩家) == 真;
+	}
+
+	动作
+	{
+		If(事件玩家.BotLeft == 假);
+			开始定向阈值(事件玩家, 左, 1, 至玩家, 替换现有阈值, 方向和幅度);
+			事件玩家.BotLeft = 真;
+			事件玩家.BotRight = 假;
+			等待(随机实数(事件玩家.BotStrafe[0], 事件玩家.BotStrafe[1]), 当为“假”时中止);
+		Else;
+			开始定向阈值(事件玩家, 右, 1, 至玩家, 替换现有阈值, 方向和幅度);
+			事件玩家.BotRight = 真;
+			事件玩家.BotLeft = 假;
+			等待(随机实数(事件玩家.BotStrafe[0], 事件玩家.BotStrafe[1]), 当为“假”时中止);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Strafing Genji Illari Echo")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		(所用英雄(事件玩家) == 英雄(回声) || 所用英雄(事件玩家) == 英雄(源氏) || 所用英雄(事件玩家) == 英雄(伊拉锐)) == 真;
+		事件玩家.BotPathing == 真;
+	}
+
+	动作
+	{
+		If(事件玩家.BotLeft == 假);
+			开始定向阈值(事件玩家, 左, 1, 至玩家, 替换现有阈值, 方向和幅度);
+			事件玩家.BotLeft = 真;
+			事件玩家.BotRight = 假;
+			等待(随机实数(0.200, 0.800), 当为“假”时中止);
+		Else;
+			开始定向阈值(事件玩家, 右, 1, 至玩家, 替换现有阈值, 方向和幅度);
+			事件玩家.BotRight = 真;
+			事件玩家.BotLeft = 假;
+			等待(随机实数(0.200, 0.800), 当为“假”时中止);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Pathing True - Push low hp")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		所用英雄(事件玩家) != 英雄(半藏);
+		所用英雄(事件玩家) != 英雄(黑百合);
+		所用英雄(事件玩家) != 英雄(艾什);
+		所用英雄(事件玩家) != 英雄(安娜);
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		事件玩家.BotStayTimer == 0;
+		正在使用终极技能(全局.Arena1Q[事件玩家.TargetNumber]) == 假;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotPathing == 真;
+		生命值(事件玩家) >= 75 + 生命值(全局.Arena1Q[事件玩家.TargetNumber]);
+	}
+
+	动作
+	{
+		等待(0.100, 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 2);
+		If(事件玩家.Randomizer >= 1);
+			If(所用英雄(事件玩家) == 英雄(士兵：76));
+				开始限制阈值(事件玩家, 随机实数(0, 1), 1, 0, 0, 0, 1);
+				等待直到 (死亡(事件玩家) == 真 || 死亡(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 10);
+				停止限制阈值(事件玩家);
+			Else;
+				开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+				禁用 End;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("push hp"));
+				If(所用英雄(事件玩家) == 英雄(伊拉锐));
+					等待(0.250, 当为“假”时中止);
+					开始按下按钮(事件玩家, 按钮(技能1));
+					等待(0.250, 无视条件);
+					停止按下按钮(事件玩家, 按钮(技能1));
+				End;
+				If(所用英雄(事件玩家) == 英雄(索杰恩));
+					按下按键(事件玩家, 按钮(技能1));
+					等待(随机实数(0.300, 0.700), 无视条件);
+					按下按键(事件玩家, 按钮(跳跃));
+				End;
+				等待直到 (死亡(事件玩家) == 真 || 死亡(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 10);
+				停止限制阈值(事件玩家);
+			End;
+			等待(5, 无视条件);
+			如条件为“真”则循环;
+	}
+}
+
+规则("Bot Pathing True - Push random")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		所用英雄(事件玩家) != 英雄(半藏);
+		所用英雄(事件玩家) != 英雄(黑百合);
+		所用英雄(事件玩家) != 英雄(艾什);
+		所用英雄(事件玩家) != 英雄(安娜);
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		事件玩家.BotStayTimer == 0;
+		正在使用终极技能(全局.Arena1Q[事件玩家.TargetNumber]) == 假;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotPathing == 真;
+		生命值(事件玩家) >= 0 + 生命值(全局.Arena1Q[事件玩家.TargetNumber]);
+	}
+
+	动作
+	{
+		等待(0.100, 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 4);
+		禁用 If(所用英雄(事件玩家) == 英雄(士兵：76));
+		禁用 事件玩家.Randomizer = 随机整数(0, 0);
+		禁用 End;
+		If(事件玩家.Randomizer == 0);
+			If(所用英雄(事件玩家) == 英雄(士兵：76));
+				开始限制阈值(事件玩家, 随机实数(0, 1), 1, 0, 0, 0, 1);
+			Else;
+				开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+			End;
+			等待直到 (死亡(事件玩家) == 真 || 死亡(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 10);
+			停止限制阈值(事件玩家);
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("push rando"));
+		End;
+		等待(4, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Pathing False - Stop Push")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		事件玩家.BotPathing == 假;
+	}
+
+	动作
+	{
+		停止限制阈值(事件玩家);
+	}
+}
+
+规则("Bot Pathing, No line of sight, Combined all")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotStayTimer == 0;
+		正在使用终极技能(全局.Arena1Q[事件玩家.TargetNumber]) == 假;
+		事件玩家.BotShoot == 假;
+		正在装填(事件玩家) == 假;
+	}
+
+	动作
+	{
+		If(相距距离(所选位置(事件玩家), 事件玩家.BotHelpPositions[2]) <= 7);
+			If(所用英雄(事件玩家) == 英雄(猎空));
+				禁用 事件玩家.BotTracerRecall = 真;
+			Else If(所用英雄(事件玩家) == 英雄(安娜));
+				停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+			End;
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("H2, no los"));
+			事件玩家.Randomizer = 随机整数(0, 1);
+			If(事件玩家.Randomizer == 0);
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[0]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 真;
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[1]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 假;
+			End;
+			事件玩家.BotPathing = 假;
+			等待(1.500, 无视条件);
+		Else If(相距距离(所选位置(事件玩家), 事件玩家.BotHelpPositions[3]) <= 7);
+			If(所用英雄(事件玩家) == 英雄(猎空));
+				禁用 事件玩家.BotTracerRecall = 真;
+			Else If(所用英雄(事件玩家) == 英雄(安娜));
+				停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+			End;
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("H3, no los"));
+			事件玩家.Randomizer = 随机整数(0, 1);
+			If(事件玩家.Randomizer == 0);
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[2]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 真;
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[3]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 假;
+			End;
+			事件玩家.BotPathing = 假;
+			等待(1.500, 无视条件);
+		Else If(相距距离(所选位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[2]) <= 9);
+			等待(随机实数(0.300, 1.500), 当为“假”时中止);
+			If(相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[3]) >= 相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[2]));
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[6]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 真;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h2, bot moving 6"));
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[5]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 假;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h2, bot moving 5"));
+			End;
+			事件玩家.BotPathing = 假;
+		Else If(相距距离(所选位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[3]) <= 9);
+			等待(随机实数(0.300, 1.500), 当为“假”时中止);
+			If(相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[0]) >= 相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[1]));
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[7]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 假;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h3, bot moving 7"));
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[8]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 真;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h3, bot moving 8"));
+			End;
+			事件玩家.BotPathing = 假;
+		Else If(相距距离(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[11]) <= 7);
+			等待(0.100, 当为“假”时中止);
+			If(相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[1]) >= 相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[2]));
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[3]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h11, bot moving 3"));
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[0]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h11, bot moving 0"));
+			End;
+			事件玩家.BotPathing = 假;
+		Else If(相距距离(所选位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[0]) <= 5);
+			等待(随机实数(0.300, 1.500), 当为“假”时中止);
+			If(相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[1]) >= 相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[2]));
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[3]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 假;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h0, bot moving 3"));
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[0]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 真;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h0, bot moving 0"));
+			End;
+			事件玩家.BotPathing = 假;
+		Else If(相距距离(所选位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[1]) <= 5);
+			等待(随机实数(0.300, 1.500), 当为“假”时中止);
+			If(相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[0]) >= 相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[3]));
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[2]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 真;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h1, bot moving 2"));
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[1]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 假;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h1, bot moving 1"));
+			End;
+			事件玩家.BotPathing = 假;
+		Else If(相距距离(所选位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[6]) <= 7);
+			等待(随机实数(0.300, 1.500), 当为“假”时中止);
+			If(相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[0]) >= 相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[1]));
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[2]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 假;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h6, bot moving 2"));
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[3]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 真;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h6, bot moving 3"));
+			End;
+			事件玩家.BotPathing = 假;
+		Else If(相距距离(所选位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[7]) <= 7);
+			等待(随机实数(0.300, 1.500), 当为“假”时中止);
+			If(相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[2]) >= 相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[3]));
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[0]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 假;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h7, bot moving 0"));
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[1]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 真;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h7, bot moving 1"));
+			End;
+			事件玩家.BotPathing = 假;
+		Else If(相距距离(所选位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[5]) <= 4);
+			等待(随机实数(0.300, 1.500), 当为“假”时中止);
+			If(相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[0]) >= 相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[1]));
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[2]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 假;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h5, bot moving 2"));
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[3]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 假;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h5, bot moving 3"));
+			End;
+			事件玩家.BotPathing = 假;
+		Else If(相距距离(所选位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[4]) <= 4);
+			等待(随机实数(0.300, 1.500), 当为“假”时中止);
+			If(相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[2]) >= 相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[3]));
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[0]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 真;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h4, bot moving 0"));
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[1]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				事件玩家.BotLeft = 真;
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h4, bot moving 1"));
+			End;
+			事件玩家.BotPathing = 假;
+		Else If(相距距离(所选位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[8]) <= 4);
+			等待(0.100, 当为“假”时中止);
+			If(相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[0]) >= 相距距离(眼睛位置(事件玩家), 事件玩家.BotMovePositions[3]));
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[2]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h8, bot moving 2"));
+			Else;
+				开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[1]), 1, 至地图, 替换现有阈值, 方向和幅度);
+				禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("Player h8, bot moving 1"));
+			End;
+			事件玩家.BotPathing = 假;
+			If(所用英雄(事件玩家) == 英雄(猎空));
+				停止限制阈值(事件玩家);
+			End;
+		End;
+		等待(1, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot H 9, out of bounds")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		相距距离(所选位置(事件玩家), 事件玩家.BotHelpPositions[9]) <= 5;
+	}
+
+	动作
+	{
+		禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("h9 to m3"));
+		开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[3]), 1, 至地图, 替换现有阈值, 方向和幅度);
+		事件玩家.BotPathing = 假;
+		等待(随机实数(0.750, 1), 无视条件);
+		事件玩家.BotPathing = 真;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot H 10, out of bounds")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		相距距离(所选位置(事件玩家), 事件玩家.BotHelpPositions[10]) <= 5;
+	}
+
+	动作
+	{
+		禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("h10 to m0"));
+		开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.BotMovePositions[0]), 1, 至地图, 替换现有阈值, 方向和幅度);
+		事件玩家.BotPathing = 假;
+		等待(随机实数(0.750, 1), 无视条件);
+		事件玩家.BotPathing = 真;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Strafing to a wall left side")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotPathing == 真;
+		事件玩家.BotLeft == 真;
+		相距距离(眼睛位置(事件玩家), 射线命中位置(眼睛位置(事件玩家), 眼睛位置(事件玩家) + 3.500 * 与此角度的相对方向(90 + 与此方向的水平角度(方向(眼睛位置(事件玩家), 眼睛位置(
+			全局.Arena1Q[事件玩家.TargetNumber]))), 0), 空, 事件玩家, 假)) <= 1;
+	}
+
+	动作
+	{
+		开始定向阈值(事件玩家, 右, 1, 至玩家, 替换现有阈值, 方向和幅度);
+	}
+}
+
+规则("Strafing to a wall right side")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		栏位 11;
+	}
+
+	条件
+	{
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotPathing == 真;
+		事件玩家.BotRight == 真;
+		相距距离(眼睛位置(事件玩家), 射线命中位置(眼睛位置(事件玩家), 眼睛位置(事件玩家) + 3.500 * 与此角度的相对方向(-90 + 与此方向的水平角度(方向(眼睛位置(事件玩家), 眼睛位置(
+			全局.Arena1Q[事件玩家.TargetNumber]))), 0), 空, 事件玩家, 假)) <= 1;
+	}
+
+	动作
+	{
+		开始定向阈值(事件玩家, 左, 1, 至玩家, 替换现有阈值, 方向和幅度);
+	}
+}
+
+禁用 规则("Bot Cassidy")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Cass Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		卡西迪;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(卡西迪);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		正在使用技能 1(事件玩家) == 假;
+		正在使用技能 2(事件玩家) == 假;
+	}
+
+	动作
+	{
+		事件玩家.ShootPos = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+		等待(事件玩家.ShootRando / 10 - 0.016, 当为“假”时中止);
+		停止朝向(事件玩家);
+		If(事件玩家.BotDifficulty <= 2);
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.400, Z方向分量(事件玩家.ShootPos))),
+				至地图);
+		Else;
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 随机实数(0, 0.400), Z方向分量(
+				事件玩家.ShootPos))), 至地图);
+		End;
+		等待(0.016, 无视条件);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+		按下按键(事件玩家, 按钮(主要攻击模式));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		事件玩家.ShootRando = 随机实数(0, 事件玩家.BotCassDif[0]);
+		等待(随机实数(0.500, 0.650) - 事件玩家.ShootRando / 10, 无视条件);
+		While(事件玩家.BotShoot == 真);
+			事件玩家.ShootPos = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+			等待(事件玩家.ShootRando / 10 - 0.016, 当为“假”时中止);
+			停止朝向(事件玩家);
+			If(事件玩家.BotDifficulty <= 2);
+				设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.400, Z方向分量(事件玩家.ShootPos))),
+					至地图);
+			Else;
+				设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 随机实数(0, 0.400), Z方向分量(
+					事件玩家.ShootPos))), 至地图);
+			End;
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			事件玩家.ShootRando = 随机实数(0, 事件玩家.BotCassDif[0]);
+			等待(随机实数(0.500, 事件玩家.BotCassDif[1]) - 事件玩家.ShootRando / 10, 无视条件);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Cass Secondary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		卡西迪;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(卡西迪);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 6;
+		弹药(事件玩家, 0) >= 4;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+	}
+
+	动作
+	{
+		禁用 设置造成伤害(事件玩家, 75);
+		事件玩家.Randomizer = 随机整数(0, 1);
+		If(事件玩家.Randomizer == 0);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(辅助攻击模式));
+		End;
+		等待(1, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Cass Reload")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		卡西迪;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(卡西迪);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 假;
+		弹药(事件玩家, 0) <= 3;
+		正在装填(事件玩家) == 假;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+	}
+}
+
+规则("Bot Cass Roll")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		卡西迪;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(卡西迪);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		正在使用技能 2(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+		弹药(事件玩家, 0) <= 3;
+	}
+
+	动作
+	{
+		等待(随机实数(0.100, 0.300), 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 3);
+		If(事件玩家.Randomizer == 0);
+			按下按键(事件玩家, 按钮(技能1));
+		End;
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Cass Roll low hp")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		卡西迪;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(卡西迪);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		正在使用技能 2(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+		生命值(事件玩家) <= 100;
+	}
+
+	动作
+	{
+		等待(随机实数(0.300, 0.600), 当为“假”时中止);
+		按下按键(事件玩家, 按钮(技能1));
+	}
+}
+
+规则("Bot Cass Roll to reload")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		卡西迪;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(卡西迪);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		正在使用技能 2(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+		弹药(事件玩家, 0) == 0;
+	}
+
+	动作
+	{
+		按下按键(事件玩家, 按钮(技能1));
+	}
+}
+
+规则("Bot Cass Grenade")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		卡西迪;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(卡西迪);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		正在使用技能 1(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 7;
+	}
+
+	动作
+	{
+		等待(随机实数(0.100, 0.300), 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 1);
+		If(事件玩家.Randomizer == 0);
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 1.300, Z方向分量(
+				眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 至地图);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 1.300, Z方向分量(
+				眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 5000, 至地图, 方向及角速率);
+			禁用 开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) + 相距距离(眼睛位置(
+				事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) / 10, Z方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 5000, 至地图, 方向及角速率);
+			等待(0.100, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(技能2));
+			等待(0.200, 无视条件);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		End;
+		等待(1, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("Bot Illari")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Illari Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		伊拉锐;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+	}
+
+	动作
+	{
+		事件玩家.ShootPos = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+		等待(事件玩家.ShootRando / 10 - 0.016, 当为“假”时中止);
+		停止朝向(事件玩家);
+		If(事件玩家.BotDifficulty <= 2);
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.400, Z方向分量(事件玩家.ShootPos))),
+				至地图);
+		Else;
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 随机实数(0, 0.400), Z方向分量(
+				事件玩家.ShootPos))), 至地图);
+		End;
+		等待(0.016, 无视条件);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+		按下按键(事件玩家, 按钮(主要攻击模式));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		事件玩家.ShootRando = 随机实数(0, 事件玩家.BotCassDif[0]);
+		等待(随机实数(0.850, 事件玩家.BotCassDif[1] + 0.350) - 事件玩家.ShootRando / 10, 无视条件);
+		While(事件玩家.BotShoot == 真);
+			事件玩家.ShootPos = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+			等待(事件玩家.ShootRando / 10 - 0.016, 当为“假”时中止);
+			停止朝向(事件玩家);
+			If(事件玩家.BotDifficulty <= 2);
+				设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.400, Z方向分量(事件玩家.ShootPos))),
+					至地图);
+			Else;
+				设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 随机实数(0, 0.400), Z方向分量(
+					事件玩家.ShootPos))), 至地图);
+			End;
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			事件玩家.ShootRando = 随机实数(0, 事件玩家.BotCassDif[0]);
+			等待(随机实数(0.850, 事件玩家.BotCassDif[1] + 0.350) - 事件玩家.ShootRando / 10, 无视条件);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Illari Pathing - Stop push")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		伊拉锐;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		事件玩家.BotPathing == 真;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 12;
+	}
+
+	动作
+	{
+		事件玩家.Randomizer = 随机整数(0, 4);
+		If(事件玩家.Randomizer != 0);
+			停止限制阈值(事件玩家);
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("stop push illari"));
+		End;
+		等待(4, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Illari Reload")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		伊拉锐;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 假;
+		弹药(事件玩家, 0) <= 3;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+	}
+}
+
+规则("Bot Illari Outburst")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		伊拉锐;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+	}
+
+	动作
+	{
+		等待(随机实数(0.100, 0.300), 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 3);
+		If(事件玩家.Randomizer == 0);
+			开始按下按钮(事件玩家, 按钮(技能1));
+			等待(随机实数(0.100, 0.300), 无视条件);
+			停止按下按钮(事件玩家, 按钮(技能1));
+		End;
+		等待(5, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Illari Outburst Close")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		伊拉锐;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 7.500;
+	}
+
+	动作
+	{
+		开始按下按钮(事件玩家, 按钮(技能1));
+		等待(随机实数(0.100, 0.300), 无视条件);
+		停止按下按钮(事件玩家, 按钮(技能1));
+		等待(5, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Illari Ultimate")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		伊拉锐;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) != 英雄(回声);
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		终极技能充能百分比(事件玩家) == 100;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 175;
+		生命值(事件玩家) >= 175;
+	}
+
+	动作
+	{
+		等待(随机实数(0.100, 0.300), 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 1);
+		If(事件玩家.Randomizer == 0);
+			按下按键(事件玩家, 按钮(终极技能));
+			开始按下按钮(事件玩家, 按钮(跳跃));
+			等待(2, 无视条件);
+			停止按下按钮(事件玩家, 按钮(跳跃));
+		End;
+		等待(5, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("Bot Baptiste")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Bap Heal")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		巴蒂斯特;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(巴蒂斯特);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+		生命值(事件玩家) < 125;
+	}
+
+	动作
+	{
+		按下按键(事件玩家, 按钮(技能1));
+	}
+}
+
+规则("Bot Bap Crouch Jump")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		巴蒂斯特;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 假;
+		在地面上(事件玩家) == 真;
+	}
+
+	动作
+	{
+		开始按下按钮(事件玩家, 按钮(蹲下));
+		等待(随机实数(0.300, 0.700), 无视条件);
+		停止按下按钮(事件玩家, 按钮(蹲下));
+		等待(随机实数(0.200, 0.900), 无视条件);
+		根据条件中止(正在使用终极技能(事件玩家) == 真);
+		按下按键(事件玩家, 按钮(跳跃));
+		等待(5, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Bap Crouch Jump vs Genji Echo")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		巴蒂斯特;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(巴蒂斯特);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(回声) || 所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏)) == 真;
+		在地面上(事件玩家) == 真;
+	}
+
+	动作
+	{
+		开始按下按钮(事件玩家, 按钮(蹲下));
+		等待(随机实数(0.300, 0.700), 无视条件);
+		停止按下按钮(事件玩家, 按钮(蹲下));
+		等待(随机实数(0, 0.200), 无视条件);
+		按下按键(事件玩家, 按钮(跳跃));
+		等待(3, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Bap Ultimate")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		巴蒂斯特;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		弹药(事件玩家, 0) >= 15;
+		终极技能充能百分比(事件玩家) == 100;
+		在地面上(事件玩家) == 真;
+		生命值(事件玩家) >= 150;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 150;
+	}
+
+	动作
+	{
+		等待(0.100, 当为“假”时中止);
+		事件玩家.BotKiriHeal = 真;
+		事件玩家.BotShoot = 假;
+		停止朝向(事件玩家);
+		等待(0.016, 无视条件);
+		设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 268.517, Z方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))),
+			至地图);
+		等待(0.050, 无视条件);
+		设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(事件玩家) + 面朝方向(事件玩家) * 7 - 矢量(0, 2, 0)), 至地图);
+		等待(0.032, 无视条件);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 7);
+		按下按键(事件玩家, 按钮(终极技能));
+		事件玩家.BotStayTimer = 10;
+		停止限制阈值(事件玩家);
+		追踪玩家变量频率(事件玩家, BotStayTimer, 0, 1, 速率及最终值);
+		等待(0.100, 无视条件);
+		按下按键(事件玩家, 按钮(主要攻击模式));
+		等待(0.100, 无视条件);
+		事件玩家.BotKiriHeal = 假;
+		If(事件玩家.BotPathing == 真);
+			事件玩家.BotShoot = 真;
+		End;
+		等待直到 (死亡(事件玩家) == 真, 10);
+		事件玩家.BotStayTimer = 0;
+	}
+}
+
+规则("Bot Bap Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		巴蒂斯特;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+	}
+
+	动作
+	{
+		禁用 事件玩家.ShootRando = 随机整数(0, 5);
+		事件玩家.ShootPos = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+		等待(事件玩家.ShootRando / 10 - 0.016, 当为“假”时中止);
+		停止朝向(事件玩家);
+		根据条件跳过(事件玩家.BotKiriHeal == 真, 1);
+		设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.600, Z方向分量(事件玩家.ShootPos))),
+			至地图);
+		等待(0.016, 无视条件);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+		按下按键(事件玩家, 按钮(主要攻击模式));
+		等待(0.100, 无视条件);
+		根据条件跳过(事件玩家.BotKiriHeal == 真, 1);
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		事件玩家.ShootRando = 随机实数(0, 事件玩家.BotCassDif[0]);
+		等待(随机实数(0.400, 事件玩家.BotCassDif[1] - 0.100) - 事件玩家.ShootRando / 10, 无视条件);
+		禁用 等待(随机整数(0.600, 0.850) - 事件玩家.ShootRando / 10, 无视条件);
+		While(事件玩家.BotShoot == 真);
+			禁用 事件玩家.ShootRando = 随机整数(0, 8);
+			事件玩家.ShootPos = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+			等待(事件玩家.ShootRando / 10 - 0.016, 当为“假”时中止);
+			停止朝向(事件玩家);
+			根据条件跳过(事件玩家.BotKiriHeal == 真, 1);
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.600, Z方向分量(事件玩家.ShootPos))),
+				至地图);
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			等待(0.100, 无视条件);
+			根据条件跳过(事件玩家.BotKiriHeal == 真, 1);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			禁用 等待(随机整数(0.600, 0.950) - 事件玩家.ShootRando / 10, 无视条件);
+			事件玩家.ShootRando = 随机实数(0, 事件玩家.BotCassDif[0]);
+			等待(随机实数(0.400, 事件玩家.BotCassDif[1] - 0.100) - 事件玩家.ShootRando / 10, 无视条件);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Bap Reload")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		巴蒂斯特;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(巴蒂斯特);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 假;
+		弹药(事件玩家, 0) <= 15;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+	}
+}
+
+禁用 规则("Bot Zen")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Zen Discord")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		禅雅塔;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		正在使用辅助武器(事件玩家) == 假;
+	}
+
+	动作
+	{
+		按下按键(事件玩家, 按钮(技能2));
+		等待(1, 当为“假”时中止);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Zen Aim")
+{
+	事件
+	{
+		子程序;
+		ZenAim;
+	}
+
+	动作
+	{
+		停止朝向(事件玩家);
+		事件玩家.ZenAim = 相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]));
+		If(所用英雄(事件玩家) == 英雄(回声));
+			事件玩家.ZenAim = 事件玩家.ZenAim / 75;
+		Else If(所用英雄(事件玩家) == 英雄(半藏));
+			事件玩家.ZenAim = 事件玩家.ZenAim / 110;
+		Else If(所用英雄(事件玩家) == 英雄(源氏));
+			事件玩家.ZenAim = 事件玩家.ZenAim / 60;
+		Else;
+			事件玩家.ZenAim = 事件玩家.ZenAim / 90;
+		End;
+		事件玩家.ZenAim = 事件玩家.ZenAim * 速率(全局.Arena1Q[事件玩家.TargetNumber]);
+		事件玩家.ZenAim = 事件玩家.ZenAim + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+		If(所用英雄(事件玩家) == 英雄(雾子));
+			事件玩家.ZenAim = 矢量(X方向分量(事件玩家.ZenAim), Y方向分量(事件玩家.ZenAim) + 0.200, Z方向分量(事件玩家.ZenAim));
+		Else If(所用英雄(事件玩家) == 英雄(半藏));
+			事件玩家.ZenAim = 矢量(X方向分量(事件玩家.ZenAim), Y方向分量(事件玩家.ZenAim) + 0.200, Z方向分量(事件玩家.ZenAim));
+		Else;
+			If(事件玩家.BotDifficulty <= 2);
+				事件玩家.ZenAim = 矢量(X方向分量(事件玩家.ZenAim), Y方向分量(事件玩家.ZenAim) - 0.500, Z方向分量(事件玩家.ZenAim));
+			Else;
+				事件玩家.ZenAim = 矢量(X方向分量(事件玩家.ZenAim), Y方向分量(事件玩家.ZenAim) - 随机实数(0, 0.200), Z方向分量(事件玩家.ZenAim));
+			End;
+		End;
+		设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.ZenAim), 至地图);
+	}
+}
+
+规则("Bot Zen Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		禅雅塔;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		正在使用辅助武器(事件玩家) == 假;
+		正在装填(事件玩家) == 假;
+	}
+
+	动作
+	{
+		禁用 等待(0.200, 当为“假”时中止);
+		等待(事件玩家.BotCassDif[1] - 0.500, 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 事件玩家.BotCassDif[0] + 1);
+		If(事件玩家.Randomizer <= 2);
+			调用子程序(ZenAim);
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			等待(0.100, 无视条件);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		Else;
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			等待(0.100, 无视条件);
+		End;
+		禁用 等待(随机实数(0.100, 事件玩家.BotCassDif[1] - 0.400), 无视条件);
+		等待(随机实数(0.300, 事件玩家.BotCassDif[1] - 0.200), 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Zen Right Click")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		禅雅塔;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		正在使用辅助武器(事件玩家) == 假;
+		事件玩家.BotShoot == 假;
+		弹药(事件玩家, 0) >= 10;
+	}
+
+	动作
+	{
+		等待(0.300, 当为“假”时中止);
+		开始按下按钮(事件玩家, 按钮(辅助攻击模式));
+		等待(3, 无视条件);
+		If(正在使用辅助武器(事件玩家) == 真);
+			按下按键(事件玩家, 按钮(近身攻击));
+		End;
+		等待(1.500, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Zen Release Right click")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		禅雅塔;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		正在使用辅助武器(事件玩家) == 真;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 99);
+		调用子程序(ZenAim);
+		等待(0.050, 无视条件);
+		停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+		For 玩家变量(事件玩家, BotControl, 0, 6, 1);
+			等待(0.050, 无视条件);
+			调用子程序(ZenAim);
+		End;
+	}
+}
+
+规则("Bot Zen Melee")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		禅雅塔;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(禅雅塔);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 3;
+		事件玩家.BotShoot == 真;
+		正在使用辅助武器(事件玩家) == 假;
+	}
+
+	动作
+	{
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		等待(0.500, 当为“假”时中止);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+		按下按键(事件玩家, 按钮(近身攻击));
+	}
+}
+
+规则("Bot Zen Reload")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		禅雅塔;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(禅雅塔);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		弹药(事件玩家, 0) < 10;
+		正在使用辅助武器(事件玩家) == 假;
+		事件玩家.BotShoot == 假;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+	}
+}
+
+规则("Bot Zen Ultimate")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		禅雅塔;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(禅雅塔);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		终极技能充能百分比(事件玩家) == 100;
+		生命值(事件玩家) <= 50;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 50;
+	}
+
+	动作
+	{
+		按下按键(事件玩家, 按钮(终极技能));
+		开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+	}
+}
+
+禁用 规则("Bot Soldier")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Soldier Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		士兵：76;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotSoldRun == 0;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+		开始按下按钮(事件玩家, 按钮(主要攻击模式));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.ShootPos), 500 / (相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) / 5), 至地图, 方向及角速率);
+	}
+}
+
+规则("Bot Soldier Primary Tracking")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		士兵：76;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+	}
+
+	动作
+	{
+		事件玩家.ShootRando = 随机实数(1, 绝对值(事件玩家.BotDifficulty - 6));
+		事件玩家.ShootPosHelp = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+		事件玩家.ShootPos = 矢量(X方向分量(事件玩家.ShootPosHelp), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.400, Z方向分量(事件玩家.ShootPosHelp));
+		等待(事件玩家.ShootRando / 10 - 0, 当为“假”时中止);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Soldier Stop Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		士兵：76;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 假;
+	}
+
+	动作
+	{
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		等待(0.250, 当为“假”时中止);
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		等待(0.500, 当为“假”时中止);
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Soldier Stop Primary vs Reflect")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		士兵：76;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏);
+		正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+	}
+
+	动作
+	{
+		等待(随机实数(0, 0.300), 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		等待直到 (正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 假, 2);
+		If(所用英雄(事件玩家) == 英雄(士兵：76));
+			If(事件玩家.BotShoot == 真);
+				开始按下按钮(事件玩家, 按钮(主要攻击模式));
+			End;
+		End;
+	}
+}
+
+规则("Bot Soldier Reload")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		士兵：76;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 假;
+		弹药(事件玩家, 0) <= 13;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+	}
+}
+
+规则("Bot Soldier Heal Field")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		士兵：76;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		生命值(事件玩家) <= 150;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 100;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+	}
+
+	动作
+	{
+		事件玩家.BotStayTimer = 5;
+		按下按键(事件玩家, 按钮(技能2));
+		停止限制阈值(事件玩家);
+		追踪玩家变量频率(事件玩家, BotStayTimer, 0, 1, 速率及最终值);
+		等待直到 (标准化生命值(事件玩家) == 1, 5);
+		事件玩家.BotStayTimer = 0;
+	}
+}
+
+规则("Bot Soldier Heal Field run")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		士兵：76;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在使用终极技能(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		正在使用技能 2(事件玩家) == 真;
+		事件玩家.BotStayTimer >= 4;
+		生命值(事件玩家) <= 75;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 100;
+	}
+
+	动作
+	{
+		事件玩家.BotSoldRun = 1;
+		按下按键(事件玩家, 按钮(装填));
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		开始按下按钮(事件玩家, 按钮(技能1));
+		开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 0);
+		禁用 While(事件玩家.BotStayTimer >= 3);
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(事件玩家) + 左), 随机实数(500, 500), 至玩家, 方向及角速率);
+		等待(随机实数(0.500, 1), 无视条件);
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(事件玩家) + 右), 随机实数(500, 500), 至玩家, 方向及角速率);
+		等待(随机实数(0.500, 1), 无视条件);
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(事件玩家) + 左), 随机实数(500, 500), 至玩家, 方向及角速率);
+		等待(随机实数(0.500, 1), 无视条件);
+		禁用 End;
+		禁用 等待直到 (事件玩家.BotStayTimer == 0 || 标准化生命值(事件玩家) == 1, 5);
+		事件玩家.BotSoldRun = 0;
+		停止按下按钮(事件玩家, 按钮(技能1));
+		停止限制阈值(事件玩家);
+		If(事件玩家.BotShoot == 真);
+			If(所用英雄(事件玩家) == 英雄(士兵：76));
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.ShootPos), 500 / (相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) / 5), 至地图, 方向及角速率);
+				开始按下按钮(事件玩家, 按钮(主要攻击模式));
+			End;
+		End;
+	}
+}
+
+规则("Bot Soldier Rocket")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		士兵：76;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotSoldRun == 0;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(辅助攻击模式)) == 0;
+		在地面上(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+	}
+
+	动作
+	{
+		事件玩家.Randomizer = 随机整数(0, 1);
+		If(事件玩家.Randomizer == 0);
+			等待(随机实数(0, 0.300), 当为“假”时中止);
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 1.300, Z方向分量(
+				眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 至地图);
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(辅助攻击模式));
+		End;
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Soldier Ultimate")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		士兵：76;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotSoldRun == 0;
+		事件玩家.BotShoot == 真;
+		终极技能充能百分比(事件玩家) == 100;
+		生命值(事件玩家) >= 150;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 150;
+	}
+
+	动作
+	{
+		等待(0.400, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(终极技能));
+		开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+		等待(1, 无视条件);
+		While(正在使用终极技能(事件玩家) == 真);
+			开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+			等待(1, 无视条件);
+		End;
+	}
+}
+
+禁用 规则("Bot Ana")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Ana Pre Zoom")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		安娜;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotSleepDartHit == 0;
+		事件玩家.BotShoot == 假;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 9;
+	}
+
+	动作
+	{
+		If(正在使用辅助武器(事件玩家) == 假);
+			开始按下按钮(事件玩家, 按钮(辅助攻击模式));
+		End;
+		等待(1, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Ana Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		安娜;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotSleepDartHit == 0;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		正在使用技能 1(事件玩家) == 假;
+		正在使用技能 2(事件玩家) == 假;
+	}
+
+	动作
+	{
+		If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 7.500);
+			If(正在使用辅助武器(事件玩家) == 假);
+				开始按下按钮(事件玩家, 按钮(辅助攻击模式));
+				等待(0.150, 当为“假”时中止);
+			End;
+			等待(0.100, 当为“假”时中止);
+			事件玩家.ShootPos = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+			等待(事件玩家.ShootRando / 10 - 0.016, 当为“假”时中止);
+			停止朝向(事件玩家);
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.400, Z方向分量(事件玩家.ShootPos))),
+				至地图);
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			等待(0.160, 无视条件);
+			停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+			事件玩家.ShootRando = 随机实数(0, 事件玩家.BotCassDif[0] - 1);
+			等待(随机实数(0.800, 事件玩家.BotCassDif[1] + 0.300) - 事件玩家.ShootRando / 10, 无视条件);
+		Else;
+			停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			等待(0.200, 当为“假”时中止);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			等待(随机实数(0.600, 事件玩家.BotCassDif[1] + 0.100), 无视条件);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Ana Reload")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		安娜;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 假;
+		弹药(事件玩家, 0) <= 6;
+		正在使用技能 1(事件玩家) == 假;
+		正在使用技能 2(事件玩家) == 假;
+	}
+
+	动作
+	{
+		等待(0.500, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+	}
+}
+
+规则("Bot Ana Ultimate")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		安娜;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(安娜);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotSleepDartHit == 0;
+		事件玩家.BotShoot == 真;
+		终极技能充能百分比(事件玩家) == 100;
+		生命值(事件玩家) <= 100;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 100;
+	}
+
+	动作
+	{
+		按下按键(事件玩家, 按钮(终极技能));
+		停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+		开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Ana Offensive Nade")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		安娜;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(安娜);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotSleepDartHit == 0;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		正在使用技能 1(事件玩家) == 假;
+		Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 271;
+	}
+
+	动作
+	{
+		事件玩家.Randomizer = 随机整数(0, 2);
+		If(事件玩家.Randomizer == 0);
+			等待(随机实数(0.600, 0.600), 当为“假”时中止);
+			If(相距距离(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[11]) <= 7);
+			Else If(相距距离(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[8]) <= 4);
+			Else;
+				事件玩家.ZenAim = 相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]));
+				事件玩家.ZenAim = 事件玩家.ZenAim / 30;
+				事件玩家.ZenAim = 事件玩家.ZenAim * 速率(全局.Arena1Q[事件玩家.TargetNumber]);
+				事件玩家.ZenAim = 事件玩家.ZenAim + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+				设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ZenAim), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - (17 - 相距距离(眼睛位置(事件玩家), 眼睛位置(
+					全局.Arena1Q[事件玩家.TargetNumber]))) * 0.120, Z方向分量(事件玩家.ZenAim))), 至地图);
+				等待(0.016, 无视条件);
+				按下按键(事件玩家, 按钮(技能2));
+				停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+			End;
+		End;
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Ana Self Nade")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		安娜;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(安娜);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotSleepDartHit == 0;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		正在使用技能 1(事件玩家) == 假;
+		生命值(事件玩家) <= 150;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 130;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 3);
+		If(事件玩家.Randomizer == 0);
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 所选位置(事件玩家)), 至地图);
+			等待(0.016, 无视条件);
+			按下按键(事件玩家, 按钮(技能2));
+			停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+		End;
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Ana Self Nade low")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		安娜;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(安娜);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotSleepDartHit == 0;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		正在使用技能 1(事件玩家) == 假;
+		生命值(事件玩家) <= 100;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 60;
+	}
+
+	动作
+	{
+		设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 所选位置(事件玩家)), 至地图);
+		等待(0.016, 无视条件);
+		按下按键(事件玩家, 按钮(技能2));
+		停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+		等待(1, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Ana Sleep")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		安娜;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(安娜);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+		正在使用技能 2(事件玩家) == 假;
+	}
+
+	动作
+	{
+		事件玩家.Randomizer = 随机整数(0, 1);
+		If(事件玩家.Randomizer == 0);
+			等待(随机实数(0.400, 0.500), 当为“假”时中止);
+			If(相距距离(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[11]) <= 7);
+			Else If(相距距离(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[8]) <= 4);
+			Else If(相距距离(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 矢量(-0.804, 270.455, 297.628)) <= 6);
+			Else;
+				根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+				按下按键(事件玩家, 按钮(技能1));
+				停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+				等待(0.250, 无视条件);
+				停止朝向(事件玩家);
+				事件玩家.ZenAim = 相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]));
+				事件玩家.ZenAim = 事件玩家.ZenAim / 60;
+				事件玩家.ZenAim = 事件玩家.ZenAim * 速率(全局.Arena1Q[事件玩家.TargetNumber]);
+				事件玩家.ZenAim = 事件玩家.ZenAim + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+				事件玩家.ZenAim = 矢量(X方向分量(事件玩家.ZenAim), Y方向分量(事件玩家.ZenAim) - 0.500, Z方向分量(事件玩家.ZenAim));
+				设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.ZenAim), 至地图);
+				等待(0.100, 无视条件);
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 150, 至地图, 方向及角速率);
+			End;
+		End;
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Ana Sleep Hit")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		安娜;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		具有状态(全局.Arena1Q[事件玩家.TargetNumber], 沉睡) == 真;
+		事件玩家.BotSleepDartHit == 0;
+	}
+
+	动作
+	{
+		等待(0.050, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+		If(相距距离(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[11]) <= 7);
+			事件玩家.BotSleepDartHit = 0;
+		Else If(相距距离(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 事件玩家.BotHelpPositions[8]) <= 4);
+			事件玩家.BotSleepDartHit = 0;
+		Else If(相距距离(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 矢量(-0.804, 270.455, 297.628)) <= 6);
+			事件玩家.BotSleepDartHit = 0;
+		Else;
+			事件玩家.BotSleepDartHit = 5;
+			停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+			追踪玩家变量频率(事件玩家, BotSleepDartHit, 0, 1, 速率及最终值);
+			开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 0);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 所选位置(全局.Arena1Q[事件玩家.TargetNumber])), 360, 至地图, 方向及角速率);
+			等待直到 (相距距离(所选位置(事件玩家), 所选位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 1.500, 5);
+			根据条件中止(事件玩家.BotSleepDartHit == 0);
+			开始限制阈值(事件玩家, 0, 0, 0, 0, 0, 0);
+			等待直到 (正在装填(事件玩家) == 假, 1.500);
+			If(技能冷却时间(事件玩家, 按钮(技能2)) <= 事件玩家.BotSleepDartHit);
+				等待直到 (技能冷却时间(事件玩家, 按钮(技能2)) == 0, 5);
+				按下按键(事件玩家, 按钮(主要攻击模式));
+				根据条件跳过(生命值(全局.Arena1Q[事件玩家.TargetNumber]) <= 70, 3);
+				等待(0.050, 无视条件);
+				按下按键(事件玩家, 按钮(技能2));
+				等待(0.050, 无视条件);
+				开始限制阈值(事件玩家, 随机实数(0.300, 0.500), 随机实数(0.500, 1), 0, 0, 0, 1);
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 360, 至地图, 方向及角速率);
+				事件玩家.BotSleepDartHit = 0;
+			Else;
+				等待直到 (事件玩家.BotSleepDartHit <= 1, 5);
+				按下按键(事件玩家, 按钮(主要攻击模式));
+				开始限制阈值(事件玩家, 随机实数(0.300, 0.500), 随机实数(0.500, 1), 0, 0, 0, 1);
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 360, 至地图, 方向及角速率);
+				事件玩家.BotSleepDartHit = 0;
+			End;
+		End;
+		等待(7, 无视条件);
+	}
+}
+
+规则("Bot Ana Sleep Broke")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		安娜;
+	}
+
+	条件
+	{
+		禁用 所用英雄(事件玩家) == 英雄(安娜);
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotSleepDartHit != 0;
+		具有状态(全局.Arena1Q[事件玩家.TargetNumber], 沉睡) == 假;
+	}
+
+	动作
+	{
+		事件玩家.BotSleepDartHit = 0;
+		停止限制阈值(事件玩家);
+		等待(1, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("Bot Sojourn")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Sojourn Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		索杰恩;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotSoldRun == 0;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+	}
+
+	动作
+	{
+		等待(事件玩家.BotCassDif[1] - 0.500, 当为“假”时中止);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+		开始按下按钮(事件玩家, 按钮(主要攻击模式));
+		事件玩家.ZenAim = 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.ZenAim), 500 / (相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) / 5), 至地图, 方向及角速率);
+		While(事件玩家.BotShoot == 真);
+			事件玩家.ZenAim = 相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]));
+			事件玩家.ZenAim = 事件玩家.ZenAim / 160;
+			事件玩家.ZenAim = 事件玩家.ZenAim * 速率(全局.Arena1Q[事件玩家.TargetNumber]);
+			事件玩家.ZenAim = 事件玩家.ZenAim + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+			事件玩家.ZenAim = 矢量(X方向分量(事件玩家.ZenAim), Y方向分量(事件玩家.ZenAim) - 0.500, Z方向分量(事件玩家.ZenAim));
+			等待(事件玩家.BotCassDif[1] - 0.400, 当为“假”时中止);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Sojourn Stop Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		索杰恩;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 假;
+	}
+
+	动作
+	{
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		等待(0.250, 当为“假”时中止);
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		等待(0.250, 当为“假”时中止);
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+	}
+}
+
+规则("Bot Sojourn Stop Primary vs Reflect")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		索杰恩;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏);
+		正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+	}
+
+	动作
+	{
+		等待(随机实数(0, 0.300), 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		等待直到 (正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 假, 2);
+		If(所用英雄(事件玩家) == 英雄(索杰恩));
+			If(事件玩家.BotShoot == 真);
+				开始按下按钮(事件玩家, 按钮(主要攻击模式));
+			End;
+		End;
+	}
+}
+
+规则("Bot Sojourn Secondary resource count")
+{
+	事件
+	{
+		玩家造成伤害;
+		双方;
+		索杰恩;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件技能 == 按钮(主要攻击模式);
+	}
+
+	动作
+	{
+		事件玩家.BotSojRail += 5;
+		If(事件玩家.BotSojRail >= 100);
+			事件玩家.BotSojRail = 100;
+		End;
+	}
+}
+
+规则("Bot Sojourn Secondary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		索杰恩;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		正在使用终极技能(事件玩家) == 假;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		事件玩家.BotSojRail + 30 >= 生命值(全局.Arena1Q[事件玩家.TargetNumber]);
+		事件玩家.BotSojRail >= 5;
+	}
+
+	动作
+	{
+		等待(随机实数(0.200, 0.400), 当为“假”时中止);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 2);
+		按下按键(事件玩家, 按钮(辅助攻击模式));
+		事件玩家.BotSojRail = 0;
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Sojourn Reload")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		索杰恩;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 假;
+		弹药(事件玩家, 0) <= 18;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+	}
+}
+
+规则("Bot Sojourn Disruptor")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		索杰恩;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		正在使用辅助武器(事件玩家) == 假;
+		正在使用终极技能(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		在地面上(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+	}
+
+	动作
+	{
+		事件玩家.Randomizer = 随机整数(0, 1);
+		If(事件玩家.Randomizer == 0);
+			等待(随机实数(0, 0.300), 当为“假”时中止);
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 1.300, Z方向分量(
+				眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 至地图);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 1.300, Z方向分量(
+				眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 5000, 至地图, 方向及角速率);
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(技能2));
+			等待(0.200, 无视条件);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.ZenAim), 500 / (相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) / 5), 至地图, 方向及角速率);
+		End;
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Sojourn Slide")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		索杰恩;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+	}
+
+	动作
+	{
+		等待(随机实数(2, 5), 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 2);
+		If(事件玩家.Randomizer == 0);
+			按下按键(事件玩家, 按钮(技能1));
+			事件玩家.Randomizer = 随机整数(0, 1);
+			If(事件玩家.Randomizer == 0);
+				等待(随机实数(0.300, 0.900), 无视条件);
+				按下按键(事件玩家, 按钮(跳跃));
+			End;
+		End;
+		等待(随机实数(1, 2), 当为“假”时中止);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Sojourn Slide low")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		索杰恩;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+		生命值(事件玩家) <= 75;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 60;
+	}
+
+	动作
+	{
+		等待(随机实数(0.300, 0.500), 当为“假”时中止);
+		按下按键(事件玩家, 按钮(技能1));
+		事件玩家.Randomizer = 随机整数(0, 1);
+		If(事件玩家.Randomizer == 0);
+			等待(随机实数(0.300, 0.900), 无视条件);
+			按下按键(事件玩家, 按钮(跳跃));
+		End;
+		等待(随机实数(1, 2), 当为“假”时中止);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Sojourn Ultimate")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		索杰恩;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		终极技能充能百分比(事件玩家) == 100;
+		生命值(事件玩家) >= 150;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 150;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(终极技能));
+		开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+		等待(1, 无视条件);
+		While(正在使用终极技能(事件玩家) == 真);
+			If(事件玩家.BotShoot == 真);
+				根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 3);
+				开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+				按下按键(事件玩家, 按钮(辅助攻击模式));
+				事件玩家.BotSojRail = 0;
+			End;
+			等待(1.500, 无视条件);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("Bot Tracer")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Tracer Move towards player")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		禁用 事件玩家.BotShoot == 真;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 10;
+		Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 275;
+	}
+
+	动作
+	{
+		开始限制阈值(事件玩家, 1, 1, 0, 1, 0, 1);
+		等待(2, 当为“假”时中止);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Tracer Stop moving towards")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		禁用 事件玩家.BotShoot == 真;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 7;
+	}
+
+	动作
+	{
+		停止限制阈值(事件玩家);
+		等待(2, 当为“假”时中止);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Tracer First Blink")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotTracerFirstBlink == 真;
+		事件玩家.BotShoot == 真;
+		相距距离(眼睛位置(事件玩家), 射线命中位置(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]) + 面朝方向(
+			全局.Arena1Q[事件玩家.TargetNumber]) * 相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 所有玩家(所有队伍),
+			全局.Arena1Q[事件玩家.TargetNumber], 真)) <= 2;
+	}
+
+	动作
+	{
+		禁用 等待(1, 无视条件);
+		禁用 等待直到 (在视野内(全局.Arena1Q[事件玩家.TargetNumber], 眼睛位置(事件玩家), 25), 20);
+		开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q)), 事件玩家.TargetNumber, 至地图, 替换现有阈值, 方向和幅度);
+		事件玩家.BotPathing = 假;
+		等待(0.050, 无视条件);
+		禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("first blink"));
+		按下按键(事件玩家, 按钮(技能1));
+		事件玩家.Randomizer = 随机整数(0, 2);
+		If(事件玩家.Randomizer == 0);
+			等待(0.100, 无视条件);
+			按下按键(事件玩家, 按钮(技能1));
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("first double"));
+		End;
+		事件玩家.BotPathing = 真;
+		等待(0.250, 无视条件);
+		事件玩家.BotTracerFirstBlink = 假;
+	}
+}
+
+规则("Bot Tracer Blink 2 charges")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在使用终极技能(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		正在装填(全局.Arena1Q[事件玩家.TargetNumber]) == 假;
+		正在使用技能 2(事件玩家) == 假;
+		技能充能(事件玩家, 按钮(技能1)) >= 2;
+		事件玩家.BotTracerFirstBlink == 假;
+		在视野内(全局.Arena1Q[事件玩家.TargetNumber], 眼睛位置(事件玩家), 45) == 真;
+	}
+
+	动作
+	{
+		等待(随机实数(0.400, 1), 当为“假”时中止);
+		If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 15);
+			开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q)), 事件玩家.TargetNumber, 至地图, 替换现有阈值, 方向和幅度);
+			事件玩家.BotPathing = 假;
+			等待(0.050, 无视条件);
+			按下按键(事件玩家, 按钮(技能1));
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("2 blink far"));
+			事件玩家.BotPathing = 真;
+		Else If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 6.500);
+			开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q)), 事件玩家.TargetNumber, 至地图, 替换现有阈值, 方向和幅度);
+			事件玩家.BotPathing = 假;
+			等待(0.050, 无视条件);
+			按下按键(事件玩家, 按钮(技能1));
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("2 blink close"));
+			事件玩家.BotPathing = 真;
+		Else;
+			按下按键(事件玩家, 按钮(技能1));
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("2 blink mid"));
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Tracer Blink Reload")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在使用终极技能(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		正在使用技能 2(事件玩家) == 假;
+		技能充能(事件玩家, 按钮(技能1)) >= 1;
+		事件玩家.BotTracerFirstBlink == 假;
+		正在装填(全局.Arena1Q[事件玩家.TargetNumber]) == 假;
+		正在装填(事件玩家) == 真;
+		在视野内(全局.Arena1Q[事件玩家.TargetNumber], 眼睛位置(事件玩家), 45) == 真;
+	}
+
+	动作
+	{
+		等待(随机实数(0.500, 0.500), 当为“假”时中止);
+		If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 15);
+			开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q)), 事件玩家.TargetNumber, 至地图, 替换现有阈值, 方向和幅度);
+			事件玩家.BotPathing = 假;
+			等待(0.050, 无视条件);
+			按下按键(事件玩家, 按钮(技能1));
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("blink reload"));
+			事件玩家.BotPathing = 真;
+		Else If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 6);
+			开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q)), 事件玩家.TargetNumber, 至地图, 替换现有阈值, 方向和幅度);
+			事件玩家.BotPathing = 假;
+			等待(0.050, 无视条件);
+			按下按键(事件玩家, 按钮(技能1));
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("blink reload"));
+			事件玩家.BotPathing = 真;
+		Else;
+			按下按键(事件玩家, 按钮(技能1));
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("blink reload"));
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Tracer Blink Close < 6")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在使用终极技能(事件玩家) == 假;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		正在装填(全局.Arena1Q[事件玩家.TargetNumber]) == 假;
+		正在使用技能 2(事件玩家) == 假;
+		技能充能(事件玩家, 按钮(技能1)) >= 1;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 6;
+		在视野内(全局.Arena1Q[事件玩家.TargetNumber], 眼睛位置(事件玩家), 30) == 真;
+	}
+
+	动作
+	{
+		等待(随机实数(0.100, 0.300), 当为“假”时中止);
+		开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q)), 事件玩家.TargetNumber, 至地图, 替换现有阈值, 方向和幅度);
+		事件玩家.BotPathing = 假;
+		等待(0.050, 无视条件);
+		按下按键(事件玩家, 按钮(技能1));
+		事件玩家.BotPathing = 真;
+		等待(随机实数(0.100, 0.700), 无视条件);
+	}
+}
+
+规则("Bot Tracer Blink Low HP")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		正在装填(事件玩家) == 假;
+		正在装填(全局.Arena1Q[事件玩家.TargetNumber]) == 假;
+		正在使用技能 2(事件玩家) == 假;
+		技能充能(事件玩家, 按钮(技能1)) >= 1;
+		生命值(事件玩家) <= 75;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		在视野内(全局.Arena1Q[事件玩家.TargetNumber], 眼睛位置(事件玩家), 30) == 真;
+	}
+
+	动作
+	{
+		If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 6.500);
+			开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q)), 事件玩家.TargetNumber, 至地图, 替换现有阈值, 方向和幅度);
+			事件玩家.BotPathing = 假;
+			等待(0.050, 无视条件);
+			按下按键(事件玩家, 按钮(技能1));
+			事件玩家.BotPathing = 真;
+		Else;
+			按下按键(事件玩家, 按钮(技能1));
+		End;
+		等待(随机实数(0.100, 0.700), 无视条件);
+		禁用 事件玩家.Randomizer = 随机整数(0, 0);
+		禁用 If(事件玩家.Randomizer == 0);
+		禁用 等待(0.100, 无视条件);
+		禁用 按下按键(事件玩家, 按钮(技能1));
+		禁用 End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Tracer Recall HP log")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+	}
+
+	动作
+	{
+		For 玩家变量(事件玩家, Control, 0, 29, 1);
+			事件玩家.BotTracerRecall[事件玩家.Control] = 生命值(事件玩家);
+			等待(0.100, 无视条件);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Tracer Recall")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		(生命值(事件玩家) + 85 < 最后(已排序的数组(事件玩家.BotTracerRecall, 当前数组元素))) == 真;
+	}
+
+	动作
+	{
+		等待(随机实数(0.100, 0.300), 当为“假”时中止);
+		按下按键(事件玩家, 按钮(技能2));
+	}
+}
+
+规则("Bot Tracer Recall low hp")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		生命值(事件玩家) <= 60;
+	}
+
+	动作
+	{
+		等待(随机实数(0.100, 0.300), 当为“假”时中止);
+		按下按键(事件玩家, 按钮(技能2));
+	}
+}
+
+规则("Bot Tracer Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在使用终极技能(事件玩家) == 假;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 15;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+		开始按下按钮(事件玩家, 按钮(主要攻击模式));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.ShootPos), 500 / (相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) / 5), 至地图, 方向及角速率);
+	}
+}
+
+规则("Bot Tracer Primary Tracking")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+	}
+
+	动作
+	{
+		事件玩家.ShootRando = 随机实数(1, 绝对值(事件玩家.BotDifficulty - 6));
+		禁用 事件玩家.ShootRando = 随机整数(1, 3);
+		事件玩家.ShootPosHelp = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+		事件玩家.ShootPos = 矢量(X方向分量(事件玩家.ShootPosHelp), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.400, Z方向分量(事件玩家.ShootPosHelp));
+		等待(事件玩家.ShootRando / 10 - 0, 当为“假”时中止);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Tracer Stop Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在使用终极技能(事件玩家) == 假;
+		(事件玩家.BotShoot == 假 || 相距距离(眼睛位置(事件玩家), 眼睛位置(事件玩家)) > 15.500) == 真;
+	}
+
+	动作
+	{
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 360, 至地图, 方向及角速率);
+		等待(0.250, 当为“假”时中止);
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 360, 至地图, 方向及角速率);
+		等待(0.250, 当为“假”时中止);
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 360, 至地图, 方向及角速率);
+		等待(0.500, 当为“假”时中止);
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 360, 至地图, 方向及角速率);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Tracer Stop Primary vs Reflect")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏);
+		正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		正在使用终极技能(事件玩家) == 假;
+	}
+
+	动作
+	{
+		等待(随机实数(0, 0.300), 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		等待直到 (正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 假, 2);
+		If(所用英雄(事件玩家) == 英雄(猎空));
+			If(事件玩家.BotShoot == 真);
+				开始按下按钮(事件玩家, 按钮(主要攻击模式));
+			End;
+		End;
+	}
+}
+
+规则("Bot Tracer Ultimate")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		猎空;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		终极技能充能百分比(事件玩家) == 100;
+		正在使用技能 2(事件玩家) == 假;
+		生命值(事件玩家) >= 50;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 100;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 10;
+		Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 271;
+	}
+
+	动作
+	{
+		If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 6);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 720, 至地图, 方向及角速率);
+			开始限制阈值(事件玩家, 1, 1, 0, 1, 0, 1);
+			按下按键(事件玩家, 按钮(终极技能));
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("close ult"));
+			等待(0.200, 无视条件);
+			If(正在使用终极技能(事件玩家) == 真);
+				等待(0.900, 无视条件);
+				开始伤害调整(事件玩家, 事件玩家, 1, 无);
+				等待(0.700, 无视条件);
+				停止伤害调整(上一个伤害调整ID);
+			End;
+		Else If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 10 && 技能充能(事件玩家, 按钮(技能1)) >= 1);
+			禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("blink ult"));
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 720, 至地图, 方向及角速率);
+			开始定向阈值(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q)), 事件玩家.TargetNumber, 至地图, 替换现有阈值, 方向和幅度);
+			事件玩家.BotPathing = 假;
+			等待(0.050, 无视条件);
+			按下按键(事件玩家, 按钮(技能1));
+			事件玩家.BotPathing = 真;
+			开始限制阈值(事件玩家, 1, 1, 0, 1, 0, 1);
+			等待(0.100, 无视条件);
+			按下按键(事件玩家, 按钮(终极技能));
+			等待(0.200, 无视条件);
+			If(正在使用终极技能(事件玩家) == 真);
+				等待(0.900, 无视条件);
+				开始伤害调整(事件玩家, 事件玩家, 1, 无);
+				等待(0.700, 无视条件);
+				停止伤害调整(上一个伤害调整ID);
+			End;
+		End;
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("Bot Echo")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Echo Fly")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		回声;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		在地面上(事件玩家) == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+	}
+
+	动作
+	{
+		根据条件跳过(事件玩家.BotDifficulty <= 1, 1);
+		开始限制阈值(事件玩家, 1, 1, 0, 1, 0, 1);
+		开始按下按钮(事件玩家, 按钮(跳跃));
+		按下按键(事件玩家, 按钮(技能1));
+		等待(1, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Echo Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		回声;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		正在使用辅助武器(事件玩家) == 假;
+		正在使用技能 2(事件玩家) == 假;
+		正在装填(事件玩家) == 假;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 事件玩家.BotCassDif[0] + 1);
+		If(事件玩家.Randomizer <= 2);
+			调用子程序(ZenAim);
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			等待(0.100, 无视条件);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		Else;
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			等待(0.100, 无视条件);
+		End;
+		等待(随机实数(0.030, 事件玩家.BotCassDif[1] - 0.400), 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Echo Moving Forward")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		回声;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotDifficulty >= 2;
+		在地面上(事件玩家) == 假;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 10;
+	}
+
+	动作
+	{
+		开始限制阈值(事件玩家, 1, 1, 0, 1, 0, 1);
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Echo stop Moving Forward")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		回声;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在使用技能 2(事件玩家) == 假;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 10;
+	}
+
+	动作
+	{
+		停止限制阈值(事件玩家);
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Echo Secondary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		回声;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		正在使用技能 2(事件玩家) == 假;
+		正在装填(事件玩家) == 假;
+		技能冷却时间(事件玩家, 按钮(辅助攻击模式)) == 0;
+	}
+
+	动作
+	{
+		事件玩家.Randomizer = 随机整数(0, 事件玩家.BotCassDif[0] + 1);
+		禁用 事件玩家.Randomizer = 随机整数(0, 3);
+		If(事件玩家.Randomizer <= 2);
+			等待(0.200, 当为“假”时中止);
+			调用子程序(ZenAim);
+			按下按键(事件玩家, 按钮(辅助攻击模式));
+			等待(0.050, 无视条件);
+			调用子程序(ZenAim);
+			等待(0.050, 无视条件);
+			调用子程序(ZenAim);
+			等待(0.050, 无视条件);
+			调用子程序(ZenAim);
+			等待(0.050, 无视条件);
+			调用子程序(ZenAim);
+			等待(0.050, 无视条件);
+			调用子程序(ZenAim);
+			等待(0.050, 无视条件);
+			调用子程序(ZenAim);
+		End;
+		等待(3, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Echo Beam")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		回声;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		正在使用辅助武器(事件玩家) == 假;
+		标准化生命值(全局.Arena1Q[事件玩家.TargetNumber]) <= 0.600;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 35;
+	}
+
+	动作
+	{
+		事件玩家.Randomizer = 随机整数(0, 事件玩家.BotCassDif[0] + 1);
+		禁用 事件玩家.Randomizer = 随机整数(0, 1);
+		If(事件玩家.Randomizer <= 2);
+			停止按下按钮(事件玩家, 按钮(跳跃));
+			开始限制阈值(事件玩家, 1, 1, 0, 1, 0, 1);
+			等待直到 (相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 16, 10);
+			如条件为“假”则中止;
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 360, 至地图, 方向及角速率);
+			按下按键(事件玩家, 按钮(技能2));
+		End;
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("Bot Genji")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Genji Jump")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		源氏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		在地面上(事件玩家) == 真;
+	}
+
+	动作
+	{
+		If(正在使用终极技能(事件玩家) == 真);
+			开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+		Else If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 5);
+			开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+		Else;
+			停止限制阈值(事件玩家);
+		End;
+		等待(随机实数(0.100, 0.300), 当为“假”时中止);
+		等待直到 (在墙上(事件玩家) == 假, 1);
+		按下按键(事件玩家, 按钮(跳跃));
+		等待(随机实数(0.200, 0.500), 无视条件);
+		按下按键(事件玩家, 按钮(跳跃));
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Genji Climb")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		源氏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		在墙上(事件玩家) == 真;
+	}
+
+	动作
+	{
+		开始按下按钮(事件玩家, 按钮(跳跃));
+		等待(1, 无视条件);
+		停止按下按钮(事件玩家, 按钮(跳跃));
+	}
+}
+
+规则("Bot Genji Dash")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		源氏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		在墙上(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 14;
+	}
+
+	动作
+	{
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 1, Z方向分量(
+			眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 5000, 至地图, 方向及角速率);
+		设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 1, Z方向分量(
+			眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 至地图);
+		等待(0.100, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(技能1));
+		禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("dash"));
+		等待(0.300, 无视条件);
+		If(在地面上(事件玩家) == 假);
+			按下按键(事件玩家, 按钮(跳跃));
+		End;
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.500, Z方向分量(
+			眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 400, 至地图, 方向及角速率);
+		等待(2, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Genji Reflect far")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		源氏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 16;
+		标准化生命值(事件玩家) != 1;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		按下按键(事件玩家, 按钮(技能2));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.500, Z方向分量(
+			眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 400, 至地图, 方向及角速率);
+	}
+}
+
+规则("Bot Genji Reflect low")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		源氏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		生命值(事件玩家) <= 75;
+	}
+
+	动作
+	{
+		按下按键(事件玩家, 按钮(技能2));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.500, Z方向分量(
+			眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 400, 至地图, 方向及角速率);
+		等待(随机实数(0.700, 2), 无视条件);
+		根据条件中止(标准化生命值(事件玩家) == 1);
+		按下按键(事件玩家, 按钮(技能2));
+	}
+}
+
+规则("Bot Genji Reflect random")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		源氏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		生命值(事件玩家) <= 175;
+	}
+
+	动作
+	{
+		事件玩家.Randomizer = 随机整数(0, 3);
+		If(事件玩家.Randomizer == 0);
+			按下按键(事件玩家, 按钮(技能2));
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.500, Z方向分量(
+				眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 400, 至地图, 方向及角速率);
+			等待(随机实数(0.700, 2), 无视条件);
+			根据条件中止(标准化生命值(事件玩家) == 1);
+			按下按键(事件玩家, 按钮(技能2));
+		End;
+		等待(4, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Genji Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		源氏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		正在使用技能 2(事件玩家) == 假;
+		正在使用技能 1(事件玩家) == 假;
+		正在使用终极技能(事件玩家) == 假;
+		正在使用辅助武器(事件玩家) == 假;
+		正在装填(事件玩家) == 假;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 12;
+	}
+
+	动作
+	{
+		禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("prim"));
+		等待(事件玩家.BotCassDif[0] / 10, 当为“假”时中止);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+		按下按键(事件玩家, 按钮(主要攻击模式));
+		禁用 等待(0.050, 无视条件);
+		调用子程序(ZenAim);
+		等待(0.090, 无视条件);
+		调用子程序(ZenAim);
+		等待(0.090, 无视条件);
+		调用子程序(ZenAim);
+		等待(0.090, 无视条件);
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.500, Z方向分量(
+			眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 400, 至地图, 方向及角速率);
+		等待(0.410, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Genji Secondary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		源氏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		正在使用技能 2(事件玩家) == 假;
+		正在使用技能 1(事件玩家) == 假;
+		正在使用终极技能(事件玩家) == 假;
+		正在使用主要武器(事件玩家) == 假;
+		正在装填(事件玩家) == 假;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) < 12;
+	}
+
+	动作
+	{
+		禁用 小字体信息(所有玩家(所有队伍), 自定义字符串("sec"));
+		等待(事件玩家.BotCassDif[0] / 10, 当为“假”时中止);
+		根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+		按下按键(事件玩家, 按钮(辅助攻击模式));
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.500, Z方向分量(
+			眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 400, 至地图, 方向及角速率);
+		等待(0.480, 无视条件);
+		If(事件玩家.BotDifficulty == 0);
+			等待(0.400, 无视条件);
+		Else If(事件玩家.BotDifficulty == 1);
+			等待(0.200, 无视条件);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Genji Ultimate")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		源氏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) != 英雄(回声);
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		终极技能充能百分比(事件玩家) == 100;
+		生命值(事件玩家) >= 150;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 150;
+	}
+
+	动作
+	{
+		开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+		If(技能冷却时间(事件玩家, 按钮(技能1)) == 0);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 1, Z方向分量(
+				眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 5000, 至地图, 方向及角速率);
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 1, Z方向分量(
+				眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 至地图);
+			等待(0.016, 无视条件);
+			按下按键(事件玩家, 按钮(技能1));
+			等待(0.300, 无视条件);
+		End;
+		按下按键(事件玩家, 按钮(终极技能));
+		开始按下按钮(事件玩家, 按钮(主要攻击模式));
+		等待(0.500, 无视条件);
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.500, Z方向分量(
+			眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])))), 400, 至地图, 方向及角速率);
+		等待直到 (正在使用终极技能(事件玩家) == 假, 8);
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+	}
+}
+
+禁用 规则("Bot Kiriko")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Kiriko Aggro & Climb")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		雾子;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+	}
+
+	动作
+	{
+		开始按下按钮(事件玩家, 按钮(跳跃));
+		If(事件玩家.BotDifficulty <= 1);
+			If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 12);
+				开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+			Else;
+				停止限制阈值(事件玩家);
+			End;
+		Else;
+			If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 8);
+				开始限制阈值(事件玩家, 1, 1, 0, 0, 0, 1);
+			Else;
+				停止限制阈值(事件玩家);
+			End;
+		End;
+		等待(1.500, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Kiriko Shoot")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		雾子;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		正在装填(事件玩家) == 假;
+		正在使用技能 2(事件玩家) == 假;
+	}
+
+	动作
+	{
+		禁用 If(事件玩家.BotDifficulty == 0);
+		禁用 等待(0.400, 当为“假”时中止);
+		禁用 Else If(事件玩家.BotDifficulty == 1);
+		禁用 等待(0.200, 当为“假”时中止);
+		禁用 End;
+		根据条件跳过(正在使用终极技能(事件玩家) == 真, 1);
+		等待(事件玩家.BotCassDif[1] - 0.500, 当为“假”时中止);
+		禁用 等待(0.200, 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 事件玩家.BotCassDif[0] + 1);
+		If(事件玩家.Randomizer <= 2);
+			根据条件跳过(事件玩家.BotKiriHeal == 真, 1);
+			调用子程序(ZenAim);
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(辅助攻击模式));
+			等待(0.100, 无视条件);
+			根据条件跳过(事件玩家.BotKiriHeal == 真, 1);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		Else;
+			根据条件跳过(事件玩家.BotKiriHeal == 真, 1);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(辅助攻击模式));
+			等待(0.100, 无视条件);
+		End;
+		等待(随机实数(0.400, 事件玩家.BotCassDif[1] - 0.100), 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Kiriko Self Suzu random")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		雾子;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		生命值(事件玩家) <= 170;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 2);
+		If(事件玩家.Randomizer == 0);
+			事件玩家.BotKiriHeal = 真;
+			停止朝向(事件玩家);
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 所选位置(事件玩家)), 至地图);
+			等待(0.016, 无视条件);
+			按下按键(事件玩家, 按钮(技能2));
+			等待(0.100, 无视条件);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			事件玩家.BotKiriHeal = 假;
+		End;
+		等待(3, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Kiriko Self Suzu low")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		雾子;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+		生命值(事件玩家) <= 100;
+	}
+
+	动作
+	{
+		等待(0.200, 当为“假”时中止);
+		事件玩家.BotKiriHeal = 真;
+		停止朝向(事件玩家);
+		设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 所选位置(事件玩家)), 至地图);
+		等待(0.016, 无视条件);
+		按下按键(事件玩家, 按钮(技能2));
+		等待(0.100, 无视条件);
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		事件玩家.BotKiriHeal = 假;
+		等待(1, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Kiriko Ultimate")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		雾子;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		终极技能充能百分比(事件玩家) == 100;
+		生命值(事件玩家) >= 150;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 150;
+	}
+
+	动作
+	{
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		等待(0.100, 无视条件);
+		按下按键(事件玩家, 按钮(终极技能));
+	}
+}
+
+禁用 规则("Bot Hanzo")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Hanzo Lunge")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		半藏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		在地面上(事件玩家) == 真;
+		技能冷却时间(事件玩家, 按钮(跳跃)) == 0;
+	}
+
+	动作
+	{
+		按下按键(事件玩家, 按钮(跳跃));
+		等待(随机实数(0.200, 0.500), 无视条件);
+		按下按键(事件玩家, 按钮(跳跃));
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Hanzo Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		半藏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		正在使用技能 2(事件玩家) == 假;
+		事件玩家.BotZoom >= 0.700;
+	}
+
+	动作
+	{
+		等待(事件玩家.BotCassDif[1] - 0.500, 当为“假”时中止);
+		禁用 等待(0.200, 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 事件玩家.BotCassDif[0] + 1);
+		If(事件玩家.Randomizer <= 2);
+			调用子程序(ZenAim);
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			停止按下按钮(事件玩家, 按钮(主要攻击模式));
+			等待(0.100, 无视条件);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		Else;
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			停止按下按钮(事件玩家, 按钮(主要攻击模式));
+			等待(0.100, 无视条件);
+		End;
+		等待(0.400, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Hanzo Storm Arrows")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		半藏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能2)) == 0;
+	}
+
+	动作
+	{
+		等待(0.300, 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 2);
+		If(事件玩家.Randomizer == 0);
+			停止按下按钮(事件玩家, 按钮(主要攻击模式));
+			按下按键(事件玩家, 按钮(技能2));
+		End;
+		等待(3, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Hanzo Storm Arrows Shoot")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		半藏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		正在使用技能 2(事件玩家) == 真;
+	}
+
+	动作
+	{
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		等待(事件玩家.BotCassDif[1] - 0.500, 当为“假”时中止);
+		禁用 等待(0.240, 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 事件玩家.BotCassDif[0] + 1);
+		If(事件玩家.Randomizer <= 2);
+			调用子程序(ZenAim);
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			等待(0.224, 无视条件);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		Else;
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			等待(0.240, 无视条件);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Hanzo Loading")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		半藏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		正在使用主要武器(事件玩家) == 真;
+		正在使用技能 2(事件玩家) == 假;
+	}
+
+	动作
+	{
+		事件玩家.BotZoom = 0;
+		追踪玩家变量频率(事件玩家, BotZoom, 0.700, 1, 速率及最终值);
+	}
+}
+
+规则("Bot Hanzo not Loading")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		半藏;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在使用主要武器(事件玩家) == 假;
+		正在使用技能 2(事件玩家) == 假;
+	}
+
+	动作
+	{
+		停止追踪玩家变量(事件玩家, BotZoom);
+		事件玩家.BotZoom = 0;
+		开始按下按钮(事件玩家, 按钮(主要攻击模式));
+		禁用 If(正在使用技能 2(事件玩家) == 假);
+		禁用 End;
+		等待(0.500, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("Bot Ashe")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Ashe Boop")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		艾什;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		已重生(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+		相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) <= 8;
+	}
+
+	动作
+	{
+		等待(0.250, 当为“假”时中止);
+		事件玩家.Randomizer = 随机整数(0, 2);
+		If(事件玩家.Randomizer == 0);
+			按下按键(事件玩家, 按钮(技能1));
+		End;
+		等待(1.500, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Ashe Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		艾什;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		正在使用技能 1(事件玩家) == 假;
+	}
+
+	动作
+	{
+		If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 12);
+			If(正在使用辅助武器(事件玩家) == 假);
+				开始按下按钮(事件玩家, 按钮(辅助攻击模式));
+				等待(0.100, 当为“假”时中止);
+			End;
+			等待(0.100, 当为“假”时中止);
+			事件玩家.ShootPos = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+			等待(事件玩家.ShootRando / 10 - 0.016, 当为“假”时中止);
+			停止朝向(事件玩家);
+			设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.400, Z方向分量(事件玩家.ShootPos))),
+				至地图);
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			事件玩家.ShootRando = 随机实数(0, 事件玩家.BotCassDif[0] - 1);
+			等待(随机实数(0.550, 事件玩家.BotCassDif[1] + 0.050) - 事件玩家.ShootRando / 10, 无视条件);
+		Else;
+			停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+			事件玩家.ShootPos = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+			等待(事件玩家.ShootRando / 10 - 0.016, 当为“假”时中止);
+			停止朝向(事件玩家);
+			If(事件玩家.BotDifficulty <= 2);
+				设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.400, Z方向分量(事件玩家.ShootPos))),
+					至地图);
+			Else;
+				设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 随机实数(0, 0.400), Z方向分量(
+					事件玩家.ShootPos))), 至地图);
+			End;
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			事件玩家.ShootRando = 随机实数(0, 事件玩家.BotCassDif[0]);
+			等待(随机实数(0.260, 事件玩家.BotCassDif[1] - 0.240) - 事件玩家.ShootRando / 10, 无视条件);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Ashe Ultimate")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		艾什;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 真;
+		终极技能充能百分比(事件玩家) == 100;
+		生命值(事件玩家) >= 150;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 150;
+	}
+
+	动作
+	{
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		等待(0.100, 无视条件);
+		按下按键(事件玩家, 按钮(终极技能));
+	}
+}
+
+禁用 规则("Bot Widow")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Bot Widow Finish low hp")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		黑百合;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		正在使用技能 1(事件玩家) == 假;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) < 75;
+	}
+
+	动作
+	{
+		根据条件跳过(事件玩家.BotKiriHeal == 真, 1);
+		开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+		If(事件玩家.BotZoom >= 0.500);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+		Else;
+			停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			开始按下按钮(事件玩家, 按钮(主要攻击模式));
+		End;
+		等待(0.500, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Widow Stop smg vs reflect")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		黑百合;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏);
+		正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+	}
+
+	动作
+	{
+		等待(随机实数(0, 0.300), 当为“假”时中止);
+		按下按键(事件玩家, 按钮(装填));
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+	}
+}
+
+规则("Bot Widow Grapple")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		黑百合;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		技能冷却时间(事件玩家, 按钮(技能1)) == 0;
+		事件玩家.BotZoom <= 0.500;
+		禁用 生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 75;
+		正在使用主要武器(事件玩家) == 假;
+	}
+
+	动作
+	{
+		事件玩家.Randomizer = 随机整数(0, 1);
+		If(事件玩家.Randomizer == 0);
+			If(相距距离(所选位置(事件玩家), 事件玩家.BotMovePositions[0]) <= 6);
+				事件玩家.BotKiriHeal = 真;
+				停止朝向(事件玩家);
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(-12.420, 283.780, 286.720)), 900, 至地图, 方向及角速率);
+				等待(0.100, 无视条件);
+				按下按键(事件玩家, 按钮(技能1));
+				等待(0.300, 无视条件);
+				事件玩家.BotKiriHeal = 假;
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+				等待(随机实数(0.500, 1.500), 无视条件);
+				按下按键(事件玩家, 按钮(跳跃));
+			Else If(相距距离(所选位置(事件玩家), 事件玩家.BotMovePositions[1]) <= 4);
+				事件玩家.BotKiriHeal = 真;
+				停止朝向(事件玩家);
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(-5.020, 285.180, 266.750)), 900, 至地图, 方向及角速率);
+				等待(0.100, 无视条件);
+				按下按键(事件玩家, 按钮(技能1));
+				等待(0.300, 无视条件);
+				事件玩家.BotKiriHeal = 假;
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+				等待(随机实数(0.500, 1.500), 无视条件);
+				按下按键(事件玩家, 按钮(跳跃));
+			Else If(相距距离(所选位置(事件玩家), 事件玩家.BotMovePositions[2]) <= 4);
+				事件玩家.BotKiriHeal = 真;
+				停止朝向(事件玩家);
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(5.020, 285.180, 266.750)), 900, 至地图, 方向及角速率);
+				等待(0.100, 无视条件);
+				按下按键(事件玩家, 按钮(技能1));
+				等待(0.300, 无视条件);
+				事件玩家.BotKiriHeal = 假;
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+				等待(随机实数(0.500, 1.500), 无视条件);
+				按下按键(事件玩家, 按钮(跳跃));
+			Else If(相距距离(所选位置(事件玩家), 事件玩家.BotMovePositions[3]) <= 6);
+				事件玩家.BotKiriHeal = 真;
+				停止朝向(事件玩家);
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(12.420, 283.780, 286.720)), 900, 至地图, 方向及角速率);
+				等待(0.100, 无视条件);
+				按下按键(事件玩家, 按钮(技能1));
+				等待(0.300, 无视条件);
+				事件玩家.BotKiriHeal = 假;
+				开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+				等待(随机实数(0.500, 1.500), 无视条件);
+				按下按键(事件玩家, 按钮(跳跃));
+			End;
+			等待(5, 无视条件);
+		Else;
+			等待(3, 无视条件);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Widow Stop smg / Start zoom")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		黑百合;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		事件玩家.BotShoot == 假;
+	}
+
+	动作
+	{
+		停止按下按钮(事件玩家, 按钮(主要攻击模式));
+		If(正在使用辅助武器(事件玩家) == 假);
+			等待(2, 当为“假”时中止);
+			开始按下按钮(事件玩家, 按钮(辅助攻击模式));
+		End;
+		等待(0.500, 当为“假”时中止);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Widow Zooming")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		黑百合;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		正在使用辅助武器(事件玩家) == 真;
+	}
+
+	动作
+	{
+		事件玩家.BotZoom = 0;
+		追踪玩家变量频率(事件玩家, BotZoom, 1, 1, 速率及最终值);
+	}
+}
+
+规则("Bot Widow Not zooming")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		黑百合;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		正在使用辅助武器(事件玩家) == 假;
+	}
+
+	动作
+	{
+		停止追踪玩家变量(事件玩家, BotZoom);
+		事件玩家.BotZoom = 0;
+	}
+}
+
+规则("Bot Widow Primary")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		黑百合;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+		正在装填(事件玩家) == 假;
+		事件玩家.BotShoot == 真;
+		正在使用技能 1(事件玩家) == 假;
+		生命值(全局.Arena1Q[事件玩家.TargetNumber]) >= 75;
+	}
+
+	动作
+	{
+		If(相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) >= 10 || 事件玩家.BotZoom >= 0.500);
+			If(正在使用辅助武器(事件玩家) == 假);
+				事件玩家.Randomizer = 随机整数(0, 2);
+				If(事件玩家.Randomizer != 0);
+					按下按键(事件玩家, 按钮(跳跃));
+					等待(0.050, 当为“假”时中止);
+				End;
+				开始按下按钮(事件玩家, 按钮(辅助攻击模式));
+				等待(0.320, 当为“假”时中止);
+			End;
+			等待直到 (事件玩家.BotZoom == 1, 20);
+			等待直到 (事件玩家.BotShoot == 真, 20);
+			等待(事件玩家.BotCassDif[1] - 0.300, 当为“假”时中止);
+			事件玩家.ShootRando = 随机实数(0, 事件玩家.BotCassDif[0] - 1);
+			事件玩家.ShootPos = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+			等待(事件玩家.ShootRando / 10 - 0.016, 当为“假”时中止);
+			根据条件跳过(事件玩家.BotKiriHeal == 真, 2);
+			停止朝向(事件玩家);
+			If(事件玩家.BotDifficulty == 4);
+				设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 随机实数(0, 0), Z方向分量(事件玩家.ShootPos))),
+					至地图);
+			Else;
+				设置朝向(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(事件玩家.ShootPos), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 随机实数(0, 0.500), Z方向分量(
+					事件玩家.ShootPos))), 至地图);
+			End;
+			等待(0.016, 无视条件);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			按下按键(事件玩家, 按钮(主要攻击模式));
+			等待(0.100, 无视条件);
+			根据条件跳过(事件玩家.BotKiriHeal == 真, 1);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+			等待(0.200, 无视条件);
+		Else;
+			停止按下按钮(事件玩家, 按钮(辅助攻击模式));
+			禁用 开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])), 300, 至地图, 方向及角速率);
+			等待(0.200, 当为“假”时中止);
+			根据条件跳过(事件玩家.BotKiriHeal == 真, 1);
+			开始朝向(事件玩家, 方向(眼睛位置(事件玩家), 事件玩家.ShootPos), 500 / (相距距离(眼睛位置(事件玩家), 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) / 5), 至地图, 方向及角速率);
+			根据条件跳过(所用英雄(全局.Arena1Q[事件玩家.TargetNumber]) == 英雄(源氏) && 正在使用技能 2(全局.Arena1Q[事件玩家.TargetNumber]) == 真, 1);
+			开始按下按钮(事件玩家, 按钮(主要攻击模式));
+			等待(0.500, 无视条件);
+		End;
+		如条件为“真”则循环;
+	}
+}
+
+规则("Bot Widow Smg Tracking")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		黑百合;
+	}
+
+	条件
+	{
+		是否是机器人(事件玩家) == 真;
+		存活(事件玩家) == 真;
+		存活(全局.Arena1Q[事件玩家.TargetNumber]) == 真;
+		全局.Arena1Match == 真;
+	}
+
+	动作
+	{
+		事件玩家.ShootRando = 随机实数(1, 绝对值(事件玩家.BotDifficulty - 6));
+		事件玩家.ShootPosHelp = 事件玩家.ShootRando / 10 * 速率(全局.Arena1Q[事件玩家.TargetNumber]) + 眼睛位置(全局.Arena1Q[事件玩家.TargetNumber]);
+		事件玩家.ShootPos = 矢量(X方向分量(事件玩家.ShootPosHelp), Y方向分量(眼睛位置(全局.Arena1Q[事件玩家.TargetNumber])) - 0.400, Z方向分量(事件玩家.ShootPosHelp));
+		等待(事件玩家.ShootRando / 10 - 0, 当为“假”时中止);
+		如条件为“真”则循环;
+	}
+}
+
+禁用 规则("###   All heroes mode   ###")
+{
+	事件
+	{
+		持续 - 全局;
+	}
+}
+
+规则("Sombra invis break")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		黑影;
+	}
+
+	条件
+	{
+		禁用 全局.AllHeroesMode == 真;
+		水平速度(事件玩家) >= 6;
+	}
+
+	动作
+	{
+		等待(4.950, 无视条件);
+		伤害(事件玩家, 空, 0.001);
+		治疗(事件玩家, 空, 0.001);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Sombra invis break")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		黑影;
+	}
+
+	条件
+	{
+		禁用 全局.AllHeroesMode == 真;
+		水平速度(事件玩家) == 0;
+	}
+
+	动作
+	{
+		等待(4.950, 当为“假”时中止);
+		伤害(事件玩家, 空, 0.001);
+		治疗(事件玩家, 空, 0.001);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Venture no health over 250")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		探奇;
+	}
+
+	条件
+	{
+		全局.AllHeroesMode == 真;
+		生命值(事件玩家) > 250;
+	}
+
+	动作
+	{
+		伤害(事件玩家, 空, 生命值(事件玩家) - 250);
+		等待(0.100, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Ramattra no health over 375")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		拉玛刹;
+	}
+
+	条件
+	{
+		全局.AllHeroesMode == 真;
+		生命值(事件玩家) > 345;
+	}
+
+	动作
+	{
+		伤害(事件玩家, 空, 生命值(事件玩家) - 340);
+		等待(0.100, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Mauga no health over 368")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		毛加;
+	}
+
+	条件
+	{
+		全局.AllHeroesMode == 真;
+		生命值(事件玩家) > 368;
+	}
+
+	动作
+	{
+		伤害(事件玩家, 空, 生命值(事件玩家) - 363);
+		等待(0.100, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Rein Shield hack")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		莱因哈特;
+	}
+
+	条件
+	{
+		全局.AllHeroesMode == 真;
+		正在使用辅助武器(事件玩家) == 真;
+	}
+
+	动作
+	{
+		等待(1.200, 无视条件);
+		设置技能冷却(事件玩家, 按钮(辅助攻击模式), 3);
+		If(正在使用辅助武器(事件玩家) == 真);
+			设置状态(事件玩家, 空, 被入侵, 0.100);
+		End;
+	}
+}
+
+规则("Sigma no health over 356")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		西格玛;
+	}
+
+	条件
+	{
+		全局.AllHeroesMode == 真;
+		生命值(事件玩家) > 357;
+	}
+
+	动作
+	{
+		伤害(事件玩家, 空, 生命值(事件玩家) - 357);
+		等待(0.100, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Sigma Shield cancel")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		西格玛;
+	}
+
+	条件
+	{
+		全局.AllHeroesMode == 真;
+		正在使用辅助武器(事件玩家) == 真;
+	}
+
+	动作
+	{
+		等待(1.200, 无视条件);
+		If(所用英雄(事件玩家) == 英雄(西格玛));
+			按下按键(事件玩家, 按钮(辅助攻击模式));
+		End;
+		设置技能冷却(事件玩家, 按钮(辅助攻击模式), 5);
+		等待(0.500, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Pharah cannot fly high vs some heroes")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		法老之鹰;
+	}
+
+	条件
+	{
+		全局.AllHeroesMode == 真;
+		((事件玩家 == 全局.Arena1Q[1] || 事件玩家 == 全局.Arena1Q[2]) && (数组包含(全局.NoFlyHeroes, 所用英雄(全局.Arena1Q[1])) == 真 || 数组包含(全局.NoFlyHeroes, 所用英雄(
+			全局.Arena1Q[2])) == 真)) == 真;
+		Y方向分量(眼睛位置(事件玩家)) >= 275;
+	}
+
+	动作
+	{
+		If(相距距离(事件玩家, 矢量(-0.126, 279.350, 291.717)) <= 4);
+			施加推力(事件玩家, 方向(眼睛位置(事件玩家), 矢量(0.232, 275, 279.999)), 30, 至地图, 取消相反运动);
+		Else;
+			施加推力(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(事件玩家)), 265, Z方向分量(眼睛位置(事件玩家)))), 10, 至地图, 取消相反运动);
+		End;
+		小字体信息(所有玩家(所有队伍), 自定义字符串("   Pharah cannot fly high against this hero"));
+		等待(1, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Echo cannot fly high vs some heroes")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		回声;
+	}
+
+	条件
+	{
+		全局.AllHeroesMode == 真;
+		((事件玩家 == 全局.Arena1Q[1] || 事件玩家 == 全局.Arena1Q[2]) && (数组包含(全局.NoFlyHeroes, 所用英雄(全局.Arena1Q[1])) == 真 || 数组包含(全局.NoFlyHeroes, 所用英雄(
+			全局.Arena1Q[2])) == 真)) == 真;
+		Y方向分量(眼睛位置(事件玩家)) >= 275;
+	}
+
+	动作
+	{
+		If(相距距离(事件玩家, 矢量(-0.126, 279.350, 291.717)) <= 4);
+			施加推力(事件玩家, 方向(眼睛位置(事件玩家), 矢量(0.232, 275, 279.999)), 30, 至地图, 取消相反运动);
+		Else;
+			施加推力(事件玩家, 方向(眼睛位置(事件玩家), 矢量(X方向分量(眼睛位置(事件玩家)), 265, Z方向分量(眼睛位置(事件玩家)))), 10, 至地图, 取消相反运动);
+		End;
+		小字体信息(所有玩家(所有队伍), 自定义字符串("   Echo cannot fly high against this hero"));
+		等待(1, 无视条件);
+		如条件为“真”则循环;
+	}
+}
+
+规则("Ball spawn Grapple")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		破坏球;
+	}
+
+	动作
+	{
+		等待(0.500, 无视条件);
+		设置技能冷却(事件玩家, 按钮(辅助攻击模式), 0);
+	}
+}
+
+规则("D.va ultimate charge bug fix")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		D.Va;
+	}
+
+	条件
+	{
+		处于非初始状态(事件玩家) == 真;
+	}
+
+	动作
+	{
+		设置终极技能充能(事件玩家, 0);
+	}
+}
