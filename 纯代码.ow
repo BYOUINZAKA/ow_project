@@ -9,6 +9,7 @@
 		5: t_enum_speed
 		6: t_enum_move_cd
 		7: t_enum_map_text
+		8: t_enum_status_thorns
 		20: ci_tracer_max_energy
 		21: ci_tracer_max_hit
 		22: ci_tracer_hit_percent
@@ -74,19 +75,20 @@
 		96: symmetra_Q_players
 		97: symmetra_Q_inedx
 		98: symmetra_demage
+		99: ana_q_flag
 		100: debug_robot
 		101: debug_1
 		102: debug_2
 		103: sys_data_record
 		104: debug_robot2
 		105: sys_default_status_pool
-		106: sys_players_record
+		106: d_sys_status_thorns
 		107: sys_default_status_pool_i
-		108: sys_status_thorns
 		109: sys_self_text
 		110: junkerqueen_effect
 		111: junkerqueen_timer
 		112: junkerqueen_players
+		113: junkerqueen_flag
 		120: widowmaker_hp_pool
 		121: widowmaker_hp_pool_timer
 }
@@ -122,7 +124,7 @@
 	}
 }
 
-规则("随机数")
+禁用 规则("随机数")
 {
 	事件
 	{
@@ -134,74 +136,6 @@
 		While(真);
 			全局.random = 随机实数(0, 1);
 			等待(0, 无视条件);
-		End;
-	}
-}
-
-规则("状态显示文本")
-{
-	事件
-	{
-		持续 - 每名玩家;
-		双方;
-		全部;
-	}
-
-	动作
-	{
-		创建HUD文本(数量(事件玩家.sys_status_thorns) > 0 ? 事件玩家 : 空, 自定义字符串(""), 自定义字符串("荆棘：{0}%", 事件玩家.sys_status_thorns[数量(事件玩家.sys_status_thorns)
-			- 1][0] * 100), 自定义字符串(""), 右边, 0, 颜色(白色), 颜色(绿色), 颜色(白色), 可见和字符串, 默认可见度);
-	}
-}
-
-规则("状态清理")
-{
-	事件
-	{
-		持续 - 每名玩家;
-		双方;
-		全部;
-	}
-
-	条件
-	{
-		事件玩家.sys_status_thorns != 空;
-		数量(事件玩家.sys_status_thorns) > 0;
-	}
-
-	动作
-	{
-		While(真);
-			等待(0.100, 无视条件);
-			If(数量(事件玩家.sys_status_thorns) > 0);
-				事件玩家.sys_status_thorns = 已排序的数组(已过滤的数组(事件玩家.sys_status_thorns, 当前数组元素[1] < 0 || 当前数组元素[2] < 0 ? 当前数组元素[3] == 空 || 所用英雄(事件玩家)
-					== 当前数组元素[3] : 总计消耗时间 - 当前数组元素[1] <= 当前数组元素[2] && (当前数组元素[3] == 空 || 所用英雄(事件玩家) == 当前数组元素[3])), 当前数组元素[0]);
-			End;
-		End;
-	}
-}
-
-规则("玩家状态-荆棘")
-{
-	事件
-	{
-		玩家受到伤害;
-		双方;
-		全部;
-	}
-
-	条件
-	{
-		数量(被攻击方.sys_status_thorns) > 0;
-		数量(攻击方.sys_status_thorns) <= 0;
-	}
-
-	动作
-	{
-		伤害(攻击方, 被攻击方, 事件伤害 * 被攻击方.sys_status_thorns[数量(被攻击方.sys_status_thorns) - 1][0]);
-		If(截取字符串(被攻击方.sys_status_thorns[数量(被攻击方.sys_status_thorns) - 1][4], 0, 字符串长度(自定义字符串("Junker Queen"))) == 自定义字符串("Junker Queen"));
-			被攻击方.sys_status_thorns[数量(被攻击方.sys_status_thorns) - 1][5].sys_data_record[1] += 事件伤害 * 被攻击方.sys_status_thorns[数量(
-				被攻击方.sys_status_thorns) - 1][0];
 		End;
 	}
 }
@@ -250,6 +184,8 @@
 			事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][1][0].d_sys_cd -= 事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][1][1];
 		Else If(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][0] == 全局.t_enum_map_text);
 			消除地图文本(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][1]);
+		Else If(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][0] == 全局.t_enum_status_thorns);
+			事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][1][0].d_sys_status_thorns -= 事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][1][1];
 		End;
 		事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i] = 空;
 	}
@@ -268,7 +204,7 @@
 	{
 		While(真);
 			等待直到 (数量(事件玩家.sys_default_status_pool) > 0, 99999);
-			等待(0.250, 无视条件);
+			等待(0.10, 无视条件);
 			For 玩家变量(事件玩家, sys_default_status_pool_i, 数量(事件玩家.sys_default_status_pool) - 1, -1, -1);
 				If(数量(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i]) == 2);
 					调用子程序(remove_default_status);
@@ -629,6 +565,62 @@
 	动作
 	{
 		创建HUD文本(所有玩家(所有队伍), 自定义字符串(""), 自定义字符串("{0}: {1}s, {2}", 事件玩家, 事件玩家.a_sys_ultimate_efficiency[1]/事件玩家.a_sys_ultimate_efficiency[2], 玩家数据(事件玩家, 阻挡伤害量)), 自定义字符串(""), 左边, 栏位(事件玩家), 颜色(白色), 颜色(白色), 颜色(白色), 可见性，排序规则和字符串, 默认可见度);
+	}
+}
+
+规则("状态显示文本")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	动作
+	{
+		创建HUD文本(事件玩家.d_sys_status_thorns > 0 ? 事件玩家 : 空, 自定义字符串(""), 自定义字符串("荆棘：{0}%", 事件玩家.d_sys_status_thorns * 100.0), 自定义字符串(""), 右边, 0, 颜色(白色), 颜色(绿色), 颜色(白色), 可见和字符串, 默认可见度);
+	}
+}
+
+规则("系统-状态-荆棘")
+{
+	事件
+	{
+		玩家受到伤害;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		攻击方.d_sys_status_thorns > 0.0;
+		事件技能 != 空;
+	}
+
+	动作
+	{
+		伤害(攻击方, 被攻击方, 被攻击方.d_sys_status_thorns * 事件伤害);
+	}
+}
+
+规则("系统-状态-荆棘")
+{
+	事件
+	{
+		玩家受到伤害;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		攻击方.d_sys_status_thorns <= 0.0;
+	}
+
+	动作
+	{
+		伤害(攻击方, 被攻击方, 被攻击方.d_sys_status_thorns * 事件伤害);
 	}
 }
 
@@ -1310,12 +1302,33 @@
 
 	动作
 	{
-		设置引力(事件玩家, 500);
-		等待直到 (正在使用终极技能(事件玩家) != 真, 1);
+		范围内玩家(事件玩家, 30, 所在队伍(事件玩家), 表面及敌方屏障).lucio_debuff_clear = 真;
+
+		等待直到(!正在使用技能 2(事件玩家), 5.0);
+		设置技能冷却(事件玩家, 按钮(技能2), 0);
+	}
+}
+
+规则("卢西奥-Q")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		所用英雄(事件玩家) == 英雄(卢西奥);
+		正在使用终极技能(事件玩家) == 真;
+	}
+
+	动作
+	{
+		设置引力(事件玩家, 999);
+		等待直到(在地面上(事件玩家) || !存活(事件玩家) || 所用英雄(事件玩家) != 英雄(卢西奥), 99999);
 		设置引力(事件玩家, 100);
-		If(正在使用终极技能(事件玩家) == 真 && 存活(事件玩家) == 真);
-			范围内玩家(事件玩家, 30, 所在队伍(事件玩家), 表面及敌方屏障).lucio_debuff_clear = 真;
-		Else;
 	}
 }
 
@@ -1353,6 +1366,7 @@
 	{
 		事件玩家.lucio_debuff_clear == 真;
 		(具有状态(事件玩家, 冰冻) || 具有状态(事件玩家, 击倒) || 具有状态(事件玩家, 击晕) || 具有状态(事件玩家, 沉睡) || 具有状态(事件玩家, 燃烧) || 具有状态(事件玩家, 被入侵) || 具有状态(事件玩家, 定身)) == 真;
+		(所用英雄(事件玩家) == 英雄(安娜) && 正在使用终极技能(事件玩家)) != 真;
 	}
 
 	动作
@@ -1683,13 +1697,14 @@
 	条件
 	{
 		具有状态(事件玩家, 相移) != 真;
-		全局.random <= 0.100;
 	}
 
 	动作
 	{
-		设置状态(事件玩家, 事件玩家, 相移, 0.500);
-		等待(0.500, 无视条件);
+		If(随机实数(0, 1) <= 0.1);
+			设置状态(事件玩家, 事件玩家, 相移, 0.500);
+			等待(0.500, 无视条件);
+		End;
 	}
 }
 
@@ -2135,6 +2150,62 @@
 			: 当前数组元素);
 		为玩家添加生命池(事件玩家, 护甲, 50, 真, 真);
 		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, -1, 英雄(安娜), 自定义字符串("Ana HP"));
+	}
+}
+
+规则("安娜-终极技能-群体激素")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		所用英雄(事件玩家) == 英雄(安娜);
+		正在使用终极技能(事件玩家) == 真;
+	}
+
+	动作
+	{
+		设置状态(事件玩家, 事件玩家, 击晕, 0.1);
+		所有玩家(所在队伍(事件玩家)).ana_q_flag = 事件玩家;
+
+		治疗(所有玩家(所在队伍(事件玩家)), 事件玩家, 60);
+
+		开始伤害调整(所有玩家(对方队伍(所在队伍(事件玩家))), 所有玩家(所在队伍(事件玩家)), 110, 受伤害者和伤害者);
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_damage_adjust, 上一个伤害调整ID, 总计消耗时间, 6, 英雄(安娜), 空);
+
+		开始伤害调整(所有玩家(所在队伍(事件玩家)), 所有玩家(对方队伍(所在队伍(事件玩家))), 90, 受伤害者和伤害者);
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_damage_adjust, 上一个伤害调整ID, 总计消耗时间, 6, 英雄(安娜), 空);
+	}
+}
+
+规则("安娜-终极技能-群体激素")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.ana_q_flag != 空;
+	}
+
+	动作
+	{
+		事件玩家.i_sys_speed += 10;
+		事件玩家.ana_q_flag.sys_default_status_pool[数量(事件玩家.ana_q_flag.sys_default_status_pool)] = 数组(全局.t_enum_speed, 数组(事件玩家, 10), 总计消耗时间, 6, 英雄(安娜), 空);
+
+		创建效果(所有玩家(所有队伍), 安娜纳米激素强化效果, 颜色(蓝色), 事件玩家, 0, 可见，位置和半径);
+		事件玩家.ana_q_flag.sys_default_status_pool[数量(事件玩家.ana_q_flag.sys_default_status_pool)] = 数组(全局.t_enum_effect, 最后创建的实体, 总计消耗时间, 6, 英雄(安娜), 空);
+
+		事件玩家.ana_q_flag = 空;
 	}
 }
 
@@ -3224,7 +3295,7 @@
 	}
 }
 
-规则("渣客女王-shift-护盾")
+规则("渣客女王-shift")
 {
 	事件
 	{
@@ -3241,6 +3312,8 @@
 
 	动作
 	{
+		范围内玩家(眼睛位置(事件玩家), 15, 所在队伍(事件玩家), 表面及敌方屏障).junkerqueen_flag = 真;
+
 		事件玩家.junkerqueen_players = 总计消耗时间;
 		While(正在使用技能 1(事件玩家) == 真 && 所用英雄(事件玩家) == 英雄(渣客女王) && (总计消耗时间 - 事件玩家.junkerqueen_players) <= 3.0);
 			为玩家添加生命池(范围内玩家(眼睛位置(事件玩家), 15, 所在队伍(事件玩家), 表面及敌方屏障), 生命值, 3, 假, 假);
@@ -3248,39 +3321,6 @@
 				"Junker Queen Back"));
 			等待(0.20, 无视条件);
 		End;
-	}
-}
-
-规则("渣客女王-shift-荆棘")
-{
-	事件
-	{
-		持续 - 每名玩家;
-		双方;
-		渣客女王;
-	}
-
-	条件
-	{
-		正在使用技能 1(事件玩家) == 真;
-	}
-
-	动作
-	{
-		事件玩家.sys_players_record[0] = 0;
-		事件玩家.sys_players_record[1] = 空;
-		事件玩家.sys_players_record[2] = 范围内玩家(眼睛位置(事件玩家), 15, 所在队伍(事件玩家), 表面及敌方屏障);
-		While(事件玩家.sys_players_record[0] < 数量(事件玩家.sys_players_record[2]));
-			事件玩家.sys_players_record[1] = 事件玩家.sys_players_record[2][事件玩家.sys_players_record[0]];
-			If(事件玩家.sys_players_record[1] == 事件玩家);
-				事件玩家.sys_status_thorns[数量(事件玩家.sys_status_thorns)] = 数组(0.300, 总计消耗时间, 5, 英雄(渣客女王), 自定义字符串("Junker Queen Commanding Shout"), 事件玩家);
-			Else;
-				事件玩家.sys_players_record[1].sys_status_thorns[数量(事件玩家.sys_players_record[1].sys_status_thorns)] = 数组(0.250, 总计消耗时间, 3, 空, 自定义字符串(
-					"Junker Queen Commanding Shout"), 事件玩家);
-			End;
-			事件玩家.sys_players_record[0] += 1;
-		End;
-		事件玩家.sys_players_record = 空;
 	}
 }
 
@@ -3300,9 +3340,10 @@
 
 	动作
 	{
-		事件玩家.sys_status_thorns[数量(事件玩家.sys_status_thorns)] = 数组(0.850, 总计消耗时间, 5, 英雄(渣客女王), 自定义字符串("Junker Queen Carnage"), 事件玩家);
-		等待直到 (!正在使用技能 2(事件玩家), 5);
-		事件玩家.sys_status_thorns = 已过滤的数组(事件玩家.sys_status_thorns, 当前数组元素[4] != 自定义字符串("Junker Queen Carnage"));
+		事件玩家.d_sys_status_thorns += 0.3;
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_status_thorns, 数组(事件玩家, 0.3), 总计消耗时间, 3.0, 英雄(渣客女王), 自定义字符串("Junker Queen Carnage Thorns"));
+		等待直到(!正在使用技能 2(事件玩家), 3.0);
+		事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Junker Queen Carnage Thorns") ? 数组分割(当前数组元素, 0, 2) : 当前数组元素);
 	}
 }
 
@@ -3322,30 +3363,33 @@
 
 	动作
 	{
-		事件玩家.sys_status_thorns[数量(事件玩家.sys_status_thorns)] = 数组(0.200, 总计消耗时间, 6, 英雄(渣客女王), 自定义字符串("Junker Queen Rampage"), 事件玩家);
-		等待直到 (!正在使用终极技能(事件玩家), 6);
-		事件玩家.sys_status_thorns = 已过滤的数组(事件玩家.sys_status_thorns, 当前数组元素[4] != 自定义字符串("Junker Queen Rampage"));
+		事件玩家.d_sys_status_thorns += 0.3;
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_status_thorns, 数组(事件玩家, 0.3), 总计消耗时间, 6.0, 英雄(渣客女王), 自定义字符串("Junker Queen Rampage Thorns"));
+		等待直到(!正在使用终极技能(事件玩家), 6.0);
+		事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Junker Queen Rampage Thorns") ? 数组分割(当前数组元素, 0, 2) : 当前数组元素);
 	}
 }
 
-规则("渣客女王-初始化")
+规则("渣客女王-荆棘")
 {
 	事件
 	{
 		持续 - 每名玩家;
 		双方;
-		渣客女王;
+		全部;
 	}
 
 	条件
 	{
-		事件玩家.sys_self_text == 空;
+		事件玩家.junkerqueen_flag != 空;
 	}
 
 	动作
 	{
-		创建HUD文本(事件玩家, 自定义字符串(""), 自定义字符串("荆棘造成伤害：{0}", 事件玩家.sys_data_record[1]), 自定义字符串(""), 左边, 0, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
-		事件玩家.sys_self_text = 数组(所用英雄(事件玩家), 上一个文本ID);
+		事件玩家.junkerqueen_flag = 空;
+
+		事件玩家.d_sys_status_thorns += 0.3;
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_status_thorns, 数组(事件玩家, 0.3), 总计消耗时间, (所用英雄(事件玩家) == 英雄(渣客女王)) ? 5 : 3, 空, 空);
 	}
 }
 
@@ -4088,31 +4132,6 @@
 		If(总计消耗时间 - 事件玩家.hanzo_focus[0] > 0.35 && !按钮被按下(事件玩家, 按钮(辅助攻击模式)));
 			创建弹道(“路霸”爆裂枪废铁球, 事件玩家, 空, 空, 至地图, 伤害, 对方队伍(所在队伍(事件玩家)), 30, 0.5, 3, 有害爆炸, 爆炸声音, 0, 较小(110, (总计消耗时间 - 事件玩家.hanzo_focus[0]) * 115), 3, 0, 0, 9.8);
 		End;
-		// 事件玩家.hanzo_focus[1] = 总计消耗时间 - 事件玩家.hanzo_focus[0];
-	}
-}
-
-禁用 规则("半藏-爆炸")
-{
-	事件
-	{
-		玩家受到伤害;
-		双方;
-		全部;
-	}
-
-	条件
-	{
-		所用英雄(攻击方) == 英雄(半藏);
-		事件技能 == 按钮(主要攻击模式);
-		攻击方.hanzo_focus != 空;
-		攻击方.hanzo_focus[1] > -1;
-	}
-
-	动作
-	{
-		伤害(范围内玩家(被攻击方, 3, 所在队伍(被攻击方), 表面), 攻击方, 30);
-		攻击方.hanzo_focus = 空;
 	}
 }
 
@@ -4179,11 +4198,10 @@
 				正在复制的英雄(事件玩家), 速度(事件玩家))), 左边, 0, 颜色(白色), 颜色(白色), 颜色(白色), 可见和字符串, 默认可见度);
 			生成机器人(英雄(西格玛), 队伍2, -1, 事件玩家, 矢量(0, 0, 0));
 			// 生成机器人(英雄(托比昂), 队伍1, -1, 事件玩家, 矢量(0, 0, 0));
-			// 事件玩家.debug_robot2 = 最后创建的实体;
 			// 设置状态(事件玩家.debug_robot2, 事件玩家.debug_robot2, 无法杀死, 99999);
 			生成机器人(英雄(艾什), 队伍2, -1, 事件玩家, 矢量(0, 0, 0));
 			生成机器人(英雄(渣客女王), 队伍2, -1, 事件玩家, 矢量(0, 0, 0));
-			生成机器人(英雄(安娜), 队伍2, -1, 事件玩家, 矢量(0, 0, 0));
+			事件玩家.debug_robot2 = 最后创建的实体;
 			生成机器人(英雄(卢西奥), 队伍2, -1, 事件玩家, 矢量(0, 0, 0));
 			事件玩家.debug_robot = 最后创建的实体;
 			// 设置最大生命值(事件玩家.debug_robot, 9999);
@@ -4191,12 +4209,13 @@
 		Else;
 			传送(所有玩家(所有队伍), 事件玩家);
 		End;
-		// 等待(0.2, 无视条件);
+		等待(0.5, 无视条件);
 		设置终极技能充能(事件玩家.debug_robot, 100);
-		// 设置终极技能充能(事件玩家.debug_robot2, 100);
-		等待(0.2, 无视条件);
+		设置终极技能充能(事件玩家.debug_robot2, 100);
+		设置技能冷却(事件玩家.debug_robot2, 按钮(技能1), 0);
+		等待(0.5, 无视条件);
 		开始按下按钮(事件玩家.debug_robot, 按钮(终极技能));
-		// 开始按下按钮(事件玩家.debug_robot2, 按钮(终极技能));
+		开始按下按钮(事件玩家.debug_robot2, 按钮(技能1));
 		// 等待(1, 无视条件);
 	}
 }
