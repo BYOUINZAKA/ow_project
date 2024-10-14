@@ -2660,13 +2660,14 @@
 	{
 		事件玩家.zenyata_flag = 空;
 
-		If(数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Zenyata Transcendence"))) > 0);
+		If(数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Zenyata Transcendence"))) == 1);
 			移除玩家的生命池(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Zenyata Transcendence"))[0][1]);
-			事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Zenyata Transcendence") ? 数组分割(当前数组元素, 0, 2) : 当前数组元素);
+			为玩家添加生命池(事件玩家, 生命值, 全局.args_zenyata[1], 假, 假);
+			事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Zenyata Transcendence") ? 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 6, 空, 自定义字符串("Zenyata Transcendence")) : 当前数组元素);
+		Else If(数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Zenyata Transcendence"))) == 0);
+			为玩家添加生命池(事件玩家, 生命值, 全局.args_zenyata[1], 假, 假);
+			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 6, 空, 自定义字符串("Zenyata Transcendence"));
 		End;
-
-		为玩家添加生命池(事件玩家, 生命值, 全局.args_zenyata[1], 假, 假);
-		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 6, 空, 自定义字符串("Zenyata Transcendence"));
 	}
 }
 
