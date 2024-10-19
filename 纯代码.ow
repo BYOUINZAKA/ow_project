@@ -41,8 +41,7 @@
 		12: torbjorn_Q_flag
 		13: torbjorn_Q_begin
 		14: kiriko_heal_target
-		15: mei_Q_timer
-		16: mei_s_flag
+		15: mei_s_timer
 		17: mei_Q_dec
 		18: reaper_shadow
 		19: hanzo_focus
@@ -50,6 +49,8 @@
 		21: roadhog_mates_flag
 		22: roadhog_hit_flag
 		23: mei_s_begin_time
+		24: mei_e_pos
+		26: mei_e_timer
 		30: lucio_debuff_clear
 		31: lucio_slice_dec
 		32: lucio_players
@@ -76,7 +77,6 @@
 		75: illari_poison
 		76: illari_i
 		77: soldier76_e_begin
-		78: zenyata_flag
 		80: winston_power
 		85: zarya_hp_record
 		86: zarya_hp_record_tmp
@@ -88,16 +88,16 @@
 		96: symmetra_Q_players
 		97: symmetra_Q_inedx
 		98: symmetra_demage
-		99: ana_q_flag
 		100: debug_robot
-		101: debug_1
+		101: sys_fastflag
 		102: debug_2
 		103: sys_data_record
 		104: debug_robot2
 		105: sys_default_status_pool
 		106: d_sys_status_thorns
 		107: sys_default_status_pool_i
-		109: sys_self_text
+		108: sys_self_text
+		109: sys_slowflag
 		110: junkerqueen_effect
 		111: junkerqueen_timer
 		112: junkerqueen_players
@@ -131,7 +131,7 @@
 		全局.t_enum_status_thorns = 9;
 		全局.t_enum_disable_button = 10;
 
-		全局.args_system[0] = 地图工坊设置整数(自定义字符串("系统"), 自定义字符串("资源回收间隔（ms）"), 10, 1, 1000, 0) * 0.001;
+		全局.args_system[0] = 地图工坊设置整数(自定义字符串("系统"), 自定义字符串("资源回收间隔（ms）"), 250, 1, 1000, 0) * 0.001;
 
 		全局.args_tracer[0] = 地图工坊设置整数(自定义字符串("猎空"), 自定义字符串("最大能量"), 50, 1, 200, 0);
 		全局.args_tracer[1] = 地图工坊设置整数(自定义字符串("猎空"), 自定义字符串("伤害池大小"), 150, 1, 500, 0);
@@ -147,21 +147,26 @@
 		全局.args_reaper[2] = 地图工坊设置实数(自定义字符串("死神"), 自定义字符串("幽灵形态-速度加成"), 50.0, 0.0, 100.0, 0);
 		全局.args_reaper[3] = 地图工坊设置实数(自定义字符串("死神"), 自定义字符串("幽灵形态-减伤比例"), 20.0, 0.0, 100.0, 0);
 		全局.args_reaper[4] = 地图工坊设置整数(自定义字符串("死神"), 自定义字符串("恐惧-子弹伤害"), 40.0, 0.0, 100.0, 0);
-		全局.args_reaper[5] = 地图工坊设置整数(自定义字符串("死神"), 自定义字符串("恐惧-子弹大小"), 10.0, 0.0, 100.0, 0) * 0.01;
+		全局.args_reaper[5] = 地图工坊设置整数(自定义字符串("死神"), 自定义字符串("恐惧-子弹大小"), 5.0, 0.0, 100.0, 0) * 0.01;
 		全局.args_reaper[6] = 地图工坊设置整数(自定义字符串("死神"), 自定义字符串("恐惧-弹道速度"), 750, 100, 1000, 0);
 		全局.args_reaper[7] = 地图工坊设置整数(自定义字符串("死神"), 自定义字符串("恐惧-持续时间（ms）"), 20, 1, 100, 0) * 0.001;
 
 		全局.cd_lucio_cd_dec = 0.100;
-		全局.ci_mei_shift_heal = 40;
+		全局.ci_mei_shift_heal = 50;
 		全局.ci_mei_shift_heal_time = 0.1;
 
-		全局.args_ana[0] = 地图工坊设置整数(自定义字符串("安娜"), 自定义字符串("群体激素-增伤比例"), 30, 0, 100, 0);
+		全局.args_ana[0] = 地图工坊设置整数(自定义字符串("安娜"), 自定义字符串("群体激素-伤害增幅比例"), 30, 0, 100, 0);
 		全局.args_ana[1] = 地图工坊设置整数(自定义字符串("安娜"), 自定义字符串("群体激素-减伤比例"), 30, 0, 100, 1);
 		全局.args_ana[2] = 地图工坊设置整数(自定义字符串("安娜"), 自定义字符串("群体激素-加速比例"), 10, 0, 100, 2);
+		全局.args_ana[3] = 地图工坊设置整数(自定义字符串("安娜"), 自定义字符串("群体激素-治疗增幅比例"), 30, 0, 100, 3);
+		全局.args_ana[4] = 地图工坊设置整数(自定义字符串("安娜"), 自定义字符串("主要武器-额外护盾"), 10, 0, 50, 4);
+		全局.args_ana[5] = 地图工坊设置整数(自定义字符串("安娜"), 自定义字符串("生物手雷-额外护盾"), 100, 0, 300, 5);
+		全局.args_ana[6] = 地图工坊设置整数(自定义字符串("安娜"), 自定义字符串("生物手雷-易伤效果"), 20, 0, 100, 6);
+		全局.args_ana[7] = 地图工坊设置整数(自定义字符串("安娜"), 自定义字符串("生物手雷-易伤持续时间"), 3.0, 0, 6.0, 7);
 
-		全局.args_ramattra[0] = 地图工坊设置整数(自定义字符串("拉玛刹"), 自定义字符串("伤害吸收比例-天罚形态"), 30, 0, 100, 0);
-		全局.args_ramattra[1] = 地图工坊设置整数(自定义字符串("拉玛刹"), 自定义字符串("伤害吸收比例-诛"), 60, 0, 100, 1);
-		全局.args_ramattra[2] = 地图工坊设置实数(自定义字符串("拉玛刹"), 自定义字符串("伤害吸收-治疗时间"), 0.1, 0.1, 1.0, 2);
+		全局.args_ramattra[0] = 地图工坊设置整数(自定义字符串("拉玛刹"), 自定义字符串("伤害吸收比例-天罚形态"), 30, 0, 100, 0) * 0.01;
+		全局.args_ramattra[1] = 地图工坊设置整数(自定义字符串("拉玛刹"), 自定义字符串("伤害吸收比例-诛"), 60, 0, 100, 1) * 0.01;
+		全局.args_ramattra[2] = 地图工坊设置实数(自定义字符串("拉玛刹"), 自定义字符串("伤害吸收-治疗时间"), 0.25, 0.1, 1.0, 2);
 
 		全局.args_junkerqueen[0] = 地图工坊设置整数(自定义字符串("渣客女王"), 自定义字符串("创伤-伤害降低效果"), 15, 0, 100, 0);
 		全局.args_junkerqueen[1] = 地图工坊设置整数(自定义字符串("渣客女王"), 自定义字符串("创伤-治疗降低效果"), 15, 0, 100, 1);
@@ -272,6 +277,7 @@
 				Else;
 					调用子程序(remove_default_status);
 				End;
+				等待(0.0, 无视条件);
 			End;
 			事件玩家.sys_default_status_pool = 已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素 != 空 && 数量(当前数组元素) > 1);
 		End;
@@ -724,13 +730,68 @@
 
 	动作
 	{
+		创建效果(事件玩家, 环, 颜色(天蓝色), 最近的可行走位置(事件玩家), 8.5, 可见，位置和半径);
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_effect, 最后创建的实体, 总计消耗时间, 5.0, 空, 自定义字符串("Mei Cryo-Freeze Ring"));
+
 		事件玩家.mei_s_begin_time = 总计消耗时间;
 		While(所用英雄(事件玩家) == 英雄(美) && 存活(事件玩家) && 总计消耗时间 - 事件玩家.mei_s_begin_time < 5.0);
-			范围内玩家(眼睛位置(事件玩家), 8.5, 所在队伍(事件玩家), 关闭).mei_s_flag = 事件玩家;
+			范围内玩家(眼睛位置(事件玩家), 8.5, 所在队伍(事件玩家), 关闭).sys_slowflag[0] = 事件玩家;
 			等待(1.0, 无视条件);
 		End;
+
 		等待直到(!(正在使用技能 1(事件玩家) == 真 && 所用英雄(事件玩家) == 英雄(美)), 99999);
+		事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Cryo-Freeze Ring") ? 数组分割(当前数组元素, 0, 2) : 当前数组元素);
 		事件玩家.mei_s_begin_time = 空;
+	}
+}
+
+规则("美-E")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		所用英雄(事件玩家) == 英雄(美);
+		正在使用技能 2(事件玩家) == 真;
+		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 真;
+		事件玩家.mei_e_pos == 空;
+	}
+
+	动作
+	{
+		事件玩家.mei_e_pos = 射线命中位置(眼睛位置(事件玩家), 眼睛位置(事件玩家) + 面朝方向(事件玩家) * 25, 空, 事件玩家, 假);
+
+		等待(0.25, 无视条件);
+
+		创建效果(所有玩家(所有队伍), 光柱, 颜色(天蓝色), 事件玩家.mei_e_pos, 1.0, 位置，半径和颜色);
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_effect, 最后创建的实体, 总计消耗时间, 6.0, 空, 自定义字符串("Mei Ice Wall Center"));
+
+		播放效果(所有玩家(所有队伍), 环状爆炸, 颜色(蓝色), 事件玩家.mei_e_pos, 6.5);
+		播放效果(所有玩家(所有队伍), 环状爆炸声音, 颜色(白色), 事件玩家.mei_e_pos, 6.5);
+		开始持续伤害(已过滤的数组(范围内玩家(最近的可行走位置(事件玩家.mei_e_pos), 6.5, 对方队伍(所在队伍(事件玩家)), 关闭), 存活(当前数组元素)), 事件玩家, 0.1, 600);
+
+		创建效果(事件玩家, 环, 颜色(天蓝色), 最近的可行走位置(事件玩家.mei_e_pos), 12.5, 可见，位置和半径);
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_effect, 最后创建的实体, 总计消耗时间, 6.0, 空, 自定义字符串("Mei Ice Wall Ring"));
+
+		While(正在使用技能 2(事件玩家) == 真 && 所用英雄(事件玩家) == 英雄(美) && 事件玩家.mei_e_pos != 空);
+			已过滤的数组(范围内玩家(最近的可行走位置(事件玩家.mei_e_pos), 12.5, 所在队伍(事件玩家), 关闭), 存活(当前数组元素)).sys_slowflag[1] = 事件玩家;
+			等待直到(!正在使用技能 2(事件玩家), 1.0);
+		End;
+
+		事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Ice Wall Center") || 当前数组元素[5] == 自定义字符串("Mei Ice Wall Ring") ? 数组分割(当前数组元素, 0, 2) : 当前数组元素);
+
+		If(所用英雄(事件玩家) == 英雄(美));
+			播放效果(所有玩家(所有队伍), 环状爆炸, 颜色(蓝色), 事件玩家.mei_e_pos, 6.5);
+			播放效果(所有玩家(所有队伍), 环状爆炸声音, 颜色(白色), 事件玩家.mei_e_pos, 6.5);
+			开始持续伤害(已过滤的数组(范围内玩家(最近的可行走位置(事件玩家.mei_e_pos), 6.5, 对方队伍(所在队伍(事件玩家)), 关闭), 存活(当前数组元素)), 事件玩家, 0.1, 600);
+		End;
+
+		事件玩家.mei_e_pos = 空;
 	}
 }
 
@@ -745,34 +806,74 @@
 
 	条件
 	{
-		事件玩家.mei_s_flag != 空;
-		存活(事件玩家.mei_s_flag) == 真;
-		事件玩家.mei_Q_timer == 空;
+		事件玩家.sys_slowflag[0] != 空;
+		存活(事件玩家.sys_slowflag[0]) == 真;
+		事件玩家.mei_s_timer == 空;
 	}
 
 	动作
 	{
-		If(事件玩家 != 事件玩家.mei_s_flag);
-			开始持续治疗(事件玩家, 事件玩家.mei_s_flag, 全局.ci_mei_shift_heal_time, 全局.ci_mei_shift_heal / 全局.ci_mei_shift_heal_time);
-			事件玩家.mei_Q_timer = 数组(总计消耗时间, 生命值(事件玩家), 上一个持续治疗效果ID, 空);
+		If(!(事件玩家 == 事件玩家.sys_slowflag[0] && 正在使用技能 1(事件玩家)));
+			开始持续治疗(事件玩家, 事件玩家.sys_slowflag[0], 全局.ci_mei_shift_heal_time, 全局.ci_mei_shift_heal / 全局.ci_mei_shift_heal_time);
+			事件玩家.mei_s_timer = 数组(总计消耗时间, 生命值(事件玩家), 上一个持续治疗效果ID, 空);
 
 			等待直到(标准化生命值(事件玩家) >= 1.0, 全局.ci_mei_shift_heal_time);
-			停止持续治疗(事件玩家.mei_Q_timer[2]);
+			停止持续治疗(事件玩家.mei_s_timer[2]);
 
-			If(总计消耗时间 - 事件玩家.mei_Q_timer[0] < 全局.ci_mei_shift_heal_time && 标准化生命值(事件玩家) >= 1.0 && 最大生命值(事件玩家) - 事件玩家.mei_Q_timer[1] < 全局.ci_mei_shift_heal);
-				If(事件玩家.mei_Q_dec != 空);
-					移除玩家的生命池(事件玩家.mei_Q_dec);
+			If(总计消耗时间 - 事件玩家.mei_s_timer[0] < 全局.ci_mei_shift_heal_time && 标准化生命值(事件玩家) >= 1.0 && 最大生命值(事件玩家) - 事件玩家.mei_s_timer[1] < 全局.ci_mei_shift_heal);
+				If(数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Cryo-Freeze"))) == 1);
+					移除玩家的生命池(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Cryo-Freeze"))[0][1]);
+					为玩家添加生命池(事件玩家, 生命值, 较小(全局.ci_mei_shift_heal - (最大生命值(事件玩家) - 事件玩家.mei_s_timer[1]), 全局.ci_mei_shift_heal), 假, 假);
+					事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Cryo-Freeze") ? 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3.0, 空, 自定义字符串("Mei Cryo-Freeze")) : 当前数组元素);
+				Else If(数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Cryo-Freeze"))) == 0);
+					为玩家添加生命池(事件玩家, 生命值, 较小(全局.ci_mei_shift_heal - (最大生命值(事件玩家) - 事件玩家.mei_s_timer[1]), 全局.ci_mei_shift_heal), 假, 假);
+					事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3.0, 空, 自定义字符串("Mei Cryo-Freeze"));
 				End;
-
-				为玩家添加生命池(事件玩家, 生命值, 较小(全局.ci_mei_shift_heal - (最大生命值(事件玩家) - 事件玩家.mei_Q_timer[1]), 全局.ci_mei_shift_heal), 假, 假);
-				事件玩家.mei_Q_dec = 最后创建的生命池;
-				事件玩家.mei_s_flag.sys_default_status_pool[数量(事件玩家.mei_s_flag.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 事件玩家.mei_Q_dec, 总计消耗时间, 3.00, 英雄(美));
 			End;
 
 		End;
 
-		事件玩家.mei_Q_timer = 空;
-		事件玩家.mei_s_flag = 空;
+		事件玩家.mei_s_timer = 空;
+		事件玩家.sys_slowflag[0] = 空;
+	}
+}
+
+规则("美-e-过度治疗")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.sys_slowflag[1] != 空;
+		事件玩家.mei_e_timer == 空;
+	}
+
+	动作
+	{
+		开始持续治疗(事件玩家, 事件玩家.sys_slowflag[1], 全局.ci_mei_shift_heal_time, 全局.ci_mei_shift_heal / 全局.ci_mei_shift_heal_time);
+		事件玩家.mei_e_timer = 数组(总计消耗时间, 生命值(事件玩家), 上一个持续治疗效果ID, 空);
+
+		等待直到(标准化生命值(事件玩家) >= 1.0, 全局.ci_mei_shift_heal_time);
+		停止持续治疗(事件玩家.mei_e_timer[2]);
+
+		If(总计消耗时间 - 事件玩家.mei_e_timer[0] < 全局.ci_mei_shift_heal_time && 标准化生命值(事件玩家) >= 1.0 && 最大生命值(事件玩家) - 事件玩家.mei_e_timer[1] < 全局.ci_mei_shift_heal);
+			If(数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Ice Wall"))) == 1);
+				移除玩家的生命池(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Ice Wall"))[0][1]);
+				为玩家添加生命池(事件玩家, 生命值, 较小(全局.ci_mei_shift_heal - (最大生命值(事件玩家) - 事件玩家.mei_e_timer[1]), 全局.ci_mei_shift_heal), 假, 假);
+				事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Ice Wall") ? 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3.0, 空, 自定义字符串("Mei Ice Wall")) : 当前数组元素);
+			Else If(数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Ice Wall"))) == 0);
+				为玩家添加生命池(事件玩家, 生命值, 较小(全局.ci_mei_shift_heal - (最大生命值(事件玩家) - 事件玩家.mei_e_timer[1]), 全局.ci_mei_shift_heal), 假, 假);
+				事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3.0, 空, 自定义字符串("Mei Ice Wall"));
+			End;
+		End;
+
+		事件玩家.mei_e_timer = 空;
+		事件玩家.sys_slowflag[1] = 空;
 	}
 }
 
@@ -1086,18 +1187,22 @@
 	{
 		持续 - 每名玩家;
 		双方;
-		源氏;
+		全部;
 	}
 
 	条件
 	{
+		所用英雄(事件玩家) == 英雄(源氏);
 		正在使用技能 2(事件玩家) == 真;
 	}
 
 	动作
 	{
-		为玩家添加生命池(事件玩家, 护甲, 50, 真, 真);
-		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 5, 英雄(源氏));
+		等待直到(!正在使用技能 2(事件玩家) || 所用英雄(事件玩家) != 英雄(源氏), 2.5);
+		If(所用英雄(事件玩家) == 英雄(源氏) && !正在使用技能 2(事件玩家));
+			为玩家添加生命池(事件玩家, 护甲, 50, 真, 真);
+			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 6, 英雄(源氏));
+		End;
 	}
 }
 
@@ -1742,7 +1847,24 @@
 
 	动作
 	{
-		为玩家添加生命池(范围内玩家(眼睛位置(攻击方), 8.500, 所在队伍(攻击方), 表面及敌方屏障), 生命值, 最大生命值(被攻击方) * 0.15, 假, 假);
+		等待(0.1, 无视条件);
+		为玩家添加生命池(范围内玩家(眼睛位置(攻击方), 8.500, 所在队伍(攻击方), 表面及敌方屏障), 生命值, 最大生命值(被攻击方) * 0.03, 假, 假);
+		攻击方.sys_default_status_pool[数量(攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3, 英雄(布丽吉塔), 自定义字符串(
+			"Brigitte Shift"));
+		等待(0.1, 无视条件);
+		为玩家添加生命池(范围内玩家(眼睛位置(攻击方), 8.500, 所在队伍(攻击方), 表面及敌方屏障), 生命值, 最大生命值(被攻击方) * 0.03, 假, 假);
+		攻击方.sys_default_status_pool[数量(攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3, 英雄(布丽吉塔), 自定义字符串(
+			"Brigitte Shift"));
+		等待(0.1, 无视条件);
+		为玩家添加生命池(范围内玩家(眼睛位置(攻击方), 8.500, 所在队伍(攻击方), 表面及敌方屏障), 生命值, 最大生命值(被攻击方) * 0.03, 假, 假);
+		攻击方.sys_default_status_pool[数量(攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3, 英雄(布丽吉塔), 自定义字符串(
+			"Brigitte Shift"));
+		等待(0.1, 无视条件);
+		为玩家添加生命池(范围内玩家(眼睛位置(攻击方), 8.500, 所在队伍(攻击方), 表面及敌方屏障), 生命值, 最大生命值(被攻击方) * 0.03, 假, 假);
+		攻击方.sys_default_status_pool[数量(攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3, 英雄(布丽吉塔), 自定义字符串(
+			"Brigitte Shift"));
+		等待(0.1, 无视条件);
+		为玩家添加生命池(范围内玩家(眼睛位置(攻击方), 8.500, 所在队伍(攻击方), 表面及敌方屏障), 生命值, 最大生命值(被攻击方) * 0.03, 假, 假);
 		攻击方.sys_default_status_pool[数量(攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3, 英雄(布丽吉塔), 自定义字符串(
 			"Brigitte Shift"));
 	}
@@ -1815,37 +1937,11 @@
 
 	动作
 	{
-		创建弹道(“路霸”爆裂枪废铁球, 事件玩家, 空, 空, 至地图, 伤害, 对方队伍(所在队伍(事件玩家)), 全局.args_reaper[4], 2, 0, 有益爆炸, 爆炸声音, 全局.args_reaper[5], 全局.args_reaper[6], 全局.args_reaper[7], 0, 0, 0);
+		创建弹道(“路霸”爆裂枪废铁球, 事件玩家, 空, 面朝方向(事件玩家) + 矢量(随机实数(-0.040, 0.040), 随机实数(-0.040, 0.040), 随机实数(-0.040, 0.040)), 至地图, 伤害, 对方队伍(所在队伍(事件玩家)), 全局.args_reaper[4], 2, 0, 有益爆炸, 爆炸声音, 全局.args_reaper[5], 全局.args_reaper[6], 全局.args_reaper[7], 0, 0, 0);
 	}
 }
 
-规则("死神-暗影步-禁用")
-{
-	事件
-	{
-		持续 - 每名玩家;
-		双方;
-		死神;
-	}
-
-	条件
-	{
-		// 数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Reaper Wraith Form Disable"))) <= 0;
-		数量(事件玩家.sys_default_status_pool) <= 0;
-	}
-
-	动作
-	{
-		// 事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Reaper Wraith Form Disable") ? 数组分割(当前数组元素, 0, 2) : 当前数组元素);
-		// 等待直到(数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Reaper Wraith Form Disable"))) <= 0, 99999);
-
-		禁用按钮(事件玩家, 按钮(技能1));
-		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_disable_button, 数组(事件玩家, 按钮(技能1)), 总计消耗时间, -1, 英雄(死神), 自定义字符串(
-			"Reaper Wraith Form Disable"));
-	}
-}
-
-规则("死神-暗影步")
+规则("死神-幽灵形态")
 {
 	事件
 	{
@@ -1857,12 +1953,14 @@
 	条件
 	{
 		所用英雄(事件玩家) == 英雄(死神);
-		按钮被按下(事件玩家, 按钮(技能1)) == 真;
+		正在使用技能 1(事件玩家) == 真;
 		技能冷却时间(事件玩家, 按钮(技能1)) <= 0;
 	}
 
 	动作
 	{
+		取消主要动作(事件玩家);
+
 		设置技能冷却(事件玩家, 按钮(技能1), 全局.args_reaper[1]);
 		设置状态(事件玩家, 事件玩家, 相移, 0.5);
 
@@ -2199,10 +2297,10 @@
 	动作
 	{
 		If(事件技能 == 按钮(技能2));
-			为玩家添加生命池(受治疗者, 生命值, 100, 假, 假);
+			为玩家添加生命池(受治疗者, 生命值, 全局.args_ana[5], 假, 假);
 			受治疗者.sys_default_status_pool[数量(受治疗者.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 5.00, 空);
 		Else;
-			为玩家添加生命池(数组(受治疗者, 治疗者), 生命值, 20, 假, 假);
+			为玩家添加生命池(数组(受治疗者, 治疗者), 生命值, 全局.args_ana[4], 假, 假);
 			受治疗者.sys_default_status_pool[数量(受治疗者.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 1.00, 空);
 		End;
 	}
@@ -2221,12 +2319,13 @@
 	{
 		所用英雄(攻击方) == 英雄(安娜);
 		事件技能 == 按钮(技能2);
+		全局.args_ana[6] > 0;
 	}
 
 	动作
 	{
-		开始伤害调整(被攻击方, 所有玩家(所在队伍(攻击方)), 120, 受伤害者，伤害者及伤害百分比);
-		被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_damage_adjust, 上一个伤害调整ID, 总计消耗时间, 3, 空, 自定义字符串("Ana Biotic Grenade Vulnerable"));
+		开始伤害调整(被攻击方, 所有玩家(所在队伍(攻击方)), 100 + 全局.args_ana[6], 受伤害者，伤害者及伤害百分比);
+		被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_damage_adjust, 上一个伤害调整ID, 总计消耗时间, 全局.args_ana[7], 空, 自定义字符串("Ana Biotic Grenade Vulnerable"));
 	}
 }
 
@@ -2271,8 +2370,9 @@
 
 	动作
 	{
-		设置状态(事件玩家, 事件玩家, 击晕, 0.1);
-		所有玩家(所在队伍(事件玩家)).ana_q_flag = 事件玩家;
+		// 设置状态(事件玩家, 事件玩家, 击晕, 0.1);
+		取消主要动作(事件玩家);
+		所有玩家(所在队伍(事件玩家)).sys_slowflag[2] = 事件玩家;
 
 		治疗(所有玩家(所在队伍(事件玩家)), 事件玩家, 50);
 		开始助攻(事件玩家, 所有玩家(所在队伍(事件玩家)), 助攻者和目标);
@@ -2283,6 +2383,9 @@
 
 		开始伤害调整(所有玩家(所在队伍(事件玩家)), 所有玩家(对方队伍(所在队伍(事件玩家))), 100 - 全局.args_ana[1], 受伤害者和伤害者);
 		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_damage_adjust, 上一个伤害调整ID, 总计消耗时间, 8, 英雄(安娜), 空);
+
+		开始治疗调整(所有玩家(所有队伍), 所有玩家(所在队伍(事件玩家)), 100 + 全局.args_ana[3], 受治疗者，治疗者及治疗百分比);
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_heal_adjust, 上一个治疗调整ID, 总计消耗时间, 8, 英雄(安娜), 空);
 	}
 }
 
@@ -2297,18 +2400,18 @@
 
 	条件
 	{
-		事件玩家.ana_q_flag != 空;
+		事件玩家.sys_slowflag[2] != 空;
 	}
 
 	动作
 	{
 		事件玩家.i_sys_speed += 全局.args_ana[2];
-		事件玩家.ana_q_flag.sys_default_status_pool[数量(事件玩家.ana_q_flag.sys_default_status_pool)] = 数组(全局.t_enum_speed, 数组(事件玩家, 全局.args_ana[2]), 总计消耗时间, 8, 英雄(安娜), 空);
+		事件玩家.sys_slowflag[2].sys_default_status_pool[数量(事件玩家.sys_slowflag[2].sys_default_status_pool)] = 数组(全局.t_enum_speed, 数组(事件玩家, 全局.args_ana[2]), 总计消耗时间, 8, 英雄(安娜), 空);
 
 		创建效果(所有玩家(所有队伍), 安娜纳米激素强化效果, 颜色(蓝色), 事件玩家, 0, 可见，位置和半径);
-		事件玩家.ana_q_flag.sys_default_status_pool[数量(事件玩家.ana_q_flag.sys_default_status_pool)] = 数组(全局.t_enum_effect, 最后创建的实体, 总计消耗时间, 8, 英雄(安娜), 空);
+		事件玩家.sys_slowflag[2].sys_default_status_pool[数量(事件玩家.sys_slowflag[2].sys_default_status_pool)] = 数组(全局.t_enum_effect, 最后创建的实体, 总计消耗时间, 8, 英雄(安娜), 空);
 
-		事件玩家.ana_q_flag = 空;
+		事件玩家.sys_slowflag[2] = 空;
 	}
 }
 
@@ -2382,7 +2485,7 @@
 			攻击方.cassidy_distance = 0.0;
 		End;
 
-		为玩家添加生命池(攻击方, 生命值, (事件伤害 + 攻击方.cassidy_distance) * 0.1, 假, 假);
+		为玩家添加生命池(攻击方, 生命值, (事件伤害 + 攻击方.cassidy_distance) * 0.15, 假, 假);
 		攻击方.sys_default_status_pool[数量(攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3, 英雄(卡西迪));
 	}
 }
@@ -2703,7 +2806,7 @@
 	动作
 	{
 		While(所用英雄(事件玩家) == 英雄(禅雅塔) && 正在使用终极技能(事件玩家));
-			范围内玩家(眼睛位置(事件玩家), 10.5, 所在队伍(事件玩家), 表面及敌方屏障).zenyata_flag = 事件玩家;
+			范围内玩家(眼睛位置(事件玩家), 10.5, 所在队伍(事件玩家), 表面及敌方屏障).sys_fastflag[0] = 事件玩家;
 			等待(1.0, 无视条件);
 		End;
 	}
@@ -2720,13 +2823,13 @@
 
 	条件
 	{
-		事件玩家.zenyata_flag != 空;
+		事件玩家.sys_fastflag[0] != 空;
 		全局.args_zenyata[1] > 0;
 	}
 
 	动作
 	{
-		事件玩家.zenyata_flag = 空;
+		事件玩家.sys_fastflag[0] = 空;
 
 		If(数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Zenyata Transcendence"))) == 1);
 			移除玩家的生命池(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Zenyata Transcendence"))[0][1]);
@@ -3954,6 +4057,27 @@
 	}
 }
 
+规则("拉玛刹-掌心雷")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		拉玛刹;
+	}
+
+	条件
+	{
+		(正在使用技能 1(事件玩家) || 正在使用终极技能(事件玩家)) == 真;
+		正在使用主要武器(事件玩家) == 真;
+	}
+
+	动作
+	{
+		创建弹道(“回声”黏性炸弹, 事件玩家, 空, 空, 至地图, 伤害, 对方队伍(所有队伍), 40, 0, 0, 有益爆炸, 爆炸声音, 0.1, 105, 0.2, 0, 0, 0);
+	}
+}
+
 规则("拉玛刹-增加吸血")
 {
 	事件
@@ -3971,9 +4095,9 @@
 	动作
 	{
 		If(数量(事件玩家.ramattra_absorb) > 0);
-			事件玩家.ramattra_absorb[0] = 全局.args_ramattra[0] * 0.01;
+			事件玩家.ramattra_absorb[0] = 全局.args_ramattra[0];
 		Else;
-			事件玩家.ramattra_absorb = 数组(全局.args_ramattra[0] * 0.01, 0.0, 空, 空, 0, 0.0, 0.0, 0.0);
+			事件玩家.ramattra_absorb = 数组(全局.args_ramattra[0], 0.0, 空, 空, 0, 0.0, 0.0, 0.0);
 		End;
 	}
 }
@@ -3995,9 +4119,9 @@
 	动作
 	{
 		If(数量(事件玩家.ramattra_absorb) > 0);
-			事件玩家.ramattra_absorb[0] = 全局.args_ramattra[1] * 0.01;
+			事件玩家.ramattra_absorb[0] = 全局.args_ramattra[1];
 		Else;
-			事件玩家.ramattra_absorb = 数组(全局.args_ramattra[1] * 0.01, 0.0, 空, 空, 0, 0.0, 0.0, 0.0);
+			事件玩家.ramattra_absorb = 数组(全局.args_ramattra[1], 0.0, 空, 空, 0, 0.0, 0.0, 0.0);
 		End;
 	}
 }
@@ -4081,10 +4205,10 @@
 		所用英雄(攻击方) == 英雄(拉玛刹);
 		数量(攻击方.ramattra_absorb) > 0;
 		攻击方.ramattra_absorb[0] > 0;
-		(事件技能 == 按钮(技能1) || 事件技能 == 按钮(终极技能) || 事件技能 == 按钮(近身攻击) || 事件技能 == 按钮(技能2)) == 真;
+		(事件技能 == 按钮(技能1) || 事件技能 == 按钮(终极技能) || 事件技能 == 按钮(近身攻击) || 事件技能 == 按钮(技能2) || 事件技能 == 空) == 真;
 	}
 
-	动作
+	动作`
 	{
 		攻击方.ramattra_absorb[1] += 事件伤害 * 攻击方.ramattra_absorb[0];
 	}
@@ -4109,17 +4233,17 @@
 		If(被攻击方.reinhardt_shield[1] + 事件伤害 > 生命值(被攻击方) * 0.300);
 			被攻击方.reinhardt_shield = 数组(0, 0);
 			为玩家添加生命池(被攻击方, 生命值, 12 + (最大生命值(被攻击方) - 生命值(被攻击方)) * 0.020, 假, 假);
-			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 0.500, 英雄(莱因哈特));
+			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 1.00, 英雄(莱因哈特));
 			为玩家添加生命池(被攻击方, 生命值, 12 + (最大生命值(被攻击方) - 生命值(被攻击方)) * 0.020, 假, 假);
-			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 1, 英雄(莱因哈特));
+			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 1.50, 英雄(莱因哈特));
 			为玩家添加生命池(被攻击方, 生命值, 12 + (最大生命值(被攻击方) - 生命值(被攻击方)) * 0.020, 假, 假);
-			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 1.500, 英雄(莱因哈特));
+			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 2.00, 英雄(莱因哈特));
 			为玩家添加生命池(被攻击方, 生命值, 12 + (最大生命值(被攻击方) - 生命值(被攻击方)) * 0.020, 假, 假);
-			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 2, 英雄(莱因哈特));
+			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 2.50, 英雄(莱因哈特));
 			为玩家添加生命池(被攻击方, 生命值, 12 + (最大生命值(被攻击方) - 生命值(被攻击方)) * 0.020, 假, 假);
-			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 2.500, 英雄(莱因哈特));
+			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3.00, 英雄(莱因哈特));
 			为玩家添加生命池(被攻击方, 生命值, 12 + (最大生命值(被攻击方) - 生命值(被攻击方)) * 0.020, 假, 假);
-			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3, 英雄(莱因哈特));
+			被攻击方.sys_default_status_pool[数量(被攻击方.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3.50, 英雄(莱因哈特));
 			等待(10, 当为“假”时中止);
 		End;
 		被攻击方.reinhardt_shield = 数组(3, 被攻击方.reinhardt_shield[1] + 事件伤害);
@@ -4273,55 +4397,24 @@
 
 	动作
 	{
-		禁用按钮(事件玩家, 按钮(主要攻击模式));
-		禁用按钮(事件玩家, 按钮(辅助攻击模式));
-		等待(0.5, 无视条件);
+		// 禁用按钮(事件玩家, 按钮(主要攻击模式));
+		// 禁用按钮(事件玩家, 按钮(辅助攻击模式));
+		// 等待(0.5, 无视条件);
+
+		取消主要动作(事件玩家);
 
 		If(存活(事件玩家) && 所用英雄(事件玩家) == 英雄(托比昂));
 			事件玩家.torbjorn_Q_begin = 数组(范围内玩家(事件玩家, 30, 所在队伍(事件玩家), 关闭), 总计消耗时间);
 			事件玩家.torbjorn_Q_begin[0].torbjorn_Q_flag = 事件玩家;
 
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
-			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 0.5, 英雄(托比昂));
-
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
-			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 1.0, 英雄(托比昂));
-
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
-			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 1.5, 英雄(托比昂));
-
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
-			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 2.0, 英雄(托比昂));
-
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
-			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 2.5, 英雄(托比昂));
-
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
-			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 3.0, 英雄(托比昂));
-
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
-			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 3.5, 英雄(托比昂));
-
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
-			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 4.0, 英雄(托比昂));
-
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
-			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 4.5, 英雄(托比昂));
-
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
-			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 5.0, 英雄(托比昂));
-
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
-			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 5.5, 英雄(托比昂));
-
-			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 40, 真, 真);
+			为玩家添加生命池(事件玩家.torbjorn_Q_begin[0], 护甲, 600 - (总计消耗时间 - 事件玩家.torbjorn_Q_begin[1]) * 100, 真, 真);
 			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 事件玩家.torbjorn_Q_begin[1], 6.0, 英雄(托比昂));
 		End;
 
-		等待直到(所用英雄(事件玩家) != 英雄(托比昂) || !正在使用终极技能(事件玩家), 3.0);
+		// 等待直到(所用英雄(事件玩家) != 英雄(托比昂) || !正在使用终极技能(事件玩家), 3.0);
 
-		可用按钮(事件玩家, 按钮(主要攻击模式));
-		可用按钮(事件玩家, 按钮(辅助攻击模式));
+		// 可用按钮(事件玩家, 按钮(主要攻击模式));
+		// 可用按钮(事件玩家, 按钮(辅助攻击模式));
 	}
 }
 
@@ -4399,24 +4492,6 @@
 	}
 }
 
-规则("")
-{
-	事件
-	{
-		持续 - 每名玩家;
-		双方;
-		全部;
-	}
-
-	动作
-	{
-		While(真);
-			事件玩家.debug_1 = 自定义字符串("{0} {1}", 事件玩家.illari_poison[0][1], 事件玩家.illari_poison[0][2]);
-			等待(0.100, 无视条件);
-		End;
-	}
-}
-
 规则("debug")
 {
 	事件
@@ -4449,7 +4524,8 @@
 			生成机器人(英雄(禅雅塔), 队伍2, -1, 事件玩家, 矢量(0, 0, 0));
 			事件玩家.debug_robot = 最后创建的实体;
 			// 设置最大生命值(事件玩家.debug_robot, 9999);
-			开始持续伤害(所有玩家(所在队伍(事件玩家)), 事件玩家.debug_robot2, 99999, 10);
+			// 开始持续伤害(所有玩家(所在队伍(事件玩家)), 事件玩家.debug_robot2, 99999, 10);
+			开始持续伤害(所有玩家(所在队伍(事件玩家)), 所有玩家(对方队伍(所在队伍(事件玩家))), 99999, 10);
 		Else;
 			传送(所有玩家(所有队伍), 事件玩家);
 		End;
