@@ -27,3 +27,42 @@
 		End;
 	}
 }
+
+规则("美-e-过度治疗")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		事件玩家.sys_slowflag[1] != 空;
+		事件玩家.mei_e_timer == 空;
+	}
+
+	动作
+	{
+		开始持续治疗(事件玩家, 事件玩家.sys_slowflag[1], 全局.ci_mei_shift_heal_time, 全局.ci_mei_shift_heal / 全局.ci_mei_shift_heal_time);
+		事件玩家.mei_e_timer = 数组(总计消耗时间, 生命值(事件玩家), 上一个持续治疗效果ID, 空);
+
+		等待直到(标准化生命值(事件玩家) >= 1.0, 全局.ci_mei_shift_heal_time);
+		停止持续治疗(事件玩家.mei_e_timer[2]);
+
+		If(总计消耗时间 - 事件玩家.mei_e_timer[0] < 全局.ci_mei_shift_heal_time && 标准化生命值(事件玩家) >= 1.0 && 最大生命值(事件玩家) - 事件玩家.mei_e_timer[1] < 全局.ci_mei_shift_heal);
+			If(数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Ice Wall"))) == 1);
+				移除玩家的生命池(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Ice Wall"))[0][1]);
+				为玩家添加生命池(事件玩家, 生命值, 较小(全局.ci_mei_shift_heal - (最大生命值(事件玩家) - 事件玩家.mei_e_timer[1]), 全局.ci_mei_shift_heal), 假, 假);
+				事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Ice Wall") ? 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3.0, 空, 自定义字符串("Mei Ice Wall")) : 当前数组元素);
+			Else If(数量(已过滤的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Mei Ice Wall"))) == 0);
+				为玩家添加生命池(事件玩家, 生命值, 较小(全局.ci_mei_shift_heal - (最大生命值(事件玩家) - 事件玩家.mei_e_timer[1]), 全局.ci_mei_shift_heal), 假, 假);
+				事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3.0, 空, 自定义字符串("Mei Ice Wall"));
+			End;
+		End;
+
+		事件玩家.mei_e_timer = 空;
+		事件玩家.sys_slowflag[1] = 空;
+	}
+}
