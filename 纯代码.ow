@@ -39,7 +39,6 @@
 		8: tracer_hit
 		9: tracer_hit_last
 		10: reinhardt_shield
-		11: i_sys_assists
 		12: torbjorn_Q_flag
 		13: torbjorn_Q_begin
 		14: kiriko_heal_target
@@ -93,7 +92,6 @@
 		100: debug_robot
 		101: sys_fastflag
 		102: debug_2
-		103: sys_data_record
 		104: debug_robot2
 		105: sys_default_status_pool
 		106: a_sys_user_status
@@ -366,26 +364,6 @@
 	}
 }
 
-规则("个人数据面板")
-{
-	事件
-	{
-		持续 - 每名玩家;
-		双方;
-		全部;
-	}
-
-	条件
-	{
-		(事件玩家.sys_data_record == 空 || 数量(事件玩家.sys_data_record) <= 0 || 所用英雄(事件玩家) != 事件玩家.sys_data_record[0]) == 真;
-	}
-
-	动作
-	{
-		事件玩家.sys_data_record = 数组(所用英雄(事件玩家));
-	}
-}
-
 规则("目标点减伤")
 {
 	事件
@@ -435,24 +413,6 @@
 			等待直到 (事件玩家.i_sys_pre_speed != 事件玩家.i_sys_speed, 9999);
 			设置移动速度(事件玩家, 100 + 事件玩家.i_sys_speed);
 			事件玩家.i_sys_pre_speed = 事件玩家.i_sys_speed;
-		End;
-	}
-}
-
-规则("系统-助攻")
-{
-	事件
-	{
-		持续 - 每名玩家;
-		双方;
-		全部;
-	}
-
-	动作
-	{
-		While(真);
-			等待直到(玩家数据(事件玩家, 消灭) != 事件玩家.i_sys_assists, 99999);
-			事件玩家.i_sys_assists = 玩家数据(事件玩家, 消灭);
 		End;
 	}
 }
@@ -2388,7 +2348,6 @@
 	{
 		为玩家添加生命池(事件玩家, 生命值, (最大生命值(事件玩家) - 生命值(事件玩家)) * 0.400, 假, 假);
 		事件玩家.baptiste_shift_hp = 最后创建的生命池;
-		事件玩家.sys_data_record[1] += (最大生命值(事件玩家) - 生命值(事件玩家)) * 0.400;
 		等待(3, 无视条件);
 		移除玩家的生命池(事件玩家.baptiste_shift_hp);
 	}
