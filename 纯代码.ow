@@ -112,6 +112,7 @@
 子程序
 {
 	0: remove_default_status
+	1: do_energy_hp_loop
 }
 
 规则("常量")
@@ -138,7 +139,7 @@
 		全局.t_enum_status_golden = 13;
 
 		全局.a_sys_all_buttons = 数组(按钮(主要攻击模式), 按钮(互动), 按钮(技能1), 按钮(技能2), 按钮(终极技能), 按钮(装填), 按钮(跳跃), 按钮(蹲下), 按钮(辅助攻击模式), 按钮(近身攻击));
-		全局.i_sys_score_offset = 8;
+		全局.i_sys_score_offset = 15;
 
 		全局.args_system[0] = 地图工坊设置整数(自定义字符串("系统"), 自定义字符串("资源回收-间隔（ms）"), 250, 1, 1000, 0) * 0.001;
 		全局.args_system[1] = 地图工坊设置整数(自定义字符串("系统"), 自定义字符串("资源回收-调度间隔"), 5, 1, 20, 0);
@@ -706,6 +707,66 @@
 	}
 }
 
+规则("能量运营-HP循环")
+{
+	事件
+	{
+		子程序;
+		do_energy_hp_loop;
+	}
+
+	动作
+	{	
+		事件玩家.sys_ultra_score[全局.i_sys_score_offset+1] = 0;	// 遍历索引
+		事件玩家.sys_ultra_score[全局.i_sys_score_offset+2] = 0.0;	// 遍历总分
+		事件玩家.sys_ultra_score[全局.i_sys_score_offset+3] = 0;	// 遍历总数
+		事件玩家.sys_ultra_score[全局.i_sys_score_offset+4] = 空;	// 遍历的当前玩家
+		事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] = 0;	// 当前权重
+		事件玩家.sys_ultra_score[全局.i_sys_score_offset+6] = 0;	// 超出有效范围的数量
+		事件玩家.sys_ultra_score[全局.i_sys_score_offset+7] = 所有玩家(所在队伍(事件玩家));
+
+		While(事件玩家.sys_ultra_score[全局.i_sys_score_offset+1] < 数量(事件玩家.sys_ultra_score[全局.i_sys_score_offset+7]));
+			If(!存活(事件玩家));
+				中断;
+			End;
+
+			事件玩家.sys_ultra_score[全局.i_sys_score_offset+4] = 事件玩家.sys_ultra_score[全局.i_sys_score_offset+7][事件玩家.sys_ultra_score[全局.i_sys_score_offset+1]];
+
+			If(数组包含(所有重装英雄, 所用英雄(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4])));
+				If(标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) > 0.8 || 类型的生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4], 护甲) > 0);
+					事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] = 事件玩家.sys_ultra_score[4];
+				Else;
+					事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] = 事件玩家.sys_ultra_score[5];
+				End;
+			Else If(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4] == 事件玩家);
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] = 事件玩家.sys_ultra_score[3];
+			Else;
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] = 1.0;
+			End;
+
+			If(标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) <= 0.1);
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] *= 事件玩家.sys_ultra_score[8];
+			Else If(标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) <= 0.3);
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] *= 事件玩家.sys_ultra_score[7];
+			Else If(标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) <= 0.5);
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] *= 事件玩家.sys_ultra_score[6];
+			End;
+
+			事件玩家.sys_ultra_score[全局.i_sys_score_offset+3] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+5];
+
+			If(!存活(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) || 相距距离(事件玩家, 事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) > 事件玩家.sys_ultra_score[0]);
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+2] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] * (1 + 事件玩家.sys_ultra_score[全局.i_sys_score_offset+6] * 事件玩家.sys_ultra_score[9]) * 1.0;
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+6] += 1;
+			Else;
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+2] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] * 标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]);
+			End;
+
+			事件玩家.sys_ultra_score[全局.i_sys_score_offset+1] += 1;
+			等待(0.0, 无视条件);
+		End;
+	}
+}
+
 规则("能量运营子系统")
 {
 	事件
@@ -728,66 +789,35 @@
 
 	动作
 	{
-		// 事件玩家.sys_button_list[数组值的索引(全局.a_sys_all_buttons, 按钮(终极技能))] += 1;
-		// 事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_disable_button, 数组(事件玩家, 按钮(终极技能)), 总计消耗时间, -1, 所用英雄(事件玩家), 自定义字符串("SYS_ULTRA_SUBSYSTEM"));
-
 		If(所用英雄(事件玩家) == 英雄(禅雅塔));
-			事件玩家.sys_ultra_score = 数组(50, 15, 所用英雄(事件玩家), 1.0, 0.5);
+			事件玩家.sys_ultra_score = 数组(50, 20, 所用英雄(事件玩家), 1.3, 1.0, 1.1, 1.5, 2.5, 3.5, 0.3);
 		Else If(所用英雄(事件玩家) == 英雄(布丽吉塔));
-			事件玩家.sys_ultra_score = 数组(60, 15, 所用英雄(事件玩家), 0.6, 0.8);
+			事件玩家.sys_ultra_score = 数组(65, 20, 所用英雄(事件玩家), 1.1, 1.0, 1.2, 2.5, 2.5, 3.0, 0.3);
 		Else If(所用英雄(事件玩家) == 英雄(卢西奥));
-			事件玩家.sys_ultra_score = 数组(60, 30, 所用英雄(事件玩家), 0.5, 0.8);
+			事件玩家.sys_ultra_score = 数组(60, 30, 所用英雄(事件玩家), 1.5, 1.0, 1.2, 1.5, 2.0, 3.0, 0.3);
 		End;
 
 		While(终极技能充能百分比(事件玩家) >= 100 && !正在使用终极技能(事件玩家) && 所用英雄(事件玩家) == 事件玩家.sys_ultra_score[2] && 存活(事件玩家));
+			禁用按钮(事件玩家, 按钮(终极技能));
 			事件玩家.sys_ultra_score[全局.i_sys_score_offset+0] = 0.0;	// 总分数
-			事件玩家.sys_ultra_score[全局.i_sys_score_offset+1] = 0;	// 遍历索引
-			事件玩家.sys_ultra_score[全局.i_sys_score_offset+2] = 0.0;	// 遍历总分
-			事件玩家.sys_ultra_score[全局.i_sys_score_offset+3] = 0;	// 遍历总数
-			事件玩家.sys_ultra_score[全局.i_sys_score_offset+4] = 空;	// 遍历的当前玩家
-			事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] = 0;	// 当前权重
 
-			While(事件玩家.sys_ultra_score[全局.i_sys_score_offset+1] < 数量(所有玩家(所在队伍(事件玩家))));
-				事件玩家.sys_ultra_score[全局.i_sys_score_offset+4] = 此栏位的玩家(事件玩家.sys_ultra_score[全局.i_sys_score_offset+1], 所在队伍(事件玩家));
-				If(数组包含(所有玩家(所在队伍(事件玩家)), 事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]));
-					If(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4] == 事件玩家);
-						If(!存活(事件玩家));
-							中断;
-						End;
-						事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] = 事件玩家.sys_ultra_score[3];
-					Else If(数组包含(所有重装英雄, 所用英雄(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4])));
-						事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] = 事件玩家.sys_ultra_score[4];
-					Else;
-						事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] = 1.0;
-					End;
-					事件玩家.sys_ultra_score[全局.i_sys_score_offset+3] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+5];
-
-					If(!存活(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) || 相距距离(事件玩家, 事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) > 事件玩家.sys_ultra_score[0]);
-						事件玩家.sys_ultra_score[全局.i_sys_score_offset+2] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] * 1.0;
-					Else;
-						事件玩家.sys_ultra_score[全局.i_sys_score_offset+2] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] * 标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]);
-					End;
-				End;
-
-				事件玩家.sys_ultra_score[全局.i_sys_score_offset+1] += 1;
-				等待(0.0, 无视条件);
-			End;
+			调用子程序(do_energy_hp_loop);
 
 			事件玩家.sys_ultra_score[全局.i_sys_score_offset+0] = 100.0 * 较小((事件玩家.sys_ultra_score[全局.i_sys_score_offset+2] / 事件玩家.sys_ultra_score[全局.i_sys_score_offset+3]), 1.0);
 
 			If(事件玩家.sys_ultra_score[全局.i_sys_score_offset+0] < 事件玩家.sys_ultra_score[0] && 终极技能充能百分比(事件玩家) >= 100);
-				// 事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("SYS_ULTRA_SUBSYSTEM") ? 数组分割(当前数组元素, 0, 2) : 当前数组元素);
-				// 等待直到(对全部为“真”(事件玩家.sys_default_status_pool, 当前数组元素[5] != 自定义字符串("SYS_ULTRA_SUBSYSTEM")), 99999);
+				可用按钮(事件玩家, 按钮(终极技能));
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+0] = 0.0;
+
 				按下按键(事件玩家, 按钮(终极技能));
-				等待直到(正在使用终极技能(事件玩家), 99999);
+				等待直到(正在使用终极技能(事件玩家) || 终极技能充能百分比(事件玩家) < 100 || !存活(事件玩家), 1.0);
 				停止按下按钮(事件玩家, 按钮(终极技能));
 			End;
 
 			等待直到(!(终极技能充能百分比(事件玩家) >= 100 && !正在使用终极技能(事件玩家) && 所用英雄(事件玩家) == 事件玩家.sys_ultra_score[2] && 存活(事件玩家)), 随机实数(0.05, 0.2));
 		End;
 
-		// 事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("SYS_ULTRA_SUBSYSTEM") ? 数组分割(当前数组元素, 0, 2) : 当前数组元素);
-		// 等待直到(对全部为“真”(事件玩家.sys_default_status_pool, 当前数组元素[5] != 自定义字符串("SYS_ULTRA_SUBSYSTEM")), 99999);
+		可用按钮(事件玩家, 按钮(终极技能));
 		事件玩家.sys_ultra_score = 空;
 	}
 }
@@ -1037,7 +1067,7 @@
 		所用英雄(事件玩家) == 英雄(美);
 		正在使用技能 2(事件玩家) == 真;
 		按钮被按下(事件玩家, 按钮(主要攻击模式)) == 真;
-		事件玩家.mei_e_pos == 空;
+		// 事件玩家.mei_e_pos == 空;
 	}
 
 	动作
@@ -1049,13 +1079,13 @@
 
 		播放效果(所有玩家(所有队伍), 环状爆炸, 颜色(蓝色), 事件玩家.mei_e_pos, 全局.args_mei[12]);
 		播放效果(所有玩家(所有队伍), 环状爆炸声音, 颜色(白色), 事件玩家.mei_e_pos, 全局.args_mei[12]);
-		开始持续伤害(已过滤的数组(范围内玩家(最近的可行走位置(事件玩家.mei_e_pos), 全局.args_mei[12], 对方队伍(所在队伍(事件玩家)), 关闭), 存活(当前数组元素) && !具有状态(当前数组元素, 相移)), 事件玩家, 全局.args_mei[11], 全局.args_mei[10] / 全局.args_mei[11]);
+		开始持续伤害(已过滤的数组(范围内玩家(事件玩家.mei_e_pos, 全局.args_mei[12], 对方队伍(所在队伍(事件玩家)), 关闭), 存活(当前数组元素) && !具有状态(当前数组元素, 相移)), 事件玩家, 全局.args_mei[11], 全局.args_mei[10] / 全局.args_mei[11]);
 
-		创建效果(事件玩家, 环, 颜色(天蓝色), 最近的可行走位置(事件玩家.mei_e_pos), 全局.args_mei[8], 可见，位置和半径);
+		创建效果(事件玩家, 环, 颜色(天蓝色), 事件玩家.mei_e_pos, 全局.args_mei[8], 可见，位置和半径);
 		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_effect, 最后创建的实体, 总计消耗时间, 全局.args_mei[9], 空, 自定义字符串("Mei Ice Wall Ring"));
 
 		While(正在使用技能 2(事件玩家) == 真 && 所用英雄(事件玩家) == 英雄(美) && 事件玩家.mei_e_pos != 空);
-			已过滤的数组(范围内玩家(最近的可行走位置(事件玩家.mei_e_pos), 全局.args_mei[8], 所在队伍(事件玩家), 关闭), 存活(当前数组元素)).sys_slowflag[1] = 事件玩家;
+			已过滤的数组(范围内玩家(事件玩家.mei_e_pos, 全局.args_mei[8], 所在队伍(事件玩家), 关闭), 存活(当前数组元素)).sys_slowflag[1] = 事件玩家;
 			等待直到(!正在使用技能 2(事件玩家), 1.0);
 		End;
 
@@ -1064,7 +1094,7 @@
 		If(所用英雄(事件玩家) == 英雄(美) && !正在使用技能 2(事件玩家));
 			播放效果(所有玩家(所有队伍), 环状爆炸, 颜色(蓝色), 事件玩家.mei_e_pos, 全局.args_mei[12]);
 			播放效果(所有玩家(所有队伍), 环状爆炸声音, 颜色(白色), 事件玩家.mei_e_pos, 全局.args_mei[12]);
-			开始持续伤害(已过滤的数组(范围内玩家(最近的可行走位置(事件玩家.mei_e_pos), 全局.args_mei[12], 对方队伍(所在队伍(事件玩家)), 关闭), 存活(当前数组元素) && !具有状态(当前数组元素, 相移)), 事件玩家, 全局.args_mei[11], 全局.args_mei[10] / 全局.args_mei[11]);
+			开始持续伤害(已过滤的数组(范围内玩家(事件玩家.mei_e_pos, 全局.args_mei[12], 对方队伍(所在队伍(事件玩家)), 关闭), 存活(当前数组元素) && !具有状态(当前数组元素, 相移)), 事件玩家, 全局.args_mei[11], 全局.args_mei[10] / 全局.args_mei[11]);
 		End;
 
 		事件玩家.mei_e_pos = 空;
@@ -1685,6 +1715,7 @@
 		设置技能冷却(事件玩家, 按钮(辅助攻击模式), 0);
 		设置技能冷却(事件玩家, 按钮(技能1), 0);
 		设置技能冷却(事件玩家, 按钮(技能2), 0);
+		设置技能充能(事件玩家, 按钮(技能2), 5);
 
 		开始伤害调整(事件玩家, 所有玩家(所有队伍), 70, 受伤害者，伤害者及伤害百分比);
 		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_damage_adjust, 上一个伤害调整ID, 总计消耗时间, 11, 英雄(布丽吉塔),
@@ -2164,18 +2195,18 @@
 	条件
 	{
 		所用英雄(事件玩家) == 英雄(布丽吉塔);
-		正在使用辅助武器(事件玩家) == 真;
+		(正在使用辅助武器(事件玩家) || 正在使用终极技能(事件玩家)) == 真;
 	}
 
 	动作
 	{
-		创建效果(正在使用辅助武器(事件玩家) ? 所有玩家(所有队伍) : 空, 环, 自定义颜色(248, 213, 97, 171), 事件玩家, 8.5, 可见，位置和半径);
+		创建效果((正在使用辅助武器(事件玩家) || 正在使用终极技能(事件玩家)) ? 所有玩家(所有队伍) : 空, 环, 颜色(橙色), 事件玩家, 8.5, 可见，位置和半径);
 		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_effect, 最后创建的实体, 总计消耗时间, -1, 英雄(布丽吉塔), 自定义字符串(
 			"Brigitte Barrier Shield"));
 
-		While(正在使用辅助武器(事件玩家) && 所用英雄(事件玩家) == 英雄(布丽吉塔));
-			开始持续治疗(范围内玩家(眼睛位置(事件玩家), 8.5, 所在队伍(事件玩家), 表面及敌方屏障), 事件玩家, 0.500, 正在使用终极技能(事件玩家) ? 50 : 10);
-			等待直到 (!正在使用辅助武器(事件玩家), 0.500);
+		While((正在使用辅助武器(事件玩家) || 正在使用终极技能(事件玩家)) && 所用英雄(事件玩家) == 英雄(布丽吉塔));
+			开始持续治疗(范围内玩家(眼睛位置(事件玩家), 8.5, 所在队伍(事件玩家), 表面及敌方屏障), 事件玩家, 0.500, 正在使用终极技能(事件玩家) ? 40 : 10);
+			等待直到 (!正在使用辅助武器(事件玩家) && !正在使用终极技能(事件玩家), 0.500);
 		End;
 
 		事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Brigitte Barrier Shield") ? 数组分割(当前数组元素, 0,
@@ -2219,6 +2250,8 @@
 	{
 		(所用英雄(攻击方) == 英雄(布丽吉塔) || 正在复制的英雄(攻击方) == 英雄(布丽吉塔)) == 真;
 		事件技能 == 按钮(技能1);
+		被攻击方.a_sys_user_status[全局.t_enum_status_immunity] <= 0.0;
+		((所用英雄(被攻击方) != 英雄(奥丽莎)) || (所用英雄(被攻击方) == 英雄(奥丽莎) && !正在使用技能 1(被攻击方))) == 真;
 	}
 
 	动作
