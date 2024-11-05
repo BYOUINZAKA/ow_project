@@ -15,6 +15,7 @@
 		11: t_enum_timer
 		12: t_enum_status_immunity
 		13: t_enum_status_golden
+		14: t_enum_heal_continued
 		20: args_tracer
 		21: args_zenyata
 		22: args_reaper
@@ -115,6 +116,7 @@
 {
 	0: remove_default_status
 	1: do_energy_hp_loop
+	10: cb_ramattra_overheal
 }
 
 规则("常量")
@@ -139,6 +141,7 @@
 		全局.t_enum_timer = 11;
 		全局.t_enum_status_immunity = 12;
 		全局.t_enum_status_golden = 13;
+		全局.t_enum_heal_continued = 14;
 
 		全局.a_sys_all_buttons = 数组(按钮(主要攻击模式), 按钮(互动), 按钮(技能1), 按钮(技能2), 按钮(终极技能), 按钮(装填), 按钮(跳跃), 按钮(蹲下), 按钮(辅助攻击模式), 按钮(近身攻击));
 		全局.i_sys_score_offset = 15;
@@ -284,7 +287,14 @@
 			事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][1].a_sys_user_status[全局.t_enum_status_immunity] -= 1;
 		Else If(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][0] == 全局.t_enum_status_golden);
 			事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][1][0].a_sys_user_status[全局.t_enum_status_golden] -= 事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][1][1];
+		Else If(绝对值(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][0]) == 全局.t_enum_heal_continued && 事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][1] > 0);
+			停止持续治疗(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][1]);
 		End;
+
+		If(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][6] == 10);
+			调用子程序(cb_ramattra_overheal);
+		End;
+
 		事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i] = 空;
 	}
 }
@@ -305,6 +315,8 @@
 			等待(全局.args_system[0], 无视条件);
 			For 玩家变量(事件玩家, sys_default_status_pool_i, 数量(事件玩家.sys_default_status_pool) - 1, -1, -1);
 				If(数量(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i]) == 2);
+					调用子程序(remove_default_status);
+				Else If(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][0] == 空 || 事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][0] < 0);
 					调用子程序(remove_default_status);
 				Else If(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][4] == 空 || 所用英雄(事件玩家)
 						== 事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][4]);
@@ -4641,7 +4653,7 @@
 
 	动作
 	{
-		创建弹道(“回声”黏性炸弹, 事件玩家, 空, 空, 至地图, 伤害, 对方队伍(所有队伍), 40, 0, 0, 有益爆炸, 爆炸声音, 0.1, 105, 0.2, 0, 0, 0);
+		创建弹道(“回声”黏性炸弹, 事件玩家, 空, 空, 至地图, 伤害, 对方队伍(所有队伍), 生命值(事件玩家) * 0.05, 0, 0, 有益爆炸, 爆炸声音, 0.1, 105, 0.2, 0, 0, 0);
 	}
 }
 
@@ -4732,29 +4744,63 @@
 	动作
 	{
 		While(数量(事件玩家.ramattra_absorb) > 0 && 所用英雄(事件玩家) == 英雄(拉玛刹));
-			事件玩家.ramattra_absorb[4] = 总计消耗时间;
-			If(事件玩家.ramattra_absorb[1] > 0);
-				事件玩家.ramattra_absorb[5] = 生命值(事件玩家);
-				开始持续治疗(事件玩家, 事件玩家, 全局.args_ramattra[2], 事件玩家.ramattra_absorb[1] / 全局.args_ramattra[2]);
-				事件玩家.ramattra_absorb[2] = 上一个持续治疗效果ID;
-
-				等待直到(标准化生命值(事件玩家) >= 1.0, 全局.args_ramattra[2]);
-				停止持续治疗(事件玩家.ramattra_absorb[2]);
-
-				事件玩家.ramattra_absorb[6] = 较小(事件玩家.ramattra_absorb[1], 事件玩家.ramattra_absorb[1]-(最大生命值(事件玩家)-事件玩家.ramattra_absorb[5]));
-				If(总计消耗时间 - 事件玩家.ramattra_absorb[4] < 全局.args_ramattra[2] && 标准化生命值(事件玩家) >= 1.0 && 事件玩家.ramattra_absorb[6] > 0);
-					移除玩家的生命池(事件玩家.ramattra_absorb[3]);
-					为玩家添加生命池(事件玩家, 生命值, 事件玩家.ramattra_absorb[6], 假, 假);
-					事件玩家.ramattra_absorb[3] = 最后创建的生命池;
-					事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 10.0, 英雄(拉玛刹));
-				End;
-			End;
-
-			事件玩家.ramattra_absorb[1] = 0.0;
-			等待直到(总计消耗时间 - 事件玩家.ramattra_absorb[4] >= 1.0, 1.0);
+			等待直到(标准化生命值(事件玩家) >= 1.0 && 对任意为“真”(事件玩家.sys_default_status_pool, 当前数组元素[0] == 全局.t_enum_heal_continued && 当前数组元素[6] == 10), 99999);
+			事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, (当前数组元素[0] == 全局.t_enum_heal_continued && 当前数组元素[6] == 10) ? 数组(0-当前数组元素[0], 当前数组元素[1], 当前数组元素[2], 当前数组元素[3], 当前数组元素[4], 当前数组元素[5], 当前数组元素[6], 当前数组元素[7]) : 当前数组元素);
+			等待(0.0, 无视条件);
 		End;
 
 		事件玩家.ramattra_absorb = 空;
+	}
+}
+
+规则("拉玛刹-过度治疗-callback")
+{
+	事件
+	{
+		子程序;
+		cb_ramattra_overheal;
+	}
+
+	动作
+	{
+		If(事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][0] != 0 - 全局.t_enum_heal_continued || 标准化生命值(事件玩家) < 1.0 || 事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][7] <= 0 || 所用英雄(事件玩家) != 事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][4]);
+			中止;
+		End;
+
+		If(总计消耗时间 - 事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][2] >= 1.0);
+			中止;
+		End;
+
+		为玩家添加生命池(事件玩家, 生命值, 0.8 * 事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][7] * 较大(0, 1.0 - (总计消耗时间 - 事件玩家.sys_default_status_pool[事件玩家.sys_default_status_pool_i][2])), 假, 假);
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_hp_pool, 最后创建的生命池, 总计消耗时间, 3.0, 所用英雄(事件玩家));
+	}
+}
+
+规则("拉玛刹-吸血循环")
+{
+	事件
+	{
+		持续 - 每名玩家;
+		双方;
+		全部;
+	}
+
+	条件
+	{
+		所用英雄(事件玩家) == 英雄(拉玛刹);
+		数量(事件玩家.ramattra_absorb) > 0;
+	}
+
+	动作
+	{
+		While(数量(事件玩家.ramattra_absorb) > 0 && 所用英雄(事件玩家) == 英雄(拉玛刹));
+			等待直到(事件玩家.ramattra_absorb[1] > 0, 99999);
+			等待(0.25, 无视条件);
+
+			开始持续治疗(事件玩家, 事件玩家, 1.0, 事件玩家.ramattra_absorb[1]);
+			事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_heal_continued, 上一个持续治疗效果ID, 总计消耗时间, 1.0, 英雄(拉玛刹), 空, 10, 事件玩家.ramattra_absorb[1]);
+			事件玩家.ramattra_absorb[1] = 0.0;
+		End;
 	}
 }
 
