@@ -4245,7 +4245,7 @@
 	动作
 	{
 		事件玩家.a_sys_user_status[全局.t_enum_status_thorns] += 全局.args_junkerqueen[3];
-		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_status_thorns, 数组(事件玩家, 0.25), 总计消耗时间, 3.0, 英雄(渣客女王), 自定义字符串("Junker Queen Carnage Thorns"));
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_status_thorns, 数组(事件玩家, 全局.args_junkerqueen[3]), 总计消耗时间, 3.0, 英雄(渣客女王), 自定义字符串("Junker Queen Carnage Thorns"));
 		等待直到(!正在使用技能 2(事件玩家), 3.0);
 		事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Junker Queen Carnage Thorns") ? 数组分割(当前数组元素, 0, 2) : 当前数组元素);
 	}
@@ -4269,7 +4269,7 @@
 	动作
 	{
 		事件玩家.a_sys_user_status[全局.t_enum_status_thorns] += 全局.args_junkerqueen[4];
-		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_status_thorns, 数组(事件玩家, 0.25), 总计消耗时间, 6.0, 英雄(渣客女王), 自定义字符串("Junker Queen Rampage Thorns"));
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_status_thorns, 数组(事件玩家, 全局.args_junkerqueen[4]), 总计消耗时间, 6.0, 英雄(渣客女王), 自定义字符串("Junker Queen Rampage Thorns"));
 		等待直到(!正在使用终极技能(事件玩家), 6.0);
 		事件玩家.sys_default_status_pool = 映射的数组(事件玩家.sys_default_status_pool, 当前数组元素[5] == 自定义字符串("Junker Queen Rampage Thorns") ? 数组分割(当前数组元素, 0, 2) : 当前数组元素);
 	}
@@ -4295,7 +4295,7 @@
 		事件玩家.junkerqueen_flag = 空;
 
 		事件玩家.a_sys_user_status[全局.t_enum_status_thorns] += 全局.args_junkerqueen[2];
-		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_status_thorns, 数组(事件玩家, 0.25), 总计消耗时间, (所用英雄(事件玩家) == 英雄(渣客女王)) ? 5 : 3, 空, 空);
+		事件玩家.sys_default_status_pool[数量(事件玩家.sys_default_status_pool)] = 数组(全局.t_enum_status_thorns, 数组(事件玩家, 全局.args_junkerqueen[2]), 总计消耗时间, (所用英雄(事件玩家) == 英雄(渣客女王)) ? 5 : 3, 空, 空);
 	}
 }
 
