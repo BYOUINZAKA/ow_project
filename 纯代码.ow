@@ -1048,6 +1048,7 @@
 		事件玩家.sys_ultra_score[全局.i_sys_score_offset+9] = 0.0;	// 威胁事由总分
 		事件玩家.sys_ultra_score[全局.i_sys_score_offset+10] = 所有玩家(对方队伍(所在队伍(事件玩家)));
 		事件玩家.sys_ultra_score[全局.i_sys_score_offset+11] = 空;	// 遍历的对方玩家
+		事件玩家.sys_ultra_score[全局.i_sys_score_offset+12] = 0;	// 玩家差值
 
 		事件玩家.sys_ultra_score[全局.i_sys_score_offset+7].sys_softirq[6] += 1;
 		事件玩家.sys_ultra_score[全局.i_sys_score_offset+10].sys_softirq[7] += 1;
@@ -1071,16 +1072,19 @@
 				事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] = 1.0;
 			End;
 
-			If(标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) <= 0.15);
-				事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] *= 事件玩家.sys_ultra_score[8];
-			Else If(标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) <= 0.3);
-				事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] *= 事件玩家.sys_ultra_score[7];
-			Else If(标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) <= 0.5);
-				事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] *= 事件玩家.sys_ultra_score[6];
+			If(存活(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) && 相距距离(事件玩家, 事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) <= 事件玩家.sys_ultra_score[0]);
+				If(标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) <= 0.15);
+					事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] *= 事件玩家.sys_ultra_score[8];
+				Else If(标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) <= 0.3);
+					事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] *= 事件玩家.sys_ultra_score[7];
+				Else If(标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) <= 0.5);
+					事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] *= 事件玩家.sys_ultra_score[6];
+				End;
 			End;
 
 			If(!存活(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) || 相距距离(事件玩家, 事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) > 事件玩家.sys_ultra_score[0]);
-				事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+6] * 事件玩家.sys_ultra_score[9];
+				// 事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+6] * 事件玩家.sys_ultra_score[9];
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] *= 事件玩家.sys_ultra_score[全局.i_sys_score_offset+6] * 事件玩家.sys_ultra_score[9];
 				事件玩家.sys_ultra_score[全局.i_sys_score_offset+6] += 1;
 			Else;
 				事件玩家.sys_ultra_score[全局.i_sys_score_offset+2] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+5] * (1.0 - 标准化生命值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]));
@@ -1089,13 +1093,19 @@
 
 			事件玩家.sys_ultra_score[全局.i_sys_score_offset+3] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+5];
 
-			等待直到(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4].sys_softirq[6] <= 0, 99999);
-			事件玩家.sys_ultra_score[全局.i_sys_score_offset+8] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+4].sys_ultra_reasons[0];
+			If(存活(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) && 相距距离(事件玩家, 事件玩家.sys_ultra_score[全局.i_sys_score_offset+4]) <= 事件玩家.sys_ultra_score[0]);
+				等待直到(事件玩家.sys_ultra_score[全局.i_sys_score_offset+4].sys_softirq[6] <= 0, 99999);
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+8] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+4].sys_ultra_reasons[0];
+			Else;
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+12] += 1;
+			End;
 
 			事件玩家.sys_ultra_score[全局.i_sys_score_offset+11] = 事件玩家.sys_ultra_score[全局.i_sys_score_offset+10][事件玩家.sys_ultra_score[全局.i_sys_score_offset+1]];
-			If(事件玩家.sys_ultra_score[全局.i_sys_score_offset+11] != 空 && 存活(事件玩家.sys_ultra_score[全局.i_sys_score_offset+11]));
+			If(事件玩家.sys_ultra_score[全局.i_sys_score_offset+11] != 空 && 存活(事件玩家.sys_ultra_score[全局.i_sys_score_offset+11]) && 相距距离(事件玩家, 事件玩家.sys_ultra_score[全局.i_sys_score_offset+11]) <= 事件玩家.sys_ultra_score[0]);
 				等待直到(事件玩家.sys_ultra_score[全局.i_sys_score_offset+11].sys_softirq[7] <= 0, 99999);
 				事件玩家.sys_ultra_score[全局.i_sys_score_offset+9] += 事件玩家.sys_ultra_score[全局.i_sys_score_offset+11].sys_ultra_reasons[1];
+			Else;
+				事件玩家.sys_ultra_score[全局.i_sys_score_offset+12] -= 1;
 			End;
 
 			事件玩家.sys_ultra_score[全局.i_sys_score_offset+1] += 1;
@@ -1127,23 +1137,26 @@
 	动作
 	{
 		If(所用英雄(事件玩家) == 英雄(禅雅塔));
-			事件玩家.sys_ultra_score = 数组(40, 25, 所用英雄(事件玩家), 1.4, 1.0, 1.2, 2.0, 2.5, 3.5, 0.15);
+			事件玩家.sys_ultra_score = 数组(45, 30, 所用英雄(事件玩家), 1.4, 1.0, 1.2, 2.0, 2.5, 3.5, 0.15);
 		Else If(所用英雄(事件玩家) == 英雄(布丽吉塔));
-			事件玩家.sys_ultra_score = 数组(35, 20, 所用英雄(事件玩家), 1.1, 1.0, 1.2, 2.5, 2.5, 3.0, 0.15);
+			事件玩家.sys_ultra_score = 数组(40, 25, 所用英雄(事件玩家), 1.1, 1.0, 1.2, 2.5, 2.5, 3.0, 0.15);
 		Else If(所用英雄(事件玩家) == 英雄(卢西奥));
-			事件玩家.sys_ultra_score = 数组(39, 30, 所用英雄(事件玩家), 1.7, 1.0, 1.2, 1.5, 3.0, 3.0, 0.15);
+			事件玩家.sys_ultra_score = 数组(43, 35, 所用英雄(事件玩家), 1.7, 1.0, 1.2, 1.5, 3.0, 3.0, 0.15);
 		End;
 
 		While(终极技能充能百分比(事件玩家) >= 100 && !正在使用终极技能(事件玩家) && 所用英雄(事件玩家) == 事件玩家.sys_ultra_score[2] && 存活(事件玩家));
 			禁用按钮(事件玩家, 按钮(终极技能));
 			调用子程序(do_energy_hp_loop);
 
+			事件玩家.sys_ultra_score[全局.i_sys_score_offset+12] = 绝对值(事件玩家.sys_ultra_score[全局.i_sys_score_offset+12]);
+
 			事件玩家.sys_ultra_score[全局.i_sys_score_offset+0] = 
 			(100.0 * 事件玩家.sys_ultra_score[全局.i_sys_score_offset+2] / 事件玩家.sys_ultra_score[全局.i_sys_score_offset+3]) + 
 			(事件玩家.sys_ultra_score[全局.i_sys_score_offset+8] / 数量(事件玩家.sys_ultra_score[全局.i_sys_score_offset+7])) + 
-			(事件玩家.sys_ultra_score[全局.i_sys_score_offset+9] / 数量(事件玩家.sys_ultra_score[全局.i_sys_score_offset+7]));
+			(事件玩家.sys_ultra_score[全局.i_sys_score_offset+9] / 数量(事件玩家.sys_ultra_score[全局.i_sys_score_offset+7])) -
+			((事件玩家.sys_ultra_score[全局.i_sys_score_offset+12] >= 2) ? (事件玩家.sys_ultra_score[全局.i_sys_score_offset+12] * 随机实数(2, 10)): 0);
 
-			If(事件玩家.sys_ultra_score[全局.i_sys_score_offset+0] > 事件玩家.sys_ultra_score[0] && 终极技能充能百分比(事件玩家) >= 100);
+			If(事件玩家.sys_ultra_score[全局.i_sys_score_offset+0] > 随机实数(事件玩家.sys_ultra_score[0]-3, 事件玩家.sys_ultra_score[0]+3) && 终极技能充能百分比(事件玩家) >= 100);
 				可用按钮(事件玩家, 按钮(终极技能));
 				事件玩家.sys_ultra_score[全局.i_sys_score_offset+0] = 0.0;
 
@@ -1205,6 +1218,8 @@
 
 		等待(0.10, 无视条件);
 		事件玩家.sys_softirq[6] = 0;
+
+		如条件为“真”则循环;
 	}
 }
 
@@ -1225,19 +1240,24 @@
 	动作
 	{
 		事件玩家.sys_softirq[7] = -999;
-		If(数组包含(数组(英雄(布丽吉塔), 英雄(禅雅塔), 英雄(卢西奥), 英雄(死神), 英雄(安娜), 英雄(奥丽莎), 英雄(探奇), 英雄(士兵：76), 英雄(索杰恩), 英雄(雾子), 英雄(渣客女王)), 所用英雄(事件玩家)) && 正在使用终极技能(事件玩家));
+		If(数组包含(数组(英雄(布丽吉塔), 英雄(禅雅塔), 英雄(卢西奥), 英雄(死神), 英雄(安娜), 英雄(奥丽莎), 英雄(探奇), 英雄(士兵：76), 英雄(渣客女王), 英雄(艾什), 英雄(伊拉锐)), 所用英雄(事件玩家)) && 正在使用终极技能(事件玩家));
 			事件玩家.sys_ultra_reasons[1] = 50;
-		Else If(数组包含(数组(英雄(索杰恩), 英雄(雾子), 英雄(艾什)), 所用英雄(事件玩家)) && 正在使用终极技能(事件玩家));
-			事件玩家.sys_ultra_reasons[1] = 70;
+		Else If(数组包含(数组(英雄(索杰恩), 英雄(雾子)), 所用英雄(事件玩家)) && 正在使用终极技能(事件玩家));
+			事件玩家.sys_ultra_reasons[1] = 80;
 		Else If(所用英雄(事件玩家) == 英雄(美) && 事件玩家.mei_Q_center != 空);
 			事件玩家.sys_ultra_reasons[1] = 70;
-		Else If(数组包含(数组(英雄(源氏), 英雄(黑影), 英雄(拉玛刹), 英雄(法老之鹰), 英雄(伊拉锐)), 所用英雄(事件玩家)) && 正在使用终极技能(事件玩家));
+		Else If(数组包含(数组(英雄(源氏), 英雄(黑影), 英雄(拉玛刹), 英雄(法老之鹰)), 所用英雄(事件玩家)) && 正在使用终极技能(事件玩家));
 			事件玩家.sys_ultra_reasons[1] = 80;
 		Else;
 			事件玩家.sys_ultra_reasons[1] = 0;
 		End;
+		If(所用英雄(事件玩家) == 英雄(卢西奥) && 正在使用技能 2(事件玩家));
+			事件玩家.sys_ultra_reasons[1] += 15;
+		End;
 		等待(0.10, 无视条件);
 		事件玩家.sys_softirq[7] = 0;
+
+		如条件为“真”则循环;
 	}
 }
 
