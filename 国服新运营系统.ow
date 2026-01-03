@@ -189,6 +189,7 @@
 
 	动作
 	{
+		// 和航航打招呼
 		禁用查看器录制;
 		全局.t_enum_hp_pool = 1;
 		全局.t_enum_damage_adjust = 2;
